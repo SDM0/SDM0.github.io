@@ -1,0 +1,150 @@
+html {
+    color: white;
+    background-color:rgb(2,2,26);
+    text-align: center;
+    transform: scale(0.7);
+}
+
+body {
+    margin: 0;
+    margin-top: -20%;
+}
+
+h2 {
+    margin-top: 1.5%;
+    padding-bottom: 15px;
+    color: rgb(244,89,96);
+    font-family: 'Crimson Pro', serif;
+    font-size: xxx-large;
+}
+
+h1 {
+    overflow-wrap: break-word;
+    margin-top: -20px;
+    padding-bottom: 60px;
+    text-align: center;
+    font-family: 'Crimson Pro', serif;
+    font-size: xxx-large;
+    width: 80%;
+    margin-left: 10%;
+}
+
+h3 {
+    margin-top: 1.5%;
+    padding-bottom: 7%;
+    color: rgb(244,89,96);
+    font-family: 'Crimson Pro', serif;
+    font-size: xx-large;
+}
+
+textarea {
+    font-size: 50px;
+    font-family: 'Crimson Pro', serif;
+    color: white;
+    background-color:rgb(2,2,26);
+}
+
+
+.divimg {
+    background: url("images/bg1_1.png");
+    background-size: cover;
+}
+
+.selector {
+    font-size: xx-large;
+    padding: 15px;
+    margin-top: -1em;
+    border: 3px solid;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+}
+
+.screen {
+    margin-top: -5%;
+}
+
+.img2 {
+    height: 893px;
+    display: block;
+    position: relative;
+    left: 50%;
+	transform: translateX(-50%);
+}
+
+#insert {
+    font-family: 'Crimson Pro', serif;
+    margin-bottom: 2em;
+}
+
+#name {
+    font-size: xx-large;
+}
+
+#chars {
+    font-size: xx-large;
+    text-align: center;
+}
+
+#bgs {
+    font-size: xx-large;
+    text-align: center;
+    padding-bottom: 5px;
+    margin-bottom: 7px;
+}
+
+#bds {
+    font-size: xx-large;
+    text-align: center;
+}
+
+#divselector1 {
+    margin-bottom: 15px;
+    font-family: 'Crimson Pro', serif;
+    color: white;
+    background-color:rgb(2,2,26);
+    text-indent: 1px;
+}
+
+#divselector2 {
+    margin-bottom: 15px;
+    font-family: 'Crimson Pro', serif;
+    color: white;
+    background-color:rgb(2,2,26);
+    text-indent: 1px;
+}
+
+#btn {
+    font-size: x-large;
+    text-align: center;
+    padding-bottom: 3px;
+    margin-bottom: 15px;
+    font-family: 'Crimson Pro', serif;
+    color: white;
+    background-color:rgb(2,2,26);
+    width: 45%;
+}
+
+.act option {
+    font-size: x-large;
+    font-family: 'Crimson Pro', serif;
+    color: white;
+    background-color:rgb(2,2,26);
+}
+
+.act.decoration option:hover {
+    font-family: 'Crimson Pro', serif;
+    color: white;
+    background-color:rgb(8, 8, 88);
+}
+
+.act select {
+    font-family: 'Crimson Pro', serif;
+    size:18px;
+    color: white;
+    background-color:rgb(2,2,26);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: auto;
+    height: 40px;
+}
