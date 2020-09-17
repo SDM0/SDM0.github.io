@@ -7,7 +7,7 @@ html {
 
 body {
     margin: 0;
-    margin-top: -20%;
+    margin-top: -30%;
 }
 
 h2 {
@@ -48,12 +48,14 @@ textarea {
 .divimg {
     background: url("images/bg1_1.png");
     background-size: cover;
+    background-position: center;
 }
 
 .selector {
     font-size: xx-large;
     padding: 15px;
     margin-top: -1em;
+    padding-bottom: -1em;
     border: 3px solid;
     border-radius: 5px;
     text-align: center;
@@ -147,4 +149,8 @@ textarea {
     -moz-appearance: none;
     width: auto;
     height: 40px;
+}
+
+#canvas {
+    text-align:center;
 }

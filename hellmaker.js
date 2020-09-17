@@ -1,5 +1,11 @@
 var audio = document.getElementById("audio");
 audio.volume = 0.3;
+$("#canvas").hide();
+var canvas = document.getElementById('Mycanvas');
+var ctx = canvas.getContext('2d');
+
+ctx.width = document.getElementById('divimage').clientWidth;
+ctx.height = document.getElementById('divimage').clientHeight/1.5;
 
 document.getElementById("chars").value = "az";
 document.getElementById("bgs").value = "bg3";
@@ -73,18 +79,6 @@ function change2() {
             document.getElementById("h2").innerHTML= "• Police •";
             document.getElementById("img2").src="images/police_1.png"
             break;
-        //case "trance":
-        //    document.getElementById("h2").innerHTML= "• Trance, the Loving Devil •";
-        //    document.getElementById("img2").src="images/trance.png"
-        //    break;
-        //case "trancette":
-        //    document.getElementById("h2").innerHTML= "• Trance, the Loving Devilette •";
-        //    document.getElementById("img2").src="images/trancette.png"
-        //    break;
-        //case "sdm":
-        //    document.getElementById("h2").innerHTML= "• SDM, the Black Demon •";
-        //    document.getElementById("img2").src="images/sdm.png"
-        //    break;
         case "ht":
             document.getElementById("h2").innerHTML= "• Helltaker •";
             document.getElementById("img2").src="images/man_pc.png"
@@ -109,12 +103,13 @@ function change3() {
         case "bg1":
             if (bd==0) {
             document.getElementById("divimage").style.background = "url(images/bg1_0.png)"
-        } else if (bd==1) {
+            } else if (bd==1) {
             document.getElementById("divimage").style.background = "url(images/bg1_1.png)"
-        } else {
+            } else {
             document.getElementById("divimage").style.background = "url(images/bg1_2.png)"
-        }
+            }
             document.getElementById("divimage").style.backgroundSize = "cover"
+            document.getElementById("divimage").style.backgroundPosition = "center"
             break;
         case "bg2":
             if (bd==0) {
@@ -125,6 +120,7 @@ function change3() {
                 document.getElementById("divimage").style.background = "url(images/bg2_2.png)"
             }
                 document.getElementById("divimage").style.backgroundSize = "cover"
+                document.getElementById("divimage").style.backgroundPosition = "center"
                 break;
         case "bg3":
             if (bd==0) {
@@ -135,6 +131,7 @@ function change3() {
                 document.getElementById("divimage").style.background = "url(images/bg3_2.png)"
             }
             document.getElementById("divimage").style.backgroundSize = "cover"
+            document.getElementById("divimage").style.backgroundPosition = "center"
             break;
         case "bg4":
             if (bd==0) {
@@ -145,6 +142,7 @@ function change3() {
                 document.getElementById("divimage").style.background = "url(images/bg4_2.png)"
             }
             document.getElementById("divimage").style.backgroundSize = "cover"
+            document.getElementById("divimage").style.backgroundPosition = "center"
             break;
         case "bg5":
             if (bd==0) {
@@ -155,6 +153,7 @@ function change3() {
                 document.getElementById("divimage").style.background = "url(images/bg5_2.png)"
             }
             document.getElementById("divimage").style.backgroundSize = "cover"
+            document.getElementById("divimage").style.backgroundPosition = "center"
             break;
         default:
             null;
@@ -162,5 +161,56 @@ function change3() {
 }
 
 function save() {
-    alert("Saved! ;)  (haha jk doesnt work)");
+    $("#canvas").show();
+    make_base();
+}
+
+function make_base() {
+    base_image = new Image();
+    charc_image = new Image();
+    const elem1 = document.querySelector('#divimage').style.backgroundImage;
+    const img1 = elem1.split('"')[1];
+    const elem2 = document.querySelector('#img2');
+    base_image.src = img1;
+    charc_image.src = elem2.src;
+    base_image.onload = function(){
+        ctx.rect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle="rgb(2,2,26)";
+        ctx.fill();
+        ctx.drawImage(base_image, 0, 0, canvas.width, canvas.height/1.4);
+        ctx.drawImage(charc_image, canvas.width/2-(elem2.width/2),canvas.height/32,elem2.width,elem2.height);
+        ctx.font="bold xxx-large 'Crimson Pro'";
+        ctx.fillStyle="rgb(244,89,96)";
+        ctx.textAlign = "center";
+        ctx.fillText(document.getElementById('h2').firstChild.data,canvas.width/2,ctx.height*1.7);
+        ctx.fillStyle="white";
+        wrapText(ctx, document.getElementById('h1').firstChild.data, canvas.width/2, ctx.height*1.85, canvas.width,50);
+        ctx.fillStyle="rgb(244,89,96)";
+        ctx.font="bold xx-large 'Crimson Pro'";
+        console.log((document.getElementById('h1').firstChild.data).length);
+        ctx.fillText(document.getElementById('h3').firstChild.data,canvas.width/2,ctx.height*2.1);
+        
+  }
+}
+
+function wrapText(ctx, text, x, y, maxWidth, fontSize, fontFace) {
+    var words = text.split(' ');
+    var line = '';
+    var lineHeight = fontSize+2;
+
+    ctx.font = fontSize + " " + fontFace;
+
+    for (var n = 0; n < words.length; n++) {
+        var testLine = line + words[n] + ' ';
+        var metrics = ctx.measureText(testLine);
+        var testWidth = metrics.width;
+        if (testWidth > maxWidth) {
+            ctx.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+        } else {
+            line = testLine;
+        }
+    }
+    ctx.fillText(line, x, y);
 }

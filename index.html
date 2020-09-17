@@ -9,6 +9,7 @@
   </audio>
   <link rel="stylesheet" href="hellmaker.css">
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300&display=swap" rel="stylesheet"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
   <div class="screen">
@@ -23,7 +24,7 @@
     <div id="divselector1">
       <form>
         <label for="name" id="insert" >Insert text:</label><br>
-        <textarea id="name" name="name" maxlength="1000" autocomplete="off" rows="6" spellcheck="false"></textarea>
+        <textarea id="name" name="name" maxlength="300" autocomplete="off" rows="6" spellcheck="false"></textarea>
         <br>
       </form>
     </div>
@@ -44,9 +45,6 @@
           <option value="pandem">Pandemonica</option>
           <option value="pandems">Pandemonica Sadistic</option>
           <option value="police">Police</option>
-          <!--<option value="sdm">SDM</option>
-          <option value="trance">Trance</option>
-          <option value="trancette">Trancette</option>-->
           <option value="ht">Helltaker</option>
           <option value="htske">Helltaker Skeleton</option>
           <option value="zdrada">Zdrada</option>
@@ -74,10 +72,13 @@
       </form>
     </div>
     <div>
-      <label for="btn" id="btnsave" >Save here:</label><br>
+      <label for="btn" id="btnsave" >Save here (right click on pic):</label><br>
       <button id=btn>Save</button>
     </div>
-</section>
+  </section>
+  <br>
+  <canvas id="Mycanvas" height="1300" width="1900"></canvas>
 </body>
 <script src="hellmaker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
 </html>
