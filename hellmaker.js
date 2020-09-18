@@ -1,6 +1,6 @@
 var audio = document.getElementById("audio");
 audio.volume = 0.3;
-$("#canvas").hide();
+$("#Mycanvas").hide();
 var canvas = document.getElementById('Mycanvas');
 var ctx = canvas.getContext('2d');
 
@@ -161,8 +161,9 @@ function change3() {
 }
 
 function save() {
-    $("#canvas").show();
+    $("#Mycanvas").show();
     make_base();
+    DownloadCanvasAsImage();
 }
 
 function make_base() {
@@ -191,7 +192,7 @@ function make_base() {
         if (((document.getElementById('h1').firstChild.data).length)<=112) {
             ctx.fillText(document.getElementById('h3').firstChild.data,canvas.width/2,ctx.height*2.1);
         } else {
-            ctx.fillText(document.getElementById('h3').firstChild.data,canvas.width/2,ctx.height*2.15);
+            ctx.fillText(document.getElementById('h3').firstChild.data,canvas.width/2,ctx.height*2.2);
         }
         
   }
@@ -217,4 +218,14 @@ function wrapText(ctx, text, x, y, maxWidth, fontSize, fontFace) {
         }
     }
     ctx.fillText(line, x, y);
+}
+
+function DownloadCanvasAsImage(){
+	let downloadLink = document.createElement('a');
+	downloadLink.setAttribute('download', 'CanvasAsImage.png');
+	let canvas = document.getElementById('Mycanvas');
+    let dataURL = canvas.toDataURL('image/png');
+    let url = dataURL.replace(/^data:image\/png/,'data:application/octet-stream');
+	downloadLink.setAttribute('href',url);
+	downloadLink.click();
 }
