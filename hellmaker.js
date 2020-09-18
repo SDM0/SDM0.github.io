@@ -188,7 +188,11 @@ function make_base() {
         ctx.fillStyle="rgb(244,89,96)";
         ctx.font="bold xx-large 'Crimson Pro'";
         console.log((document.getElementById('h1').firstChild.data).length);
-        ctx.fillText(document.getElementById('h3').firstChild.data,canvas.width/2,ctx.height*2.1);
+        if (((document.getElementById('h1').firstChild.data).length)<=112) {
+            ctx.fillText(document.getElementById('h3').firstChild.data,canvas.width/2,ctx.height*2.1);
+        } else {
+            ctx.fillText(document.getElementById('h3').firstChild.data,canvas.width/2,ctx.height*2.15);
+        }
         
   }
 }
