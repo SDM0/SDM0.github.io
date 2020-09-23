@@ -163,7 +163,6 @@ function change3() {
 function save() {
     $("#Mycanvas").show();
     make_base();
-    DownloadCanvasAsImage();
 }
 
 function make_base() {
@@ -218,14 +217,4 @@ function wrapText(ctx, text, x, y, maxWidth, fontSize, fontFace) {
         }
     }
     ctx.fillText(line, x, y);
-}
-
-function DownloadCanvasAsImage(){
-	let downloadLink = document.createElement('a');
-	downloadLink.setAttribute('download', 'CanvasAsImage.png');
-	let canvas = document.getElementById('Mycanvas');
-    let dataURL = canvas.toDataURL('image/png');
-    let url = dataURL.replace(/^data:image\/png/,'data:application/octet-stream');
-	downloadLink.setAttribute('href',url);
-	downloadLink.click();
 }
