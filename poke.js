@@ -1,5 +1,7 @@
-var poke = require('poke.json');
-console.log(poke.bulbasaur);
+fs.readFile('/poke.json', function (err, data) {
+    if (err) throw err;
+    console.log(data);
+  });
 
 var mon1 = (document.getElementById("pokemon1")).value;
 var mon2 = (document.getElementById("pokemon2")).value;
