@@ -1,3 +1,4 @@
+
 function selectPoke() {
     var mon1 = (document.getElementById("fname1")).value.toLowerCase();
     var mon2 = (document.getElementById("fname2")).value.toLowerCase();
@@ -18,6 +19,8 @@ function selectPoke() {
         txhr.onload = function() {
         var jsonBody = txhr.responseText;
         var jsonString = JSON.parse(jsonBody);
+        var num1 = jsonString.id;
+        console.log(num1);
         var stats1 = jsonString.stats;
         var mon1stats = [];
         for (i=0; i<stats1.length;i++) {
@@ -44,6 +47,10 @@ function selectPoke() {
             document.getElementById("FP2").innerHTML=fmon2+"/"+fmon1;
             var jsonBody = pxhr.responseText;
             var jsonString = JSON.parse(jsonBody);
+            var num2 = jsonString.id;
+            var pic1 = num1+"."+num2+".png";
+            var pic2 = num2+"."+num1+".png";
+
             var stats2 = jsonString.stats;
             var mon2stats = [];
             for (i=0; i<stats2.length;i++) {
@@ -115,6 +122,9 @@ function selectPoke() {
             document.getElementById("spdef2").innerHTML="SPE.DEF: "+Math.floor(spdef2);
             document.getElementById("spe2").innerHTML="SPEED: "+Math.floor(spe2);
             document.getElementById("bs2").innerHTML="TOTAL: "+Math.floor(bs2);
+
+            document.getElementById("pic1").src="./CustomBattlers/"+pic1;
+            document.getElementById("pic2").src="./CustomBattlers/"+pic2;
             }
 
         }

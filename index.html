@@ -24,10 +24,11 @@
             </form>
         </div>
         <h2>
-        <button class="button" onclick="selectPoke()">Fuse!</button>
+        <button id="button" class="button" onclick="selectPoke()">Fuse!</button>
         </h2>
         <sector id="stats">
             <div id="L2">
+                <img id="pic1" src="question.png" onError="this.src='question.png'">
                 <div id="FP1">mon1/mon2</div>
                 <br>
                 <div id="hp1">HP: </div><br>
@@ -39,6 +40,7 @@
                 <div id="bs1">TOTAL: </div><br><br>
             </div>
             <div id="R2">
+                <img id="pic2" src="question.png" onError="this.src='question.png'">
                 <div id="FP2">mon2/mon1</div>
                 <br>
                 <div id="hp2">HP: </div><br>
