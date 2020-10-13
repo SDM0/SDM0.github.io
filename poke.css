@@ -19,7 +19,9 @@ img {
 }
 
 .button {
-    font-size: 30px;
+    background: transparent;
+    border: none !important;
+    font-size:0;
 }
 
 h2 {
@@ -33,10 +35,12 @@ h2 {
 #L1 {
     float:left;
     width: 50%;
+    padding-bottom: 2%;
 }
 
 #R1 {
     margin-left:50%;
+    padding-bottom: 2%;
 
 }
 
