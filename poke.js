@@ -1,4 +1,176 @@
 
+ids= [["Azurill",252]
+,["Wynaut",253]
+,["Ambipom",254]
+,["Mismagius",255]
+,["Honchrow",256]
+,["Bonsly",257]
+,["Mime.Jr",258]
+,["Happiny",259]
+,["Munchlax",260]
+,["Mantyke",261]
+,["Weavile",262]
+,["Magnezone",263]
+,["Lickilicky",264]
+,["Rhyperior",265]
+,["Tangrowth",266]
+,["Electivire",267]
+,["Magmortar",268]
+,["Togekiss",269]
+,["Yanmega",270]
+,["Leafeon",271]
+,["Glaceon",272]
+,["Gliscor",273]
+,["Mamoswine",274]
+,["Porygon-Z",275]
+,["Treecko",276]
+,["Grovyle",277]
+,["Sceptile",278]
+,["Torchic",279]
+,["Combusken",280]
+,["Blaziken",281]
+,["Mudkip",282]
+,["Marshtomp",283]
+,["Swampert",284]
+,["Ralts",285]
+,["Kirlia",286]
+,["Gardevoir",287]
+,["Gallade",288]
+,["Shedinja",289]
+,["Kecleon",290]
+,["Beldum",291]
+,["Metang",292]
+,["Metagross",293]
+,["Bidoof",294]
+,["Spiritomb",295]
+,["Lucario",296]
+,["Gible",297]
+,["Gabite",298]
+,["Garchomp",299]
+,["Mawile",300]
+,["Lileep",301]
+,["Cradily",302]
+,["Anorith",303]
+,["Armaldo",304]
+,["Cranidos",305]
+,["Rampardos",306]
+,["Shieldon",307]
+,["Bastiodon",308]
+,["Slaking",309]
+,["Absol",310]
+,["Duskull",311]
+,["Dusclops",312]
+,["Dusknoir",313]
+,["Wailord",314]
+,["Arceus",315]
+,["Turtwig",316]
+,["Grotle",317]
+,["Torterra",318]
+,["Chimchar",319]
+,["Monferno",320]
+,["Infernape",321]
+,["Piplup",322]
+,["Prinplup",323]
+,["Empoleon",324]
+,["Nosepass",325]
+,["Probopass",326]
+,["Honedge",327]
+,["Doublade",328]
+,["Aegislash",329]
+,["Pawniard",330]
+,["Bisharp",331]
+,["Luxray",332]
+,["Aggron",333]
+,["Flygon",334]
+,["Milotic",335]
+,["Salamence",336]
+,["Klinklang",337]
+,["Zoroark",338]
+,["Sylveon",339]
+,["Kyogre",340]
+,["Groudon",341]
+,["Rayquaza",342]
+,["Dialga",343]
+,["Palkia",344]
+,["Giratina",345]
+,["Regigigas",346]
+,["Darkrai",347]
+,["Genesect",348]
+,["Reshiram",349]
+,["Zekrom",350]
+,["Kyurem",351]
+,["Roserade",352]
+,["Drifblim",353]
+,["Lopunny",354]
+,["Breloom",355]
+,["Ninjask",356]
+,["Banette",357]
+,["Rotom",358]
+,["Reuniclus",359]
+,["Whimsicott",360]
+,["Krookodile",361]
+,["Cofagrigus",362]
+,["Galvantula",363]
+,["Ferrothorn",364]
+,["Litwick",365]
+,["Lampent",366]
+,["Chandelure",367]
+,["Haxorus",368]
+,["Golurk",369]
+,["Pyukumuku",370]
+,["Klefki",371]
+,["Talonflame",372]
+,["Mimikyu",373]
+,["Volcarona",374]
+,["Deino",375]
+,["Zweilous",376]
+,["Hydreigon",377]
+,["Latias",378]
+,["Latios",379]
+,["Deoxys",380]
+,["Jirachi",381]
+,["Nincada",382]
+,["Bibarel",383]
+,["Riolu",384]
+,["Slakoth",385]
+,["Vigoroth",386]
+,["Wailmer",387]
+,["Shinx",388]
+,["Luxio",389]
+,["Aron",390]
+,["Lairon",391]
+,["Trapinch",392]
+,["Vibrava",393]
+,["Feebas",394]
+,["Bagon",395]
+,["Shellgon",396]
+,["Klink",397]
+,["Klank",398]
+,["Zorua",399]
+,["Budew",400]
+,["Roselia",401]
+,["Drifloon",402]
+,["Buneary",403]
+,["Shroomish",404]
+,["Shuppet",405]
+,["Solosis",406]
+,["Duosion",407]
+,["Cottonee",408]
+,["Sandile",409]
+,["Krokorok",410]
+,["Yamask",411]
+,["Joltik",412]
+,["Ferroseed",413]
+,["Axew",414]
+,["Fraxure",415]
+,["Golett",416]
+,["Fletchling",417]
+,["Fletchinder",418]
+,["Larvesta",419]
+,["Stunfisk",420]]
+
+console.log(ids[5][0]);
+
 function selectPoke() {
     var mon1 = (document.getElementById("fname1")).value.toLowerCase();
     var mon2 = (document.getElementById("fname2")).value.toLowerCase();
@@ -20,14 +192,18 @@ function selectPoke() {
         var jsonBody = txhr.responseText;
         var jsonString = JSON.parse(jsonBody);
         var num1 = jsonString.id;
-        console.log(num1);
+        for (i=0;i<ids.length;i++){
+            console.log(ids[i][0],mon1);
+            if (ids[i][0]==mon1.charAt(0).toUpperCase() + mon1.slice(1)) {
+                num1=ids[i][1];
+            }
+        }
         var stats1 = jsonString.stats;
         var mon1stats = [];
         for (i=0; i<stats1.length;i++) {
             mon1stats.push(stats1[i].base_stat)
         }
         var ab1 = jsonString.abilities;
-        console.log(ab1);
         var pxhr = new XMLHttpRequest();
         var poke2 = 'https://pokeapi.co/api/v2/pokemon/'+mon2
         pxhr.open('GET', poke2, true);
@@ -48,6 +224,12 @@ function selectPoke() {
             var jsonBody = pxhr.responseText;
             var jsonString = JSON.parse(jsonBody);
             var num2 = jsonString.id;
+            for (i=0;i<ids.length;i++){
+                console.log(ids[i][0],mon2);
+                if (ids[i][0]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
+                    num2=ids[i][1];
+                }
+            }
             var pic1 = num1+"."+num2+".png";
             var pic2 = num2+"."+num1+".png";
 
@@ -67,7 +249,6 @@ function selectPoke() {
                     abs.push();
                 }
             }
-            console.log("abs:" + abs);
             document.getElementById("ab").innerHTML="Possible abilites: "+abs;
             document.getElementById("lien").innerHTML="How to know the abilities?";
             
@@ -122,6 +303,9 @@ function selectPoke() {
             document.getElementById("spdef2").innerHTML="SPE.DEF: "+Math.floor(spdef2);
             document.getElementById("spe2").innerHTML="SPEED: "+Math.floor(spe2);
             document.getElementById("bs2").innerHTML="TOTAL: "+Math.floor(bs2);
+
+            console.log(pic1);
+            console.log(pic2);
 
             document.getElementById("pic1").src="./CustomBattlers/"+pic1;
             document.getElementById("pic2").src="./CustomBattlers/"+pic2;
