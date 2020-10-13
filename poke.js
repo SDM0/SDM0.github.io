@@ -1,4 +1,3 @@
-
 ids= [["Azurill",252]
 ,["Wynaut",253]
 ,["Ambipom",254]
@@ -169,13 +168,25 @@ ids= [["Azurill",252]
 ,["Larvesta",419]
 ,["Stunfisk",420]]
 
-console.log(ids[5][0]);
+var pkmn1 = document.getElementById('fname1');
+pkmn1.addEventListener("keydown",function(event) {
+    if (event.keyCode===13) {
+        event.preventDefault();
+        document.getElementById("button").click();
+    }
+});
+
+var pkmn2 = document.getElementById('fname2');
+pkmn2.addEventListener("keydown",function(event) {
+    if (event.keyCode===13) {
+        event.preventDefault();
+        document.getElementById("button").click();
+    }
+});
 
 function selectPoke() {
     var mon1 = (document.getElementById("fname1")).value.toLowerCase();
     var mon2 = (document.getElementById("fname2")).value.toLowerCase();
-    console.log(mon1);
-    console.log(mon2);
     if ((mon1 == "" || mon1.length == 0 || mon1 == null) || (mon2 == "" || mon2.length == 0 || mon2 == null)) {
         alert("Please fill the two text inputs!");
     } else {

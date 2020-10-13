@@ -1,4 +1,3 @@
-
 body {
     background-color: rgb(20,20,20);
     text-align: center;
@@ -13,9 +12,14 @@ label {
     font-size: 25px;
 }
 
+img {
+    width:  150px;
+    height: 150px;
+    object-fit: cover;
+}
+
 .button {
     font-size: 30px;
-    width:5%;
 }
 
 h2 {
