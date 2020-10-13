@@ -1,14 +1,29 @@
+
 body {
-    background-image: url('bg.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    background-color: rgb(20,20,20);
     text-align: center;
+    font-family: 'Piazzolla', serif;
+    color: white;
     font-size: 20px;
 }
 
-h3 {
-    font-size: 2em;
+label {
+    font-family: 'Piazzolla', serif;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.button {
+    font-size: 30px;
+    width:5%;
+}
+
+h2 {
+    font-weight: 400;
+}
+
+#stats {
+    font-weight: bolder;
 }
 
 #L1 {

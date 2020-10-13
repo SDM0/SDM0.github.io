@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Pokemon Fusion Calculator</title>
         <link rel="stylesheet" href="poke.css">
+        <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@500;600;700&display=swap" rel="stylesheet"> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
@@ -11,47 +12,46 @@
             Pokemon Fusion Calculator
         </h1>
         <div id="L1">
-            Pokemon 1 (Head):
-            <select name="pokemon1" id="pokemon1">
-                <option id="bulbasaur">bulbasaur</option>
-                <option id="squirtle">squirtle</option>
-                <option id="charmander">charmender</option>
-            </select>
+            <form>
+                <label for="fname1">Insert first Pokemon:</label>
+                <input type="text" id="fname1" name="fname1" value="none" autocomplete="false"><br>
+            </form>
         </div>
         <div id="R1">
-            Pokemon 2 (Body):
-            <select name="pokemon2" id="pokemon2">
-                <option id="bulbasaur">bulbasaur</option>
-                <option id="squirtle">squirtle</option>
-                <option id="charmander">charmender</option>
-            </select>
+            <form>
+                <label for="fname2">Insert second Pokemon:</label>
+                <input type="text" id="fname2" name="fname2" value="none" autocomplete="false"><br>
+            </form>
         </div>
         <h2>
-            Result:
+        <button class="button" onclick="selectPoke()">Fuse!</button>
         </h2>
-        <div id="L2">
-            <div id="FP1"></div>
-            <br>
-            <div id="hp"></div><br>
-            <div id="atk"></div><br>
-            <div id="def"></div><br>
-            <div id="spatk"></div><br>
-            <div id="spdef"></div><br>
-            <div id="speed"></div><br>
-        </div>
-        <div id="R2">
-            <div id="FP2"></div>
-            <br>
-            <div id="hp"></div><br>
-            <div id="atk"></div><br>
-            <div id="def"></div><br>
-            <div id="spatk"></div><br>
-            <div id="spdef"></div><br>
-            <div id="speed"></div><br>
-
-        </div>
-
+        <sector id="stats">
+            <div id="L2">
+                <div id="FP1">mon1/mon2</div>
+                <br>
+                <div id="hp1">HP: </div><br>
+                <div id="atk1">ATK: </div><br>
+                <div id="def1">DEF: </div><br>
+                <div id="spatk1">SPE.ATK: </div><br>
+                <div id="spdef1">SPE.DEF: </div><br>
+                <div id="spe1">SPEED: </div><br>
+                <div id="bs1">TOTAL: </div><br><br>
+            </div>
+            <div id="R2">
+                <div id="FP2">mon2/mon1</div>
+                <br>
+                <div id="hp2">HP: </div><br>
+                <div id="atk2">ATK: </div><br>
+                <div id="def2">DEF: </div><br>
+                <div id="spatk2">SPE.ATK: </div><br>
+                <div id="spdef2">SPE.DEF: </div><br>
+                <div id="spe2">SPEED: </div><br>
+                <div id="bs2">TOTAL: </div><br><br>
+            </div>
+            <div id="ab"></div>
+            <a id="lien" target="_blank" href="https://cdn.discordapp.com/attachments/761520762741194793/763064293213995058/unknown.png"></a>
+        </sector>
     </body>
-    <script src="https://unpkg.com/pokeapi-js-wrapper/dist/index.js"></script>
     <script src="poke.js"></script>  
 </html>
