@@ -35,7 +35,9 @@ function selectPoke() {
             var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
             } else if (mon1=="giratina-altered") {
                 var fmon1 = "Giratina";
+                var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
             } else if (mon2=="giratina-altered") {
+                var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
                 var fmon2 = "Giratina"
             }
             document.getElementById("FP1").innerHTML=fmon1+"/"+fmon2;
