@@ -1,38 +1,38 @@
 function selectPoke() {
     var mon1 = (document.getElementById("fname1")).value.toLowerCase();
     var mon2 = (document.getElementById("fname2")).value.toLowerCase();
-    var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
-    var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
-    document.getElementById("FP1").innerHTML=fmon1+"/"+fmon2;
-    document.getElementById("FP2").innerHTML=fmon2+"/"+fmon1;
-    console.log(mon1, mon2);
+    console.log(mon1);
+    console.log(mon2);
     if ((mon1 == "" || mon1.length == 0 || mon1 == null) || (mon2 == "" || mon2.length == 0 || mon2 == null)) {
         alert("Please fill the two text inputs!");
-        return null
     } else {
         var txhr = new XMLHttpRequest();  
         var poke1 = 'https://pokeapi.co/api/v2/pokemon/'+mon1
         txhr.open('GET', poke1, true);
         txhr.send();
         txhr.onload = function() {
-            var jsonBody = txhr.responseText;
+        var jsonBody = txhr.responseText;
+        var jsonString = JSON.parse(jsonBody);
+        var stats1 = jsonString.stats;
+        var mon1stats = [];
+        for (i=0; i<stats1.length;i++) {
+            mon1stats.push(stats1[i].base_stat)
+        }
+        var ab1 = jsonString.abilities;
+        console.log(ab1);
+        var pxhr = new XMLHttpRequest();
+        var poke2 = 'https://pokeapi.co/api/v2/pokemon/'+mon2
+        pxhr.open('GET', poke2, true);
+        pxhr.send();
+        pxhr.onload = function() {
+            var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
+            var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
+            document.getElementById("FP1").innerHTML=fmon1+"/"+fmon2;
+            document.getElementById("FP2").innerHTML=fmon2+"/"+fmon1;
+            var jsonBody = pxhr.responseText;
             var jsonString = JSON.parse(jsonBody);
-            var stats1 = jsonString.stats;
-            var mon1stats = [];
-            for (i=0; i<stats1.length;i++) {
-                mon1stats.push(stats1[i].base_stat)
-            }
-            var ab1 = jsonString.abilities;
-            console.log(ab1);
-            var pxhr = new XMLHttpRequest();
-            var poke2 = 'https://pokeapi.co/api/v2/pokemon/'+mon2
-            pxhr.open('GET', poke2, true);
-            pxhr.send();
-            pxhr.onload = function() {
-                var jsonBody = pxhr.responseText;
-                var jsonString = JSON.parse(jsonBody);
-                var stats2 = jsonString.stats;
-                var mon2stats = [];
+            var stats2 = jsonString.stats;
+            var mon2stats = [];
             for (i=0; i<stats2.length;i++) {
                 mon2stats.push(stats2[i].base_stat)
             }
@@ -66,6 +66,26 @@ function selectPoke() {
             var spdef2 = (mon1stats[4]/3)+2*(mon2stats[4]/3);
             var spe2 = 2*(mon1stats[5]/3)+(mon2stats[5]/3);
             var bs2 = Math.floor(hp2)+Math.floor(atk2)+Math.floor(def2)+Math.floor(spatk2)+Math.floor(spdef2)+Math.floor(spe2);
+
+            var L0=["hp1","atk1","def1","spatk1","spdef1","spe1","bs1"];
+            var L1=["hp2","atk2","def2","spatk2","spdef2","spe2","bs2"];
+            var L2=[Math.floor(hp1),Math.floor(atk1),Math.floor(def1),Math.floor(spatk1),Math.floor(spdef1),Math.floor(spe1),Math.floor(bs1)];
+            var L3=[Math.floor(hp2),Math.floor(atk2),Math.floor(def2),Math.floor(spatk2),Math.floor(spdef2),Math.floor(spe2),Math.floor(bs2)];
+
+            for (i=0;i<L1.length;i++) {
+                if (L2[i]<L3[i]) {
+                    document.getElementById(L0[i]).style.color="red";
+                    document.getElementById(L1[i]).style.color="green";
+                } else if (L2[i]>L3[i]) {
+                    document.getElementById(L1[i]).style.color="red";
+                    document.getElementById(L0[i]).style.color="green";
+                } else {
+                    document.getElementById(L1[i]).style.color="orange";
+                    document.getElementById(L0[i]).style.color="orange";
+                }
+                document.getElementById(L0[i]).innerHTML=L0[i].slice(-1)+": "+L2[i];
+                document.getElementById(L1[i]).innerHTML=L1[i].slice(-1)+": "+L3[i];
+            }
 
             document.getElementById("hp1").innerHTML="HP: "+Math.floor(hp1);
             document.getElementById("atk1").innerHTML="ATK: "+Math.floor(atk1);
