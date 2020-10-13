@@ -6,6 +6,11 @@ function selectPoke() {
     if ((mon1 == "" || mon1.length == 0 || mon1 == null) || (mon2 == "" || mon2.length == 0 || mon2 == null)) {
         alert("Please fill the two text inputs!");
     } else {
+        if (mon1=="giratina") {
+            mon1="giratina-altered";
+        } else if (mon2=="giratina") {
+            mon2="giratina-altered";
+        }
         var txhr = new XMLHttpRequest();  
         var poke1 = 'https://pokeapi.co/api/v2/pokemon/'+mon1
         txhr.open('GET', poke1, true);
@@ -25,8 +30,14 @@ function selectPoke() {
         pxhr.open('GET', poke2, true);
         pxhr.send();
         pxhr.onload = function() {
+            if (mon1!="giratina-altered" && mon2!="giratina-altered") {
             var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
             var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
+            } else if (mon1=="giratina-altered") {
+                var fmon1 = "Giratina";
+            } else if (mon2=="giratina-altered") {
+                var fmon2 = "Giratina"
+            }
             document.getElementById("FP1").innerHTML=fmon1+"/"+fmon2;
             document.getElementById("FP2").innerHTML=fmon2+"/"+fmon1;
             var jsonBody = pxhr.responseText;
