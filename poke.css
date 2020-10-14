@@ -20,37 +20,40 @@ img {
 
 .button {
     font-size: 35px;
-    margin: 0;
 }
 
 h2 {
     font-weight: 400;
     margin: 0;
-    padding: 0;
+    padding: 25px;
     height: 20px;
 }
 
 #stats {
-    font-weight: bolder;
-}
-
-#L1 {
-    float:left;
-    padding-bottom: 2%;
-    width:50%;
-}
-
-#R1 {
-    margin-left:50%;
-    padding-bottom: 2%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 
 }
 
-#L2 {
-    float:left;
-    width:50%;
+#t1 {
+    display: inline-block;
+    margin-right: 30%;
+}
+
+#t2 {
+    display: inline-block;
 }
 
 #R2 {
-    margin-left: 50%;
+    margin-top: 10px;
+    height: 30px;
+}
+
+#L2 {
+    margin-top: 10px;
+    height: 30px;
+}
+
+#extra {
+    margin-top:30%;
 }

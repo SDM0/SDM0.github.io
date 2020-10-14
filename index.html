@@ -11,49 +11,51 @@
         <h1>
             Pokemon Fusion Calculator
         </h1>
-        <div id="L1">
-            <form autocomplete="off">
+        <div id="text">
+            <div id="t1">
                 <label for="fname1">Insert first Pokemon:</label>
-                <input type="text" id="fname1" name="fname1" value=""  autocomplete="false"><br>
-            </form>
-        </div>
-        <div id="R1">
-            <form autocomplete="off">
+                <input type="text" id="fname1" name="fname1" value=""  autocomplete="off"><br>
+            </div>
+            <div id="t2">
                 <label for="fname2">Insert second Pokemon:</label>
-                <input type="text" id="fname2" name="fname2" value="" autocomplete="false"><br>
-            </form>
+                <input type="text" id="fname2" name="fname2" value="" autocomplete="off"><br>
+            </div>
         </div>
         <h2>
         <button id="button" class="button" onclick="selectPoke()">Fuse!</button>
         </h2>
-        <sector id="stats">
-            <div id="L2">
-                <img id="pic1" src="question.png" onError="this.src='question.png'">
-                <div id="FP1">mon1/mon2</div>
-                <br>
-                <div id="hp1">HP: </div><br>
-                <div id="atk1">ATK: </div><br>
-                <div id="def1">DEF: </div><br>
-                <div id="spatk1">SPE.ATK: </div><br>
-                <div id="spdef1">SPE.DEF: </div><br>
-                <div id="spe1">SPEED: </div><br>
-                <div id="bs1">TOTAL: </div><br><br>
+        <section>
+            <div id="stats">
+                <div id="L2">
+                    <img id="pic1" src="question.png" onError="this.src='question.png'">
+                    <div id="FP1">mon1/mon2</div>
+                    <br>
+                    <div id="hp1">HP: </div><br>
+                    <div id="atk1">ATK: </div><br>
+                    <div id="def1">DEF: </div><br>
+                    <div id="spatk1">SPE.ATK: </div><br>
+                    <div id="spdef1">SPE.DEF: </div><br>
+                    <div id="spe1">SPEED: </div><br>
+                    <div id="bs1">TOTAL: </div><br><br>
+                </div>
+                <div id="R2">
+                    <img id="pic2" src="question.png" onError="this.src='question.png'">
+                    <div id="FP2">mon2/mon1</div>
+                    <br>
+                    <div id="hp2">HP: </div><br>
+                    <div id="atk2">ATK: </div><br>
+                    <div id="def2">DEF: </div><br>
+                    <div id="spatk2">SPE.ATK: </div><br>
+                    <div id="spdef2">SPE.DEF: </div><br>
+                    <div id="spe2">SPEED: </div><br>
+                    <div id="bs2">TOTAL: </div><br><br>
+                </div>
             </div>
-            <div id="R2">
-                <img id="pic2" src="question.png" onError="this.src='question.png'">
-                <div id="FP2">mon2/mon1</div>
-                <br>
-                <div id="hp2">HP: </div><br>
-                <div id="atk2">ATK: </div><br>
-                <div id="def2">DEF: </div><br>
-                <div id="spatk2">SPE.ATK: </div><br>
-                <div id="spdef2">SPE.DEF: </div><br>
-                <div id="spe2">SPEED: </div><br>
-                <div id="bs2">TOTAL: </div><br><br>
-            </div>
-            <div id="ab"></div>
-            <a id="lien" target="_blank" href="https://cdn.discordapp.com/attachments/761520762741194793/763064293213995058/unknown.png"></a>
-        </sector>
+        </section>
+        <section id="extra">
+        <div id="ab"></div>
+        <a id="lien" target="_blank" href="https://cdn.discordapp.com/attachments/761520762741194793/763064293213995058/unknown.png"></a>
+        </section>
     </body>
     <script src="poke.js"></script>  
 </html>
