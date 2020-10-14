@@ -168,6 +168,13 @@ ids= [["Azurill",252]
 ,["Larvesta",419]
 ,["Stunfisk",420]]
 
+var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));  
+    if (mobile) { 
+        document.getElementById("button").style.fontSize="15px";
+        document.getElementById("button").style.border="none";
+        document.getElementById("button").style.background="grey";
+    } 
+
 var pkmn1 = document.getElementById('fname1');
 pkmn1.addEventListener("keydown",function(event) {
     if (event.keyCode===13) {
