@@ -472,7 +472,7 @@ function fusType(mon1,mon2) {
     } else if (mon1.length==1 && mon2.length==2) {
     //cas H1/null + B1/B2 [H1#B1] -> H1/B1
             fmon.push(mon1[0]);
-            fmon.push(mon2[0]);
+            fmon.push(mon2[1]);
     } else if (mon1.length==2 && mon1.length==1) {
     //cas H1/H2 + B1/B2 [H1#B2] -> H1/B2
         if (mon1[0]!=mon2[1]) {
