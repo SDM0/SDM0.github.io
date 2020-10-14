@@ -23,12 +23,16 @@
         </div>
         <h2>
         <button id="button" class="button" onclick="selectPoke()">Fuse!</button>
+        <h3>(or press Enter)</h3>
         </h2>
-        <section>
-            <div id="stats">
+            <sector id="stats" class="stats">
                 <div id="L2">
-                    <img id="pic1" src="question.png" onError="this.src='question.png'">
+                    <img class="picpok" id="pic1" src="question.png" onError="this.src='question.png'">
                     <div id="FP1">mon1/mon2</div>
+                    <div id="typecont">
+                        <img class="pictype" id="p1" src="Types/normal.png">
+                        <img class="pictype" id="p2" style="display:none">
+                    </div>
                     <br>
                     <div id="hp1">HP: </div><br>
                     <div id="atk1">ATK: </div><br>
@@ -39,8 +43,12 @@
                     <div id="bs1">TOTAL: </div><br><br>
                 </div>
                 <div id="R2">
-                    <img id="pic2" src="question.png" onError="this.src='question.png'">
+                    <img class="picpok" id="pic2" src="question.png" onError="this.src='question.png'">
                     <div id="FP2">mon2/mon1</div>
+                    <div id="typecont">
+                        <img class="pictype" id="p3" src="Types/normal.png">
+                        <img class="pictype" id="p4" style="display:none">
+                    </div>
                     <br>
                     <div id="hp2">HP: </div><br>
                     <div id="atk2">ATK: </div><br>
@@ -48,14 +56,12 @@
                     <div id="spatk2">SPE.ATK: </div><br>
                     <div id="spdef2">SPE.DEF: </div><br>
                     <div id="spe2">SPEED: </div><br>
-                    <div id="bs2">TOTAL: </div><br><br>
+                    <div id="bs2">TOTAL: </div><br><br>              
                 </div>
-            </div>
-        </section>
-        <section id="extra">
-        <div id="ab"></div>
+            </sector>
+        <!--<div id="ab"></div>
         <a id="lien" target="_blank" href="https://cdn.discordapp.com/attachments/761520762741194793/763064293213995058/unknown.png"></a>
-        </section>
+        -->
     </body>
     <script src="poke.js"></script>  
 </html>

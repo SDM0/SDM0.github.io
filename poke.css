@@ -12,10 +12,15 @@ label {
     font-size: 25px;
 }
 
-img {
+.picpok {
     width:  150px;
     height: 150px;
     object-fit: cover;
+}
+
+.pictype {
+    width: 89px;
+    height: 39px;
 }
 
 .button {
@@ -29,19 +34,15 @@ h2 {
     height: 20px;
 }
 
-#stats {
+h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 0;
+}
+
+.stats {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-
-}
-
-#t1 {
-    display: inline-block;
-    margin-right: 30%;
-}
-
-#t2 {
-    display: inline-block;
 }
 
 #R2 {
@@ -52,8 +53,4 @@ h2 {
 #L2 {
     margin-top: 10px;
     height: 30px;
-}
-
-#extra {
-    margin-top:30%;
 }
