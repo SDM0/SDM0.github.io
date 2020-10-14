@@ -18,8 +18,16 @@ img {
     object-fit: cover;
 }
 
+.button {
+    font-size: 35px;
+    margin: 0;
+}
+
 h2 {
     font-weight: 400;
+    margin: 0;
+    padding: 0;
+    height: 20px;
 }
 
 #stats {
@@ -29,6 +37,7 @@ h2 {
 #L1 {
     float:left;
     padding-bottom: 2%;
+    width:50%;
 }
 
 #R1 {
@@ -39,6 +48,7 @@ h2 {
 
 #L2 {
     float:left;
+    width:50%;
 }
 
 #R2 {
