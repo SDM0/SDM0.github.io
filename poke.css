@@ -24,13 +24,13 @@ label {
 }
 
 .button {
-    font-size: 35px;
+    font-size: 30px;
 }
 
 h2 {
     font-weight: 400;
     margin: 0;
-    padding: 25px;
+    padding-bottom: 17px;
     height: 20px;
 }
 
@@ -46,11 +46,9 @@ h3 {
 }
 
 #R2 {
-    margin-top: 10px;
     height: 30px;
 }
 
 #L2 {
-    margin-top: 10px;
     height: 30px;
 }

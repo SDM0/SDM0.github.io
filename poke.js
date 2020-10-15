@@ -199,6 +199,7 @@ typeUni=
 ,["dragon","Dragonite"]
 ,["steel","Steelix"]]
 
+//Press ENTER on text area 1
 var pkmn1 = document.getElementById('fname1');
 pkmn1.addEventListener("keydown",function(event) {
     if (event.keyCode===13) {
@@ -207,6 +208,7 @@ pkmn1.addEventListener("keydown",function(event) {
     }
 });
 
+//Press ENTER on text area 2
 var pkmn2 = document.getElementById('fname2');
 pkmn2.addEventListener("keydown",function(event) {
     if (event.keyCode===13) {
@@ -215,12 +217,16 @@ pkmn2.addEventListener("keydown",function(event) {
     }
 });
 
+//Fusion calculation function
 function selectPoke() {
+
+    //Pokemon from both text area
     var mon1 = (document.getElementById("fname1")).value.toLowerCase();
     var mon2 = (document.getElementById("fname2")).value.toLowerCase();
     if ((mon1 == "" || mon1.length == 0 || mon1 == null) || (mon2 == "" || mon2.length == 0 || mon2 == null)) {
         alert("Please fill the two text inputs!");
     } else {
+        //Special mon selector: Giratina, Deoxys
         if (mon1=="giratina") {
             mon1="giratina-altered";
         } else if (mon2=="giratina") {
@@ -231,6 +237,8 @@ function selectPoke() {
         } else if (mon2=="deoxys") {
             mon2="deoxys-normal";
         }
+
+        //First request
         var txhr = new XMLHttpRequest();  
         var poke1 = 'https://pokeapi.co/api/v2/pokemon/'+mon1
         txhr.open('GET', poke1, true);
@@ -238,15 +246,21 @@ function selectPoke() {
         txhr.onload = function() {
         var jsonBody = txhr.responseText;
         var jsonString = JSON.parse(jsonBody);
+
+        //ID selector for sprite showcase of the 1st mon
         var num1 = jsonString.id;
         for (i=0;i<ids.length;i++){
             if (ids[i][0]==mon1.charAt(0).toUpperCase() + mon1.slice(1)) {
                 num1=ids[i][1];
             }
         }
+
+        //Type selector for fusion type knowledge of the 1st mon
         var type1 = jsonString.types;
         var mon1types = [];
         var compt=0
+
+        //Exception mon selected for swapped types
         for (i=0;i<typeSwap.length;i++) {
             if (typeSwap[i][2]==mon1.charAt(0).toUpperCase() + mon1.slice(1)) {
                 mon1types.push(typeSwap[i][0]);
@@ -255,6 +269,7 @@ function selectPoke() {
             }
         }
 
+        //Exception mon selected for one type
         for (i=0;i<typeUni.length;i++) {
             if (typeUni[i][1]==mon1.charAt(0).toUpperCase() + mon1.slice(1)) {
                 mon1types.push(typeUni[i][0]);
@@ -262,6 +277,7 @@ function selectPoke() {
             }
         }
 
+        //Type of 1st mon
         if (compt==0) {
             mon1types.push(type1[0].type.name);
             if (type1.length==2 && compt!=2) {
@@ -272,18 +288,29 @@ function selectPoke() {
                 }
             }
         }
-        console.log(mon1types);
+        
+        //Stats of 1st mon
         var stats1 = jsonString.stats;
         var mon1stats = [];
         for (i=0; i<stats1.length;i++) {
             mon1stats.push(stats1[i].base_stat)
         }
-        var ab1 = jsonString.abilities;
+
+        //Ability of 1st mon
+        var aB01 = jsonString.abilities;
+        var mon1abilities = [];
+            for (i=0; i<aB01.length;i++) {
+                mon1abilities.push([aB01[i].ability,aB01[i].is_hidden]);
+            }
+
+        //2nd request
         var pxhr = new XMLHttpRequest();
         var poke2 = 'https://pokeapi.co/api/v2/pokemon/'+mon2
         pxhr.open('GET', poke2, true);
         pxhr.send();
         pxhr.onload = function() {
+            
+            //Name of fusion
             if (mon1!="giratina-altered" && mon2!="giratina-altered" && mon1!="deoxys-normal" && mon2!="deoxys-normal") {
             var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
             var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
@@ -306,20 +333,29 @@ function selectPoke() {
             }
             var jsonBody = pxhr.responseText;
             var jsonString = JSON.parse(jsonBody);
+
+            //ID selector for sprite showcase of the 2st mon
             var num2 = jsonString.id;
             for (i=0;i<ids.length;i++){
                 if (ids[i][0]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
                     num2=ids[i][1];
                 }
             }
+
+            //Name of fusions
             document.getElementById("FP1").innerHTML=fmon1+"/"+fmon2;
             document.getElementById("FP2").innerHTML=fmon2+"/"+fmon1;
+
+            //Name of pictures
             var pic1 = num1+"."+num2+".png";
             var pic2 = num2+"."+num1+".png";
 
+            //Type selector for fusion type knowledge of the 2nd mon
             var type2 = jsonString.types;
             var mon2types = [];
             var compt=0
+
+            //Exception mon selected for swapped types
             for (i=0;i<typeSwap.length;i++) {
                 if (typeSwap[i][2]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
                     mon2types.push(typeSwap[i][0]);
@@ -328,6 +364,7 @@ function selectPoke() {
                 }
             }
     
+            //Exception mon selected for one type
             for (i=0;i<typeUni.length;i++) {
                 if (typeUni[i][1]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
                     mon2types.push(typeUni[i][0]);
@@ -335,6 +372,7 @@ function selectPoke() {
                 }
             }
     
+            //Type of 2nd mon
             if (compt==0) {
                 mon2types.push(type2[0].type.name);
                 if (type2.length==2 && compt!=2) {
@@ -345,26 +383,22 @@ function selectPoke() {
                     }
                 }
             }
-            console.log(mon2types);
+
+            //Stats of 2nd mon
             var stats2 = jsonString.stats;
             var mon2stats = [];
             for (i=0; i<stats2.length;i++) {
                 mon2stats.push(stats2[i].base_stat)
             }
-            var ab2 = jsonString.abilities;
-            var abs = [];
-            for (i=0;i<ab1.length;i++) {
-                abs.push(" "+ab1[i].ability.name);
+
+            //Abilities of 2nd mon
+            var aB1 = jsonString.abilities;
+            var mon2abilities = [];
+            for (i=0; i<aB1.length;i++) {
+                mon2abilities.push([aB1[i].ability,aB1[i].is_hidden]);
             }
-            for (i=0;i<ab2.length;i++) {
-                if (!(abs.includes(ab2[i].ability.name))) {
-                    abs.push("  "+ab2[i].ability.name);
-                    abs.push();
-                }
-            }
-            //document.getElementById("ab").innerHTML="Possible abilites: "+abs;
-            //document.getElementById("lien").innerHTML="How to know the abilities?";
-            
+
+            //Stats calculation
             var hp1 = (mon2stats[0]/3)+2*(mon1stats[0]/3);
             var atk1 = 2*(mon2stats[1]/3)+(mon1stats[1]/3);
             var def1 = 2*(mon2stats[2]/3)+(mon1stats[2]/3);
@@ -386,6 +420,7 @@ function selectPoke() {
             var L2=[Math.floor(hp1),Math.floor(atk1),Math.floor(def1),Math.floor(spatk1),Math.floor(spdef1),Math.floor(spe1),Math.floor(bs1)];
             var L3=[Math.floor(hp2),Math.floor(atk2),Math.floor(def2),Math.floor(spatk2),Math.floor(spdef2),Math.floor(spe2),Math.floor(bs2)];
 
+            //Color of stats
             for (i=0;i<L1.length;i++) {
                 if (L2[i]<L3[i]) {
                     document.getElementById(L0[i]).style.color="red";
@@ -401,6 +436,7 @@ function selectPoke() {
                 document.getElementById(L1[i]).innerHTML=L1[i].slice(-1)+": "+L3[i];
             }
 
+            //Writting stat in HTML
             document.getElementById("hp1").innerHTML="HP: "+Math.floor(hp1);
             document.getElementById("atk1").innerHTML="ATK: "+Math.floor(atk1);
             document.getElementById("def1").innerHTML="DEF: "+Math.floor(def1);
@@ -417,11 +453,17 @@ function selectPoke() {
             document.getElementById("spe2").innerHTML="SPEED: "+Math.floor(spe2);
             document.getElementById("bs2").innerHTML="TOTAL: "+Math.floor(bs2);
 
+            //Abilities of fused mons
+            console.log("M1AB:", mon1abilities);
+            console.log("M2AB:", mon2abilities);
+
+            var abres1 = fusAb(mon1abilities,mon2abilities);
+            var abres2 = fusAb(mon2abilities,mon1abilities);
+            
+            
+            //Type of fused mons
             var fmonres1 = fusType(mon1types,mon2types);
             var fmonres2 = fusType(mon2types,mon1types);
-            
-            console.log("fmonres1:",fmonres1);
-            console.log("fmonres2:",fmonres2);
 
             document.getElementById("p1").src="./Types/"+fmonres1[0]+".png";
             if (fmonres1.length!=1 && (fmonres1.length==2 && fmonres1[0]!=fmonres1[1])) {
@@ -440,53 +482,316 @@ function selectPoke() {
                 document.getElementById("p4").style.display="none";
             }
 
+            //Picture of fusion (if in folder)
             document.getElementById("pic1").src="./CustomBattlers/"+pic1;
             document.getElementById("pic2").src="./CustomBattlers/"+pic2;
-            }
 
+            var listAb1 = "ABILITY: ";
+            for (i=0;i<abres1.length;i++) {
+                listAb1 = listAb1+abres1[i].charAt(0).toUpperCase() + abres1[i].slice(1)+"/";
+            }
+            listAb1=listAb1.slice(0,listAb1.length-1);
+            listAb1=listAb1.split("-").join(" ")
+
+            document.getElementById("ab1").innerHTML=" ";
+            document.getElementById("ab1").innerHTML=listAb1;
+
+            var listAb2 = "ABILITY: ";
+            for (i=0;i<abres2.length;i++) {
+                listAb2 = listAb2+abres2[i].charAt(0).toUpperCase() + abres2[i].slice(1)+"/";
+            }
+            listAb2=listAb2.slice(0,listAb2.length-1);
+            listAb2=listAb2.split("-").join(" ")
+
+            document.getElementById("ab2").innerHTML=" ";
+            document.getElementById("ab2").innerHTML=listAb2;
+            }
         }
     }
 }
 
+//Ability fusion function
+function fusAb(mon1,mon2) {
+    var fabs = [];
+    var H0 = mon1[0][0].name;
+    if (mon1.length==3 && mon1[2][1]==true) {
+        var H1 = mon1[1][0].name;
+        var HH = mon1[2][0].name;
+    }else if (mon1.length==2 && mon1[1][1]==true) {
+        var HH = mon1[1][0].name;
+    } else if (mon1.length==2 && mon1[1][1]==false){
+        var H1 = mon1[1][0].name;
+    }
+    var B0 = mon2[0][0].name;
+    if (mon2.length==3 && mon2[2][1]==true) {
+        var B1 = mon2[1][0].name;
+        var BH = mon2[2][0].name;  
+    }else if (mon2.length==2 && mon2[1][1]==true) {
+        var BH = mon2[1][0].name;
+    } else if (mon1.length==2 && mon1[1][1]==false){
+        var B1 = mon2[1][0].name;
+    }
+    //cas H0/null/null + B0/null/null [H0=B0] -> H0/null/null
+    if (mon1.length==1 && mon2.length==1 && mon1[0][1]==false && mon2[0][1]==false) {
+        if (H0==B0) {
+            fabs.push(H0);
+    //cas H0/null/null + B0/null/null [H0#B0] -> H0/B0/null
+        } else if (H0!=B0) {
+            fabs.push(H0);
+            fabs.push(B0);
+        }
+    //cas H0/H1/null + B0/null/null [H0=B0] -> H0/H1/null
+    } else if (mon1.length==2 && mon2.length==1 && mon1[0][1]==false && mon1[1][1]==false && mon2[0][1]==false) {
+        if (H0==B0) {
+            fabs.push(H0);
+            fabs.push(H1);
+    //cas H0/H1/null + B0/null/null [H0#B0] -> H0/B0/H1
+        } else if (H0!=B0) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(H1);
+        }
+    //cas H0/null/HH + B0/null/null [H0=B0 | HH=B0] -> H0/null/HH
+    } else if (mon1.length==2 && mon2.length==1 && mon1[0][1]==false && mon1[1][1]==true && mon2[0][1]==false) {
+        if (H0==B0 || H1==B0) {
+            fabs.push(H0);
+            fabs.push(HH);
+    //cas H0/null/HH + B0/null/null [H0#B0 & HH#B0] -> H0/B0/HH
+        } else if (H0!=B0 && HH!=B0) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+        }
+    //cas H0/H1/HH + B0/null/null [H0=B0 | B0=HH] -> H0/H1/HH
+    } else if (mon1.length==3 && mon2.length==1 && mon1[0][1]==false && mon1[1][1]==false && mon1[2][1]==true && mon2[0][1]==false) {
+        if (H0==B0 || B0==HH) {
+            fabs.push(H0);
+            fabs.push(H1);
+            fabs.push(HH);
+    //cas H0/H1/HH + B0/null/null [H0#B0 & HH#B0] -> H0/B0/HH
+        } else if (H0!=B0 && HH!=B0) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+        }
+    //cas H0/null/null + B0/B1/null [H0=B1] -> H0/B0/null
+    } else if (mon1.length==1 && mon2.length==2 && mon1[0][1]==false && mon2[0][1]==false && mon2[1][1]==false) {
+        if (H0==B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+    //cas H0/null/null + B0/B1/null [H0=B0] -> H0/B1/null
+        } else if (H0==B0) {
+            fabs.push(H0);
+            fabs.punch(B1);
+    //cas H0/null/null + B0/B1/null [H0#B0 & H0#B1] -> H0/B1/B0
+        } else if (H0!=B0 && H0!=B1) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(B0);
+        }
+    //cas H0/H1/null + B0/B1/null [H0=B1] -> H0/B0/H1
+    } else if (mon1.length==2 && mon2.length==2 && mon1[0][1]==false && mon1[1][1]==false && mon2[0][1]==false && mon2[1][1]==false) {
+        if (H0==B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(H1);
+    //cas H0/H1/null + B0/B1/null [H0=B0] -> H0/B1/H1
+        } else if (H0==B0) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(H1);
+    //cas H0/H1/null + B0/B1/null [H1#B0 & H1#B1] -> H0/B1/H1
+        } else if (H1!=B0 && H1!=B1) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(H1);
+        }
+    //cas H0/null/HH + B0/B01/null [H0=B1 | HH=B1] -> H0/B0/HH
+    } else if (mon1.length==2 && mon2.length==2 && mon1[0][1]==false && mon1[1][1]==true && mon2[0][1]==false && mon2[1][1]==false) {
+        if (H0==B1 || HH==B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+    //cas H0/null/HH + B0/B1/null [H0#B1 & HH#B1] -> H0/B1/HH
+        } else if (H0!=B1 && HH!=B1) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(H1);
+        }
+    //cas H0/H1/HH + B0/B1/null [H0=B1 | HH=B1] -> H0/B0/HH
+    } else if (mon1.length==3 && mon2.length==2 && mon1[0][1]==false && mon1[1][1]==false && mon1[2][1]==true && mon2[0][1]==false && mon2[1][1]==false) {
+        if (H0==B1 || HH==B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+    //cas H0/H1/HH + B0/B1/null [H0#B1 & HH#B1] -> H0/B1/HH
+        } else if (H0!=B1 && HH!=B1) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(HH);
+        }
+    //cas H0/null/null + B0/null/BH [H0=BH] -> H0/null/B0
+    } else if (mon1.length==1 && mon2.length==2 && mon1[0][1]==false && mon2[0][1]==false && mon2[1][1]==true) {
+        if (H0==BH) {
+            fabs.push(H0);
+            fabs.push(B0);
+    //cas H0/null/null + B0/null/BH [H0=B0] -> H0/null/BH
+        } else if (H0==B0) {
+            fabs.push(H0);
+            fabs.push(BH);
+    //cas H0/null/null + B0/null/BH [H0#B0 & H0#BH] -> H0/B0/BH
+        } else if (H0!=B0 && H0!=BH) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(BH);
+        }
+    //cas H0/H1/null + B0/null/BH [H0=BH] -> H0/B0/H1
+    } else if (mon1.length==2 && mon2.length==2 && mon1[0][1]==false && mon1[1][1]==false && mon2[0][1]==false && mon2[1][1]==true) {
+        if (H0==BH) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(H1);
+    //cas H0/H1/null + B0/null/BH [H0=B0] -> H0/BH/H1
+        } else if (H0==B0) {
+            fabs.push(H0);
+            fabs.push(BH);
+            fabs.push(H1);
+    //cas H0/H1/null + B0/null/BH [H0#BH & H1#BH] -> H0/H1/BH
+        } else if (H0!=BH && H1!=BH) {
+            fabs.push(H0);
+            fabs.push(H1);
+            fabs.push(BH);
+        }
+    //cas H0/null/HH + B0/null/BH [H0=BH | HH=BH] -> H0/B0/HH
+    } else if (mon1.length==2 && mon2.length==2 && mon1[0][1]==false && mon1[1][1]==true && mon2[0][1]==false && mon2[1][1]==true) {
+        if (H0==BH || HH==BH) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+    //cas H0/null/HH + B0/null/BH [H0#BH & HH#BH] -> H0/BH/HH
+        } else if (H0!=BH && HH!=BH) {
+            fabs.push(H0);
+            fabs.push(BH);
+            fabs.push(HH);
+        }
+    //cas H0/H1/HH + B0/null/BH [H0=BH | HH=BH] -> H0/B0/HH
+    } else if (mon1.length==3 && mon2.length==2 && mon1[0][1]==false && mon1[1][1]==false && mon1[2][1]==true && mon2[0][1]==false && mon2[1][1]==true) {
+        if (H0==BH || HH==BH) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+    //cas H0/H1/HH + B0/null/BH [H0#BH & HH#BH] -> H0/BH/HH
+        } else if (H0!=BH && HH!=BH) {
+            fabs.push(H0);
+            fabs.push(BH);
+            fabs.push(HH);
+        }
+    //cas H0/null/null + B0/B1/BH [H0#B1 & H0#BH] -> H0/B1/BH
+    } else if (mon1.length==1 && mon2.length==3 && mon1[0][1]==false  && mon2[0][1]==false && mon2[1][1]==false && mon2[2][1]==true) {
+        if (H0!=B1 && H0!=BH) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(BH);
+    //cas H0/null/null + B0/B1/BH [H0=B1] -> H0/B0/BH
+        } else if (H0==B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(BH);
+    //cas H0/null/null + B0/B1/BH [H0=BH] -> H0/B1/B0
+        } else if (H0==BH) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(B0);
+        }
+    //cas H0/H1/null + B0/B1/BH [H0#B1 & H0#BH] -> H0/B1/BH
+    } else if (mon1.length==2 && mon2.length==3 && mon1[0][1]==false && mon1[1][1]==false && mon2[0][1]==false && mon2[1][1]==false && mon2[2][1]==true) {
+        if (H0==B1 || H0==BH) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(BH);
+    //cas H0/H1/null + B0/B1/BH [H0=B1] -> H0/B0/BH
+        } else if (H0==B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(BH);
+    //cas H0/H1/null + B0/B1/BH [H0=BH] -> H0/B1/B0
+        } else if (H0==BH) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(B0);
+        }
+    //cas H0/null/HH + B0/B1/BH [H0#B1 & HH#B1] -> H0/B1/HH
+    } else if (mon1.length==2 && mon2.length==3 && mon1[0][1]==false && mon1[1][1]==true && mon2[0][1]==false && mon2[1][1]==false && mon2[2][1]==true) {
+        if (H0!=B1 && HH!=B1) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(HH);
+    //cas H0/null/HH + B0/B1/BH [H0=B1 | HH=B1] -> H0/B0/HH
+        } else if (H0==B1 || HH==B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+    //cas H0/null/HH + B0/B1/BH [H0=B0 | HH=B0] -> H0/B1/HH
+        } else if (H0==B0 || HH==B0) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(HH);
+        }
+    //cas H0/H1/HH + B0/B1/BH [H0#B1 & HH#B1] -> H0/B1/HH
+    } else if (mon1.length==3 && mon2.length==3 && mon1[0][1]==false && mon1[1][1]==false && mon1[2][1]==true && mon2[0][1]==false && mon2[1][1]==false && mon2[2][1]==true) {
+        if (H0!=B1 && HH!=B1) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(HH);
+    //cas H0/H1/HH + B0/B1/BH [H0=B1 | HH=B1] -> H0/B0/HH
+        } else if (H0==B1 || HH==B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+    //cas H0/H1/HH + B0/B1/BH [H0=B0 | HH=B0] -> H0/B1/HH
+        } else if (H0==B0 || HH==B0) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(HH);
+        }
+    }
+	return fabs
+}
+
+
+//Type fusion function
 function fusType(mon1,mon2) {
-    //cas H1/null + B1/null [H1#B1] -> H1/B1
+    //cas H01/null + B01/null [H01#B01] -> H01/B01
     var fmon = []
     if (mon1.length==1 && mon2.length==1) {
         if (mon1[0]!=mon2[0]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[0])
-    //cas H1/null + B1/null [H1=B1] -> H1/null
+    //cas H01/null + B01/null [H01=B01] -> H01/null
         } else {
             fmon.push(mon1[0]);
         }
     } else if (mon1.length==2 && mon2.length==1) {
-    //cas H1/H2 + B1/null [H1#B1] -> H1/B1
+    //cas H01/H1 + B01/null [H01#B01] -> H01/B01
         if (mon1[0]!=mon2[0]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[0]);
-    //cas H1/H2 + B1/null [H1=B1] -> H1/H2
+    //cas H01/H1 + B01/null [H01=B01] -> H01/H1
         } else {
             fmon.push(mon1[0]);
             fmon.push(mon1[1]);
         }
     } else if (mon1.length==1 && mon2.length==2) {
-    //cas H1/null + B1/B2 [H1#B1] -> H1/B1
+    //cas H01/null + B01/B1 [H01#B01] -> H01/B01
             fmon.push(mon1[0]);
             fmon.push(mon2[1]);
-    } else if (mon1.length==2 && mon1.length==1) {
-    //cas H1/H2 + B1/B2 [H1#B2] -> H1/B2
+
+    //cas H01/H1 + B01/B1 [H01=B1] -> H01/B01
+    } else if (mon1.length==2 && mon2.length==2) {
         if (mon1[0]!=mon2[1]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[1]);
-    //cas H1/H2 + B1/B2 [H1=B2] -> H1/B1
-        } else {
-            fmon.push(mon1[0]);
-            fmon.push(mon2[0]);
-        }
-    } else if (mon1.length==2 && mon1.length==2) {
-        if (mon1[0]!=mon2[1]) {
-            fmon.push(mon1[0]);
-            fmon.push(mon2[1]);
+    //cas H01/H1 + B01/B1 [H01=B1] -> H01/B01
         } else {
             fmon.push(mon1[0]);
             fmon.push(mon1[1]);
