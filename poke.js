@@ -6,7 +6,7 @@ ids=
 ,["Mismagius",255]
 ,["Honchrow",256]
 ,["Bonsly",257]
-,["Mime.jr",258]
+,["Mime-jr",258]
 ,["Happiny",259]
 ,["Munchlax",260]
 ,["Mantyke",261]
