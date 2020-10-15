@@ -6,7 +6,7 @@ ids=
 ,["Mismagius",255]
 ,["Honchrow",256]
 ,["Bonsly",257]
-,["Mime.Jr",258]
+,["Mime.jr",258]
 ,["Happiny",259]
 ,["Munchlax",260]
 ,["Mantyke",261]
@@ -23,7 +23,7 @@ ids=
 ,["Glaceon",272]
 ,["Gliscor",273]
 ,["Mamoswine",274]
-,["Porygon-Z",275]
+,["Porygon-z",275]
 ,["Treecko",276]
 ,["Grovyle",277]
 ,["Sceptile",278]
@@ -77,7 +77,7 @@ ids=
 ,["Probopass",326]
 ,["Honedge",327]
 ,["Doublade",328]
-,["Aegislash",329]
+,["Aegislash-shield",329]
 ,["Pawniard",330]
 ,["Bisharp",331]
 ,["Luxray",332]
@@ -93,7 +93,7 @@ ids=
 ,["Rayquaza",342]
 ,["Dialga",343]
 ,["Palkia",344]
-,["Giratina",345]
+,["Giratina-altered",345]
 ,["Regigigas",346]
 ,["Darkrai",347]
 ,["Genesect",348]
@@ -128,7 +128,7 @@ ids=
 ,["Hydreigon",377]
 ,["Latias",378]
 ,["Latios",379]
-,["Deoxys",380]
+,["Deoxys-normal",380]
 ,["Jirachi",381]
 ,["Nincada",382]
 ,["Bibarel",383]
@@ -254,274 +254,314 @@ function selectPoke() {
 
         //ID selector for sprite showcase of the 1st mon
         var num1 = jsonString.id;
+        var idCheck1 = false;
         for (i=0;i<ids.length;i++){
             if (ids[i][0]==mon1.charAt(0).toUpperCase() + mon1.slice(1)) {
                 num1=ids[i][1];
+                idCheck1 = true;
             }
         }
 
-        //Type selector for fusion type knowledge of the 1st mon
-        var type1 = jsonString.types;
-        var mon1types = [];
-        var compt=0
-
-        //Exception mon selected for swapped types
-        for (i=0;i<typeSwap.length;i++) {
-            if (typeSwap[i][2]==mon1.charAt(0).toUpperCase() + mon1.slice(1)) {
-                mon1types.push(typeSwap[i][0]);
-                mon1types.push(typeSwap[i][1]);
-                var compt=1;
-            }
-        }
-
-        //Exception mon selected for one type
-        for (i=0;i<typeUni.length;i++) {
-            if (typeUni[i][1]==mon1.charAt(0).toUpperCase() + mon1.slice(1)) {
-                mon1types.push(typeUni[i][0]);
-                var compt=2;
-            }
-        }
-
-        //Type of 1st mon
-        if (compt==0) {
-            mon1types.push(type1[0].type.name);
-            if (type1.length==2 && compt!=2) {
-                if (type1[0].type.name=="normal" && type1[1].type.name=="flying") {
-                    mon1types[0]="flying";
-                } else {
-                    mon1types.push(type1[1].type.name);
-                }
-            }
-        }
-        
-        //Stats of 1st mon
-        var stats1 = jsonString.stats;
-        var mon1stats = [];
-        for (i=0; i<stats1.length;i++) {
-            mon1stats.push(stats1[i].base_stat)
-        }
-
-        //Ability of 1st mon
-        var aB01 = jsonString.abilities;
-        var mon1abilities = [];
-            for (i=0; i<aB01.length;i++) {
-                mon1abilities.push([aB01[i].ability,aB01[i].is_hidden]);
-            }
-
-        //2nd request
-        var pxhr = new XMLHttpRequest();
-        var poke2 = 'https://pokeapi.co/api/v2/pokemon/'+mon2
-        pxhr.open('GET', poke2, true);
-        pxhr.send();
-        pxhr.onload = function() {
-            
-            //Name of fusion
-            if (mon1!="giratina-altered" && mon2!="giratina-altered" && mon1!="deoxys-normal" && mon2!="deoxys-normal" && mon1!="aegislash-shield" && mon2!="aegislash-shield") {
-            var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
-            var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
-            }
-            if (mon1=="giratina-altered") {
-                var fmon1 = "Giratina";
-                var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
-            }
-            if (mon2=="giratina-altered") {
-                var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
-                var fmon2 = "Giratina";
-            }
-            if (mon1=="deoxys-normal") {
-                var fmon1 = "Deoxys";
-                var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
-            }
-            if (mon2=="deoxys-normal") {
-                var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
-                var fmon2 = "Deoxys";
-            }
-            if (mon1=="aegislash-shield") {
-                var fmon1 = "Aegislash";
-                var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
-            }
-            if (mon2=="aegislash-shield") {
-                var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
-                var fmon2 = "Aegislash";
-            }
-            var jsonBody = pxhr.responseText;
-            var jsonString = JSON.parse(jsonBody);
-
-            //ID selector for sprite showcase of the 2st mon
-            var num2 = jsonString.id;
-            for (i=0;i<ids.length;i++){
-                if (ids[i][0]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
-                    num2=ids[i][1];
-                }
-            }
-
-            //Name of fusions
-            document.getElementById("FP1").innerHTML=fmon1+"/"+fmon2;
-            document.getElementById("FP2").innerHTML=fmon2+"/"+fmon1;
-
-            //Name of pictures
-            var pic1 = num1+"."+num2+".png";
-            var pic2 = num2+"."+num1+".png";
-
-            //Type selector for fusion type knowledge of the 2nd mon
-            var type2 = jsonString.types;
-            var mon2types = [];
+        //var mon1gen = jsonString.game_indices[0].version.url.split("/")[jsonString.game_indices[0].version.url.split("/").length-2];
+        //if (mon1gen<7 && idCheck1 == false) {
+        //    idCheck1 = true;
+        //}
+        //if (idCheck1==false) {
+        //    alert("The first Pokemon isn't in the fangame!");
+        //} else {
+            //Type selector for fusion type knowledge of the 1st mon
+            var type1 = jsonString.types;
+            var mon1types = [];
             var compt=0
 
             //Exception mon selected for swapped types
             for (i=0;i<typeSwap.length;i++) {
-                if (typeSwap[i][2]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
-                    mon2types.push(typeSwap[i][0]);
-                    mon2types.push(typeSwap[i][1]);
+                if (typeSwap[i][2]==mon1.charAt(0).toUpperCase() + mon1.slice(1)) {
+                    mon1types.push(typeSwap[i][0]);
+                    mon1types.push(typeSwap[i][1]);
                     var compt=1;
                 }
             }
-    
+
             //Exception mon selected for one type
             for (i=0;i<typeUni.length;i++) {
-                if (typeUni[i][1]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
-                    mon2types.push(typeUni[i][0]);
+                if (typeUni[i][1]==mon1.charAt(0).toUpperCase() + mon1.slice(1)) {
+                    mon1types.push(typeUni[i][0]);
                     var compt=2;
                 }
             }
-    
-            //Type of 2nd mon
+
+            //Type of 1st mon
             if (compt==0) {
-                mon2types.push(type2[0].type.name);
-                if (type2.length==2 && compt!=2) {
-                    if (type2[0].type.name=="normal" && type2[1].type.name=="flying") {
-                        mon2types[0]="flying";
+                mon1types.push(type1[0].type.name);
+                if (type1.length==2 && compt!=2) {
+                    if (type1[0].type.name=="normal" && type1[1].type.name=="flying") {
+                        mon1types[0]="flying";
                     } else {
-                        mon2types.push(type2[1].type.name);
+                        mon1types.push(type1[1].type.name);
                     }
                 }
             }
-
-            //Stats of 2nd mon
-            var stats2 = jsonString.stats;
-            var mon2stats = [];
-            for (i=0; i<stats2.length;i++) {
-                mon2stats.push(stats2[i].base_stat)
+            
+            //Stats of 1st mon
+            var stats1 = jsonString.stats;
+            var mon1stats = [];
+            for (i=0; i<stats1.length;i++) {
+                mon1stats.push(stats1[i].base_stat)
             }
 
-            //Abilities of 2nd mon
-            var aB1 = jsonString.abilities;
-            var mon2abilities = [];
-            for (i=0; i<aB1.length;i++) {
-                mon2abilities.push([aB1[i].ability,aB1[i].is_hidden]);
-            }
-
-            //Stats calculation
-            var hp1 = (mon2stats[0]/3)+2*(mon1stats[0]/3);
-            var atk1 = 2*(mon2stats[1]/3)+(mon1stats[1]/3);
-            var def1 = 2*(mon2stats[2]/3)+(mon1stats[2]/3);
-            var spatk1 = (mon2stats[3]/3)+2*(mon1stats[3]/3);
-            var spdef1 = (mon2stats[4]/3)+2*(mon1stats[4]/3);
-            var spe1 = 2*(mon2stats[5]/3)+(mon1stats[5]/3);
-            var bs1 = Math.floor(hp1)+Math.floor(atk1)+Math.floor(def1)+Math.floor(spatk1)+Math.floor(spdef1)+Math.floor(spe1);
-
-            var hp2 = (mon1stats[0]/3)+2*(mon2stats[0]/3);
-            var atk2 = 2*(mon1stats[1]/3)+(mon2stats[1]/3);
-            var def2= 2*(mon1stats[2]/3)+(mon2stats[2]/3);
-            var spatk2 = (mon1stats[3]/3)+2*(mon2stats[3]/3);
-            var spdef2 = (mon1stats[4]/3)+2*(mon2stats[4]/3);
-            var spe2 = 2*(mon1stats[5]/3)+(mon2stats[5]/3);
-            var bs2 = Math.floor(hp2)+Math.floor(atk2)+Math.floor(def2)+Math.floor(spatk2)+Math.floor(spdef2)+Math.floor(spe2);
-
-            var L0=["hp1","atk1","def1","spatk1","spdef1","spe1","bs1"];
-            var L1=["hp2","atk2","def2","spatk2","spdef2","spe2","bs2"];
-            var L2=[Math.floor(hp1),Math.floor(atk1),Math.floor(def1),Math.floor(spatk1),Math.floor(spdef1),Math.floor(spe1),Math.floor(bs1)];
-            var L3=[Math.floor(hp2),Math.floor(atk2),Math.floor(def2),Math.floor(spatk2),Math.floor(spdef2),Math.floor(spe2),Math.floor(bs2)];
-
-            //Color of stats
-            for (i=0;i<L1.length;i++) {
-                if (L2[i]<L3[i]) {
-                    document.getElementById(L0[i]).style.color="red";
-                    document.getElementById(L1[i]).style.color="green";
-                } else if (L2[i]>L3[i]) {
-                    document.getElementById(L1[i]).style.color="red";
-                    document.getElementById(L0[i]).style.color="green";
-                } else {
-                    document.getElementById(L1[i]).style.color="orange";
-                    document.getElementById(L0[i]).style.color="orange";
+            //Ability of 1st mon
+            var ab1 = jsonString.abilities;
+            var mon1abilities = [];
+                for (i=0; i<ab1.length;i++) {
+                    mon1abilities.push([ab1[i].ability,ab1[i].is_hidden]);
                 }
-                document.getElementById(L0[i]).innerHTML=L0[i].slice(-1)+": "+L2[i];
-                document.getElementById(L1[i]).innerHTML=L1[i].slice(-1)+": "+L3[i];
-            }
 
-            //Writting stat in HTML
-            document.getElementById("hp1").innerHTML="HP: "+Math.floor(hp1);
-            document.getElementById("atk1").innerHTML="ATK: "+Math.floor(atk1);
-            document.getElementById("def1").innerHTML="DEF: "+Math.floor(def1);
-            document.getElementById("spatk1").innerHTML="SPE.ATK: "+Math.floor(spatk1);
-            document.getElementById("spdef1").innerHTML="SPE.DEF: "+Math.floor(spdef1);
-            document.getElementById("spe1").innerHTML="SPEED: "+Math.floor(spe1);
-            document.getElementById("bs1").innerHTML="TOTAL: "+Math.floor(bs1);
+            //2nd request
+            var pxhr = new XMLHttpRequest();
+            var poke2 = 'https://pokeapi.co/api/v2/pokemon/'+mon2
+            pxhr.open('GET', poke2, true);
+            pxhr.send();
+            pxhr.onload = function() {
+                
+                //Name of fusion
+                if (mon1!="giratina-altered" && mon2!="giratina-altered" && mon1!="deoxys-normal" && mon2!="deoxys-normal" && mon1!="aegislash-shield" && mon2!="aegislash-shield") {
+                var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
+                var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
+                }
+                if (mon1=="giratina-altered") {
+                    var fmon1 = "Giratina";
+                    var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
+                }
+                if (mon2=="giratina-altered") {
+                    var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
+                    var fmon2 = "Giratina";
+                }
+                if (mon1=="deoxys-normal") {
+                    var fmon1 = "Deoxys";
+                    var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
+                }
+                if (mon2=="deoxys-normal") {
+                    var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
+                    var fmon2 = "Deoxys";
+                }
+                if (mon1=="aegislash-shield") {
+                    var fmon1 = "Aegislash";
+                    var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
+                }
+                if (mon2=="aegislash-shield") {
+                    var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
+                    var fmon2 = "Aegislash";
+                }
+                var jsonBody = pxhr.responseText;
+                var jsonString = JSON.parse(jsonBody);
 
-            document.getElementById("hp2").innerHTML="HP: "+Math.floor(hp2);
-            document.getElementById("atk2").innerHTML="ATK: "+Math.floor(atk2);
-            document.getElementById("def2").innerHTML="DEF: "+Math.floor(def2);
-            document.getElementById("spatk2").innerHTML="SPE.ATK: "+Math.floor(spatk2);
-            document.getElementById("spdef2").innerHTML="SPE.DEF: "+Math.floor(spdef2);
-            document.getElementById("spe2").innerHTML="SPEED: "+Math.floor(spe2);
-            document.getElementById("bs2").innerHTML="TOTAL: "+Math.floor(bs2);
+                //ID selector for sprite showcase of the 2st mon
+                var num2 = jsonString.id;
+                var idCheck2 = false;
+                for (i=0;i<ids.length;i++){
+                    if (ids[i][0]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
+                        num2=ids[i][1];
+                        idCheck2 = true;
+                    }
+                }
 
-            //Abilities of fused mons
-            console.log("M1AB:", mon1abilities);
-            console.log("M2AB:", mon2abilities);
+                //var mon2gen = jsonString.game_indices[0].version.url.split("/")[jsonString.game_indices[0].version.url.split("/").length-2];
+                //if (mon2gen<7 && idCheck2 == false) {
+                //    idCheck2 = true;
+                //}
+                //if (idCheck2==false) {
+                //    alert("The second Pokemon isn't in the fangame!");
 
-            var abres1 = fusAb(mon1abilities,mon2abilities);
-            var abres2 = fusAb(mon2abilities,mon1abilities);
+                //} else {
+                    //Name of fusions
+                    document.getElementById("FP1").innerHTML=fmon1+"/"+fmon2;
+                    document.getElementById("FP2").innerHTML=fmon2+"/"+fmon1;
+
+                    //Name of pictures
+                    var pic1 = num1+"."+num2+".png";
+                    var pic2 = num2+"."+num1+".png";
+
+                    //Type selector for fusion type knowledge of the 2nd mon
+                    var type2 = jsonString.types;
+                    var mon2types = [];
+                    var compt=0
+
+                    //Exception mon selected for swapped types
+                    for (i=0;i<typeSwap.length;i++) {
+                        if (typeSwap[i][2]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
+                            mon2types.push(typeSwap[i][0]);
+                            mon2types.push(typeSwap[i][1]);
+                            var compt=1;
+                        }
+                    }
             
+                    //Exception mon selected for one type
+                    for (i=0;i<typeUni.length;i++) {
+                        if (typeUni[i][1]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
+                            mon2types.push(typeUni[i][0]);
+                            var compt=2;
+                        }
+                    }
             
-            //Type of fused mons
-            var fmonres1 = fusType(mon1types,mon2types);
-            var fmonres2 = fusType(mon2types,mon1types);
+                    //Type of 2nd mon
+                    if (compt==0) {
+                        mon2types.push(type2[0].type.name);
+                        if (type2.length==2 && compt!=2) {
+                            if (type2[0].type.name=="normal" && type2[1].type.name=="flying") {
+                                mon2types[0]="flying";
+                            } else {
+                                mon2types.push(type2[1].type.name);
+                            }
+                        }
+                    }
 
-            document.getElementById("p1").src="./Types/"+fmonres1[0]+".png";
-            if (fmonres1.length!=1 && (fmonres1.length==2 && fmonres1[0]!=fmonres1[1])) {
-                document.getElementById("p2").style.display="inline-block";
-                document.getElementById("p2").src="./Types/"+fmonres1[1]+".png";
-            } else {
-                document.getElementById("p2").style.display="none";
-            }
+                    //Stats of 2nd mon
+                    var stats2 = jsonString.stats;
+                    var mon2stats = [];
+                    for (i=0; i<stats2.length;i++) {
+                        mon2stats.push(stats2[i].base_stat)
+                    }
 
-            document.getElementById("p3").src="./Types/"+fmonres2[0]+".png";
+                    //Abilities of 2nd mon
+                    var ab2 = jsonString.abilities;
+                    var mon2abilities = [];
+                    for (i=0; i<ab2.length;i++) {
+                        mon2abilities.push([ab2[i].ability,ab2[i].is_hidden]);
+                    }
 
-            if (fmonres2.length!=1 && (fmonres2.length==2 && fmonres2[0]!=fmonres2[1])) {
-                document.getElementById("p4").style.display="inline-block";
-                document.getElementById("p4").src="./Types/"+fmonres2[1]+".png";
-            } else {
-                document.getElementById("p4").style.display="none";
-            }
+                    //Stats calculation
+                    var hp1 = (mon2stats[0]/3)+2*(mon1stats[0]/3);
+                    var atk1 = 2*(mon2stats[1]/3)+(mon1stats[1]/3);
+                    var def1 = 2*(mon2stats[2]/3)+(mon1stats[2]/3);
+                    var spatk1 = (mon2stats[3]/3)+2*(mon1stats[3]/3);
+                    var spdef1 = (mon2stats[4]/3)+2*(mon1stats[4]/3);
+                    var spe1 = 2*(mon2stats[5]/3)+(mon1stats[5]/3);
+                    var bs1 = Math.floor(hp1)+Math.floor(atk1)+Math.floor(def1)+Math.floor(spatk1)+Math.floor(spdef1)+Math.floor(spe1);
 
-            //Picture of fusion (if in folder)
-            document.getElementById("pic1").src="./CustomBattlers/"+pic1;
-            document.getElementById("pic2").src="./CustomBattlers/"+pic2;
+                    var hp2 = (mon1stats[0]/3)+2*(mon2stats[0]/3);
+                    var atk2 = 2*(mon1stats[1]/3)+(mon2stats[1]/3);
+                    var def2= 2*(mon1stats[2]/3)+(mon2stats[2]/3);
+                    var spatk2 = (mon1stats[3]/3)+2*(mon2stats[3]/3);
+                    var spdef2 = (mon1stats[4]/3)+2*(mon2stats[4]/3);
+                    var spe2 = 2*(mon1stats[5]/3)+(mon2stats[5]/3);
+                    var bs2 = Math.floor(hp2)+Math.floor(atk2)+Math.floor(def2)+Math.floor(spatk2)+Math.floor(spdef2)+Math.floor(spe2);
 
-            var listAb1 = "ABILITY: ";
-            for (i=0;i<abres1.length;i++) {
-                listAb1 = listAb1+abres1[i].charAt(0).toUpperCase() + abres1[i].slice(1)+"/";
-            }
-            listAb1=listAb1.slice(0,listAb1.length-1);
-            listAb1=listAb1.split("-").join(" ")
+                    var L0=["hp1","atk1","def1","spatk1","spdef1","spe1","bs1"];
+                    var L1=["hp2","atk2","def2","spatk2","spdef2","spe2","bs2"];
+                    var L2=[Math.floor(hp1),Math.floor(atk1),Math.floor(def1),Math.floor(spatk1),Math.floor(spdef1),Math.floor(spe1),Math.floor(bs1)];
+                    var L3=[Math.floor(hp2),Math.floor(atk2),Math.floor(def2),Math.floor(spatk2),Math.floor(spdef2),Math.floor(spe2),Math.floor(bs2)];
 
-            document.getElementById("ab1").innerHTML=" ";
-            document.getElementById("ab1").innerHTML=listAb1;
+                    //Color of stats
+                    for (i=0;i<L1.length;i++) {
+                        if (L2[i]<L3[i]) {
+                            document.getElementById(L0[i]).style.color="red";
+                            document.getElementById(L1[i]).style.color="green";
+                        } else if (L2[i]>L3[i]) {
+                            document.getElementById(L1[i]).style.color="red";
+                            document.getElementById(L0[i]).style.color="green";
+                        } else {
+                            document.getElementById(L1[i]).style.color="orange";
+                            document.getElementById(L0[i]).style.color="orange";
+                        }
+                        document.getElementById(L0[i]).innerHTML=L0[i].slice(-1)+": "+L2[i];
+                        document.getElementById(L1[i]).innerHTML=L1[i].slice(-1)+": "+L3[i];
+                    }
 
-            var listAb2 = "ABILITY: ";
-            for (i=0;i<abres2.length;i++) {
-                listAb2 = listAb2+abres2[i].charAt(0).toUpperCase() + abres2[i].slice(1)+"/";
-            }
-            listAb2=listAb2.slice(0,listAb2.length-1);
-            listAb2=listAb2.split("-").join(" ")
+                    //Writting stat in HTML
+                    document.getElementById("hp1").innerHTML="HP: "+Math.floor(hp1);
+                    document.getElementById("atk1").innerHTML="ATK: "+Math.floor(atk1);
+                    document.getElementById("def1").innerHTML="DEF: "+Math.floor(def1);
+                    document.getElementById("spatk1").innerHTML="SPE.ATK: "+Math.floor(spatk1);
+                    document.getElementById("spdef1").innerHTML="SPE.DEF: "+Math.floor(spdef1);
+                    document.getElementById("spe1").innerHTML="SPEED: "+Math.floor(spe1);
+                    document.getElementById("bs1").innerHTML="TOTAL: "+Math.floor(bs1);
 
-            document.getElementById("ab2").innerHTML=" ";
-            document.getElementById("ab2").innerHTML=listAb2;
+                    document.getElementById("hp2").innerHTML="HP: "+Math.floor(hp2);
+                    document.getElementById("atk2").innerHTML="ATK: "+Math.floor(atk2);
+                    document.getElementById("def2").innerHTML="DEF: "+Math.floor(def2);
+                    document.getElementById("spatk2").innerHTML="SPE.ATK: "+Math.floor(spatk2);
+                    document.getElementById("spdef2").innerHTML="SPE.DEF: "+Math.floor(spdef2);
+                    document.getElementById("spe2").innerHTML="SPEED: "+Math.floor(spe2);
+                    document.getElementById("bs2").innerHTML="TOTAL: "+Math.floor(bs2);
+
+                    //Abilities of fused mons
+                    console.log("M1AB:", mon1abilities);
+                    console.log("M2AB:", mon2abilities);
+
+                    var abres1 = fusAb(mon1abilities,mon2abilities);
+                    var abres2 = fusAb(mon2abilities,mon1abilities);
+                    
+                    
+                    //Type of fused mons
+                    var fmonres1 = fusType(mon1types,mon2types);
+                    var fmonres2 = fusType(mon2types,mon1types);
+
+                    document.getElementById("p1").src="./Types/"+fmonres1[0]+".png";
+                    if (fmonres1.length!=1 && (fmonres1.length==2 && fmonres1[0]!=fmonres1[1])) {
+                        document.getElementById("p2").style.display="inline-block";
+                        document.getElementById("p2").src="./Types/"+fmonres1[1]+".png";
+                    } else {
+                        document.getElementById("p2").style.display="none";
+                    }
+
+                    document.getElementById("p3").src="./Types/"+fmonres2[0]+".png";
+
+                    if (fmonres2.length!=1 && (fmonres2.length==2 && fmonres2[0]!=fmonres2[1])) {
+                        document.getElementById("p4").style.display="inline-block";
+                        document.getElementById("p4").src="./Types/"+fmonres2[1]+".png";
+                    } else {
+                        document.getElementById("p4").style.display="none";
+                    }
+
+                    //Picture of fusion (if in folder)
+                    document.getElementById("pic1").src="./CustomBattlers/"+pic1;
+                    document.getElementById("pic2").src="./CustomBattlers/"+pic2;
+
+                    var listAb1 = "ABILITY: ";
+                    for (i=0;i<abres1.length;i++) {
+                        listAb1 = listAb1+abres1[i].charAt(0).toUpperCase() + abres1[i].slice(1)+" / ";
+                    }
+                    listAb1=listAb1.slice(0,listAb1.length-1);
+                    listAb1=listAb1.split("-").join(" ")
+                    listAb1=listAb1.split(" ")
+                    for (i=0, x=listAb1.length; i<x; i++) {
+                        listAb1[i] = listAb1[i][0].toUpperCase() + listAb1[i].substr(1);
+                    }
+                    listAb1=listAb1.join(" ").slice(0,-2);
+
+                    document.getElementById("ab1").innerHTML=" ";
+                    document.getElementById("ab1").innerHTML=listAb1;
+
+                    var listAb2 = "ABILITY: ";
+                    for (i=0;i<abres2.length;i++) {
+                        listAb2 = listAb2+abres2[i].charAt(0).toUpperCase() + abres2[i].slice(1)+" / ";
+                    }
+                    listAb2=listAb2.slice(0,listAb2.length-1);
+                    listAb2=listAb2.split("-").join(" ")
+                    listAb2=listAb2.split(" ")
+                    for (i=0, x=listAb2.length; i<x; i++) {
+                        listAb2[i] = listAb2[i][0].toUpperCase() + listAb2[i].substr(1);
+                    }
+                    listAb2=listAb2.join(" ").slice(0,-2);
+
+                    document.getElementById("ab2").innerHTML=" ";
+                    document.getElementById("ab2").innerHTML=listAb2;
+                    }
+                }
             }
         }
-    }
+//    }
+//}
+
+//Screenshot of autogen pokemon
+function picError(imgsrc) {
+    imgsrc=imgsrc.split("/")[imgsrc.split("/").length-1];
+    var index=imgsrc.split(".")[0];
+    imgsrc="./Battlers/"+index+"/"+imgsrc;
+    return imgsrc;
 }
+
 
 //Ability fusion function
 function fusAb(mon1,mon2) {
