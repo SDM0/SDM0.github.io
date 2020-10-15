@@ -237,6 +237,11 @@ function selectPoke() {
         } else if (mon2=="deoxys") {
             mon2="deoxys-normal";
         }
+        if (mon1=="aegislash") {
+            mon1="aegislash-shield";
+        } else if (mon2=="aegislash") {
+            mon2="aegislash-shield";
+        }
 
         //First request
         var txhr = new XMLHttpRequest();  
@@ -311,7 +316,7 @@ function selectPoke() {
         pxhr.onload = function() {
             
             //Name of fusion
-            if (mon1!="giratina-altered" && mon2!="giratina-altered" && mon1!="deoxys-normal" && mon2!="deoxys-normal") {
+            if (mon1!="giratina-altered" && mon2!="giratina-altered" && mon1!="deoxys-normal" && mon2!="deoxys-normal" && mon1!="aegislash-shield" && mon2!="aegislash-shield") {
             var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
             var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
             }
@@ -321,7 +326,7 @@ function selectPoke() {
             }
             if (mon2=="giratina-altered") {
                 var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
-                var fmon2 = "Giratina"
+                var fmon2 = "Giratina";
             }
             if (mon1=="deoxys-normal") {
                 var fmon1 = "Deoxys";
@@ -329,7 +334,15 @@ function selectPoke() {
             }
             if (mon2=="deoxys-normal") {
                 var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
-                var fmon2 = "Deoxys"
+                var fmon2 = "Deoxys";
+            }
+            if (mon1=="aegislash-shield") {
+                var fmon1 = "Aegislash";
+                var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
+            }
+            if (mon2=="aegislash-shield") {
+                var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
+                var fmon2 = "Aegislash";
             }
             var jsonBody = pxhr.responseText;
             var jsonString = JSON.parse(jsonBody);
@@ -761,40 +774,40 @@ function fusAb(mon1,mon2) {
 
 //Type fusion function
 function fusType(mon1,mon2) {
-    //cas H01/null + B01/null [H01#B01] -> H01/B01
+    //cas H0/null + B0/null [H0#B0] -> H0/B0
     var fmon = []
     if (mon1.length==1 && mon2.length==1) {
         if (mon1[0]!=mon2[0]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[0])
-    //cas H01/null + B01/null [H01=B01] -> H01/null
+    //cas H0/null + B0/null [H0=B0] -> H0/null
         } else {
             fmon.push(mon1[0]);
         }
     } else if (mon1.length==2 && mon2.length==1) {
-    //cas H01/H1 + B01/null [H01#B01] -> H01/B01
+    //cas H0/H1 + B0/null [H0#B0] -> H0/B0
         if (mon1[0]!=mon2[0]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[0]);
-    //cas H01/H1 + B01/null [H01=B01] -> H01/H1
+    //cas H0/H1 + B0/null [H0=B0] -> H0/H1
         } else {
             fmon.push(mon1[0]);
             fmon.push(mon1[1]);
         }
     } else if (mon1.length==1 && mon2.length==2) {
-    //cas H01/null + B01/B1 [H01#B01] -> H01/B01
+    //cas H0/null + B0/B1 [H0#B1] -> H0/B1
             fmon.push(mon1[0]);
             fmon.push(mon2[1]);
 
-    //cas H01/H1 + B01/B1 [H01=B1] -> H01/B01
+    //cas H0/H1 + B0/B1 [H0=B1] -> H0/B0
     } else if (mon1.length==2 && mon2.length==2) {
-        if (mon1[0]!=mon2[1]) {
+        if (mon1[0]==mon2[1]) {
             fmon.push(mon1[0]);
-            fmon.push(mon2[1]);
-    //cas H01/H1 + B01/B1 [H01=B1] -> H01/B01
+            fmon.push(mon2[0]);
+    //cas H0/H1 + B0/B1 [H0#B1] -> H0/B1
         } else {
             fmon.push(mon1[0]);
-            fmon.push(mon1[1]);
+            fmon.push(mon2[1]);
         }
     }
     return fmon
