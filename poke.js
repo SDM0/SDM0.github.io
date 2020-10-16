@@ -217,6 +217,43 @@ typeUni=
 ,["dragon","Dragonite"]
 ,["steel","Steelix"]]
 
+var types = new Array(
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],// Normal
+    [1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1, 1],// Fire
+    [1, 2, 0.5, 1, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1, 1],// Water
+    [1, 1, 2, 0.5, 0.5, 1, 1, 1, 0, 2, 1, 1, 1, 1, 0.5, 1, 1, 1, 1],// Electric
+    [1, 0.5, 2, 1, 0.5, 1, 1, 0.5, 2, 0.5, 1, 0.5, 2, 1, 0.5, 1, 0.5, 1, 1],// Grass
+    [1, 0.5, 0.5, 1, 2, 0.5, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 0.5, 1, 1],// Ice
+    [2, 1, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0, 1, 2, 2, 0.5, 1],// Fighting
+    [1, 1, 1, 1, 2, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 1, 1, 0, 2, 1],// Poison
+    [1, 2, 1, 2, 0.5, 1, 1, 2, 1, 0, 1, 0.5, 2, 1, 1, 1, 2, 1, 1],// Ground
+    [1, 1, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 0.5, 1, 1],// Flying
+    [1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1, 1, 1, 0, 0.5, 1, 1],// Psychic
+    [1, 0.5, 1, 1, 2, 1, 0.5, 0.5, 1, 0.5, 2, 1, 1, 0.5, 1, 2, 0.5, 0.5, 1],// Bug
+    [1, 2, 1, 1, 1, 2, 0.5, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 0.5, 1, 1],// Rock
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 1, 1],// Ghost
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0.5, 0, 1],// Dragon
+    [1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 0.5, 1],// Dark
+    [1, 0.5, 0.5, 0.5, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0.5, 2, 1],// Steel
+    [1, 0.5, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 0.5, 1, 1],// Fairy
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);// None
+    
+var type_name = new Array("Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy");
+    
+
+var ty1 = $("#def_type1").val();
+var ty2 = $("#def_type2").val();
+var result = new Array();
+var output;
+var i;
+
+for (i=0; i<=18; i++) {
+result[i] = (types[i][ty1] * types[i][ty2]);
+if((types[i][ty1] * types[i][ty2]) < 2){result[i] = 0};
+if((types[i][ty1] * types[i][ty2]) >= 2){result[i] = result[i] * 0.75};
+}
+
+
 //Press ENTER on text area 1
 var pkmn1 = document.getElementById('fname1');
 pkmn1.addEventListener("keydown",function(event) {
@@ -276,6 +313,9 @@ function selectPoke() {
         } else {
             //Type selector for fusion type knowledge of the 1st mon
             var type1 = jsonString.types;
+            console.log(type1[0].type.name);
+            var poke1 = 'https://pokeapi.co/api/v2/pokemon/'+type1[0].type.name;
+            console.log(poke1);
             var mon1types = [];
             var compt=0
 
@@ -542,7 +582,7 @@ function selectPoke() {
 function picError(imgsrc) {
     imgsrc=imgsrc.split("/")[imgsrc.split("/").length-1];
     var index=imgsrc.split(".")[0];
-    imgsrc="http://51.254.32.10/B2/"+index+"/"+imgsrc
+    imgsrc="https://51.254.32.10/B2/"+index+"/"+imgsrc
     return imgsrc;
 }
 

@@ -55,10 +55,45 @@ h3 {
     grid-template-columns: repeat(2, 1fr);
 }
 
+#FP1 {
+    padding-bottom:10px;
+}
+
+#FP2 {
+    padding-bottom:10px;
+}
+
 #R2 {
     height: 30px;
 }
 
 #L2 {
     height: 30px;
+}
+
+#bottom {
+    font-family: 'Arial', serif;
+    font-size: 12px;
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    text-align: center
+}
+
+.monstats {
+    padding-bottom: 2px;
+}
+
+.montotal {
+    padding-bottom: 12px;
+}
+
+.monab {
+    padding-bottom: 12px;
+}
+
+.monweak img {
+    width: 65px;
+    height: 28px;
 }
