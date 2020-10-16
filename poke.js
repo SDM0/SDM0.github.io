@@ -582,7 +582,7 @@ function selectPoke() {
 function picError(imgsrc) {
     imgsrc=imgsrc.split("/")[imgsrc.split("/").length-1];
     var index=imgsrc.split(".")[0];
-    imgsrc="https://51.254.32.10/B2/"+index+"/"+imgsrc
+    imgsrc="http://51.254.32.10/B2/"+index+"/"+imgsrc
     return imgsrc;
 }
 
