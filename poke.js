@@ -121,7 +121,7 @@ ids=
 ,["Pyukumuku",370]
 ,["Klefki",371]
 ,["Talonflame",372]
-,["Mimikyu",373]
+,["Mimikyu-disguised",373]
 ,["Volcarona",374]
 ,["Deino",375]
 ,["Zweilous",376]
@@ -242,6 +242,11 @@ function selectPoke() {
         } else if (mon2=="aegislash") {
             mon2="aegislash-shield";
         }
+        if (mon1=="mimikyu") {
+            mon1="mimikyu-disguised";
+        } else if (mon2=="mimikyu") {
+            mon2="mimikyu-disguised";
+        }
 
         //First request
         var txhr = new XMLHttpRequest();  
@@ -252,23 +257,20 @@ function selectPoke() {
         var jsonBody = txhr.responseText;
         var jsonString = JSON.parse(jsonBody);
 
-        //ID selector for sprite showcase of the 1st mon
+        //ID selector for sprite showcase of the 1st mon/ Validator for 1st mon
         var num1 = jsonString.id;
+        var id1 = num1;
+        console.log(num1);
         var idCheck1 = false;
         for (i=0;i<ids.length;i++){
             if (ids[i][0]==mon1.charAt(0).toUpperCase() + mon1.slice(1)) {
-                num1=ids[i][1];
                 idCheck1 = true;
+                num1=ids[i][1];
             }
         }
-
-        //var mon1gen = jsonString.game_indices[0].version.url.split("/")[jsonString.game_indices[0].version.url.split("/").length-2];
-        //if (mon1gen<7 && idCheck1 == false) {
-        //    idCheck1 = true;
-        //}
-        //if (idCheck1==false) {
-        //    alert("The first Pokemon isn't in the fangame!");
-        //} else {
+        if (idCheck1==false && id1>=252) {
+            alert("The first pokemon isn't in the fangame!")
+        } else {
             //Type selector for fusion type knowledge of the 1st mon
             var type1 = jsonString.types;
             var mon1types = [];
@@ -325,7 +327,7 @@ function selectPoke() {
             pxhr.onload = function() {
                 
                 //Name of fusion
-                if (mon1!="giratina-altered" && mon2!="giratina-altered" && mon1!="deoxys-normal" && mon2!="deoxys-normal" && mon1!="aegislash-shield" && mon2!="aegislash-shield") {
+                if (mon1!="giratina-altered" && mon2!="giratina-altered" && mon1!="deoxys-normal" && mon2!="deoxys-normal" && mon1!="aegislash-shield" && mon2!="aegislash-shield" && mon1!="mimikyu-disguised" && mon2!="mimikyu-disguised") {
                 var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
                 var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
                 }
@@ -353,18 +355,31 @@ function selectPoke() {
                     var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
                     var fmon2 = "Aegislash";
                 }
+                if (mon1=="mimikyu-disguised") {
+                    var fmon1 = "Mimikyu";
+                    var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
+                }
+                if (mon2=="mimikyu-disguised") {
+                    var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
+                    var fmon2 = "Mimikyu";
+                }
                 var jsonBody = pxhr.responseText;
                 var jsonString = JSON.parse(jsonBody);
 
                 //ID selector for sprite showcase of the 2st mon
                 var num2 = jsonString.id;
+                var id2 = num2;
+                console.log(num2);
                 var idCheck2 = false;
                 for (i=0;i<ids.length;i++){
                     if (ids[i][0]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
-                        num2=ids[i][1];
                         idCheck2 = true;
+                        num2=ids[i][1];
                     }
                 }
+                if (idCheck2==false && id2>=252) {
+                    alert("The second pokemon isn't in the fangame!")
+                } else {
 
                 //var mon2gen = jsonString.game_indices[0].version.url.split("/")[jsonString.game_indices[0].version.url.split("/").length-2];
                 //if (mon2gen<7 && idCheck2 == false) {
@@ -551,8 +566,8 @@ function selectPoke() {
                 }
             }
         }
-//    }
-//}
+    }
+}
 
 //Screenshot of autogen pokemon
 function picError(imgsrc) {
