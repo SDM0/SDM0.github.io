@@ -170,6 +170,24 @@ ids=
 ,["Larvesta",419]
 ,["Stunfisk",420]]
 
+nameException=[
+"mr.mime",
+"mime.jr",
+"deoxys",
+"giratina",
+"mimikyu",
+"aegislash",
+]
+
+nameFix=[
+"mr-mime",
+"mime-jr",
+"deoxys-normal",
+"giratina-altered",
+"mimikyu-disguised",
+"aegislash-shield",
+]
+
 typeSwap=
 [["steel","electric","Magnemite"]
 ,["steel","electric","Magneton"]
@@ -227,26 +245,12 @@ function selectPoke() {
         alert("Please fill the two text inputs!");
     } else {
         //Special mon selector: Giratina, Deoxys
-        if (mon1=="giratina") {
-            mon1="giratina-altered";
-        } else if (mon2=="giratina") {
-            mon2="giratina-altered";
+        if (nameException.includes(mon1)) {
+            mon1=nameFix[nameException.indexOf(mon1)];
         }
-        if (mon1=="deoxys") {
-            mon1="deoxys-normal";
-        } else if (mon2=="deoxys") {
-            mon2="deoxys-normal";
-        }
-        if (mon1=="aegislash") {
-            mon1="aegislash-shield";
-        } else if (mon2=="aegislash") {
-            mon2="aegislash-shield";
-        }
-        if (mon1=="mimikyu") {
-            mon1="mimikyu-disguised";
-        } else if (mon2=="mimikyu") {
-            mon2="mimikyu-disguised";
-        }
+        if (nameException.includes(mon2)) {
+            mon2=nameFix[nameException.indexOf(mon2)];
+         }
 
         //First request
         var txhr = new XMLHttpRequest();  
@@ -260,7 +264,6 @@ function selectPoke() {
         //ID selector for sprite showcase of the 1st mon/ Validator for 1st mon
         var num1 = jsonString.id;
         var id1 = num1;
-        console.log(num1);
         var idCheck1 = false;
         for (i=0;i<ids.length;i++){
             if (ids[i][0]==mon1.charAt(0).toUpperCase() + mon1.slice(1)) {
@@ -327,49 +330,26 @@ function selectPoke() {
             pxhr.onload = function() {
                 
                 //Name of fusion
-                if (mon1!="giratina-altered" && mon2!="giratina-altered" && mon1!="deoxys-normal" && mon2!="deoxys-normal" && mon1!="aegislash-shield" && mon2!="aegislash-shield" && mon1!="mimikyu-disguised" && mon2!="mimikyu-disguised") {
-                var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
-                var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
-                }
-                if (mon1=="giratina-altered") {
-                    var fmon1 = "Giratina";
-                    var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
-                }
-                if (mon2=="giratina-altered") {
+                if (!nameFix.includes(mon1) && !nameFix.includes(mon2)) {
                     var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
-                    var fmon2 = "Giratina";
-                }
-                if (mon1=="deoxys-normal") {
-                    var fmon1 = "Deoxys";
                     var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
-                }
-                if (mon2=="deoxys-normal") {
-                    var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
-                    var fmon2 = "Deoxys";
-                }
-                if (mon1=="aegislash-shield") {
-                    var fmon1 = "Aegislash";
+                } else if (nameFix.includes(mon1) && !nameFix.includes(mon2)) {
+                    var fmon1 = nameException[nameFix.indexOf(mon1)].charAt(0).toUpperCase() + nameException[nameFix.indexOf(mon1)].slice(1);
                     var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
-                }
-                if (mon2=="aegislash-shield") {
+                } else if (!nameFix.includes(mon1) && nameFix.includes(mon2)) {
                     var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
-                    var fmon2 = "Aegislash";
+                    var fmon2 = nameException[nameFix.indexOf(mon2)].charAt(0).toUpperCase() + nameException[nameFix.indexOf(mon2)].slice(1);
+                } else if (nameFix.includes(mon1) && nameFix.includes(mon2)) {
+                    var fmon1 = nameException[nameFix.indexOf(mon1)].charAt(0).toUpperCase() + nameException[nameFix.indexOf(mon1)].slice(1);
+                    var fmon2 = nameException[nameFix.indexOf(mon2)].charAt(0).toUpperCase() + nameException[nameFix.indexOf(mon2)].slice(1);
                 }
-                if (mon1=="mimikyu-disguised") {
-                    var fmon1 = "Mimikyu";
-                    var fmon2 = mon2.charAt(0).toUpperCase() + mon2.slice(1);
-                }
-                if (mon2=="mimikyu-disguised") {
-                    var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
-                    var fmon2 = "Mimikyu";
-                }
+
                 var jsonBody = pxhr.responseText;
                 var jsonString = JSON.parse(jsonBody);
 
                 //ID selector for sprite showcase of the 2st mon
                 var num2 = jsonString.id;
                 var id2 = num2;
-                console.log(num2);
                 var idCheck2 = false;
                 for (i=0;i<ids.length;i++){
                     if (ids[i][0]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
@@ -381,14 +361,6 @@ function selectPoke() {
                     alert("The second pokemon isn't in the fangame!")
                 } else {
 
-                //var mon2gen = jsonString.game_indices[0].version.url.split("/")[jsonString.game_indices[0].version.url.split("/").length-2];
-                //if (mon2gen<7 && idCheck2 == false) {
-                //    idCheck2 = true;
-                //}
-                //if (idCheck2==false) {
-                //    alert("The second Pokemon isn't in the fangame!");
-
-                //} else {
                     //Name of fusions
                     document.getElementById("FP1").innerHTML=fmon1+"/"+fmon2;
                     document.getElementById("FP2").innerHTML=fmon2+"/"+fmon1;
@@ -501,9 +473,6 @@ function selectPoke() {
                     document.getElementById("bs2").innerHTML="TOTAL: "+Math.floor(bs2);
 
                     //Abilities of fused mons
-                    console.log("M1AB:", mon1abilities);
-                    console.log("M2AB:", mon2abilities);
-
                     var abres1 = fusAb(mon1abilities,mon2abilities);
                     var abres2 = fusAb(mon2abilities,mon1abilities);
                     
