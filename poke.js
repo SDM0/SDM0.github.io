@@ -238,21 +238,9 @@ var types = new Array(
     [1, 0.5, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 0.5, 1, 1],// Fairy
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);// None
     
-var type_name = new Array("Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy");
-    
-
-var ty1 = $("#def_type1").val();
-var ty2 = $("#def_type2").val();
-var result = new Array();
-var output;
-var i;
-
-for (i=0; i<=18; i++) {
-result[i] = (types[i][ty1] * types[i][ty2]);
-if((types[i][ty1] * types[i][ty2]) < 2){result[i] = 0};
-if((types[i][ty1] * types[i][ty2]) >= 2){result[i] = result[i] * 0.75};
-}
-
+var typeName = ["normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
+var result1 = new Array();
+var result2 = new Array();
 
 //Press ENTER on text area 1
 var pkmn1 = document.getElementById('fname1');
@@ -455,7 +443,7 @@ function selectPoke() {
                     var mon2abilities = [];
                     for (i=0; i<ab2.length;i++) {
                         mon2abilities.push([ab2[i].ability,ab2[i].is_hidden]);
-                    }
+                    }                     
 
                     //Stats calculation
                     var hp1 = (mon2stats[0]/3)+2*(mon1stats[0]/3);
@@ -521,6 +509,72 @@ function selectPoke() {
                     var fmonres1 = fusType(mon1types,mon2types);
                     var fmonres2 = fusType(mon2types,mon1types);
 
+                    console.log(fmonres1);
+
+                    //Types effectiveness
+                    tyeffid1 = typeId(fmonres1);
+                    tyeffid2 = typeId(fmonres1);
+                    console.log(tyeffid1,tyeffid2);
+
+                    for (i=0; i<=17; i++) {
+                        result1[i] = (types[i][tyeffid1[0]] * types[i][tyeffid1[1]]);
+                        }
+                    console.log(result1);
+
+                    for (i=0; i<=typeName.length;i++) {
+                        var image = new Image()
+                        image.src = 'Types/'+typeName[i]+".png";
+                        if (result1[i]==4) {
+                            document.getElementById("weak14").appendChild(image);
+                        }
+                        if (result1[i]==2) {
+                            document.getElementById("weak12").appendChild(image);
+                        }
+                        if (result1[i]==1) {
+                            document.getElementById("weak11").appendChild(image);
+                        }
+                        if (result1[i]==0.5) {
+                            document.getElementById("weak105").appendChild(image);
+                        }
+                        if (result1[i]==0.25) {
+                            document.getElementById("weak1025").appendChild(image);
+                        }
+                        if (result1[i]==0) {
+                            document.getElementById("weak100").appendChild(image);
+                        }
+                    }
+
+                    tyeffid1 = typeId(fmonres2);
+                    tyeffid2 = typeId(fmonres2);
+                    console.log(tyeffid1,tyeffid2);
+
+                    for (i=0; i<=17; i++) {
+                        result2[i] = (types[i][tyeffid1[0]] * types[i][tyeffid1[1]]);
+                        }
+
+                    for (i=0; i<=typeName.length;i++) {
+                        var image = new Image()
+                        image.src = 'Types/'+typeName[i]+".png";
+                        if (result2[i]==4) {
+                            document.getElementById("weak24").appendChild(image);
+                        }
+                        if (result2[i]==2) {
+                            document.getElementById("weak22").appendChild(image);
+                        }
+                        if (result2[i]==1) {
+                            document.getElementById("weak21").appendChild(image);
+                        }
+                        if (result2[i]==0.5) {
+                            document.getElementById("weak205").appendChild(image);
+                        }
+                        if (result2[i]==0.25) {
+                            document.getElementById("weak2025").appendChild(image);
+                        }
+                        if (result2[i]==0) {
+                            document.getElementById("weak200").appendChild(image);
+                        }
+                    }
+
                     document.getElementById("p1").src="./Types/"+fmonres1[0]+".png";
                     if (fmonres1.length!=1 && (fmonres1.length==2 && fmonres1[0]!=fmonres1[1])) {
                         document.getElementById("p2").style.display="inline-block";
@@ -577,6 +631,17 @@ function selectPoke() {
         }
     }
 }
+
+function typeId(ftype) {
+    var ty1 = typeName.indexOf(ftype[0]);
+    if (ftype.length==2) {
+        var ty2 = typeName.indexOf(ftype[1]);
+    } else {
+        var ty2 = 18;
+    }
+    return [ty1,ty2];
+}
+
 
 //Screenshot of autogen pokemon
 function picError(imgsrc) {

@@ -93,7 +93,12 @@ h3 {
     padding-bottom: 12px;
 }
 
+.monweak {
+    vertical-align: auto;
+    padding-bottom: 10px;
+}
+
 .monweak img {
-    width: 65px;
-    height: 28px;
+    width: 52px;
+    height: 22px;
 }
