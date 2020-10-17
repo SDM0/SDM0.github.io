@@ -242,6 +242,8 @@ var typeName = ["normal", "fire", "water", "electric", "grass", "ice", "fighting
 var result1 = new Array();
 var result2 = new Array();
 
+var typeComp = 0;
+
 //Press ENTER on text area 1
 var pkmn1 = document.getElementById('fname1');
 pkmn1.addEventListener("keydown",function(event) {
@@ -512,6 +514,18 @@ function selectPoke() {
                     console.log(fmonres1);
 
                     //Types effectiveness
+
+                    if (typeComp>0) {
+                        c = document.getElementsByClassName('monweak');
+                        for( b=0; b < c.length; b++ )
+                        { 
+                            defaultValue = c[b].getAttribute('data-default');
+                            if (defaultValue) {
+                                c[b].innerText = defaultValue;
+                            }
+                        }
+                    }
+
                     tyeffid1 = typeId(fmonres1);
                     tyeffid2 = typeId(fmonres1);
                     console.log(tyeffid1,tyeffid2);
@@ -574,6 +588,8 @@ function selectPoke() {
                             document.getElementById("weak200").appendChild(image);
                         }
                     }
+
+                    typeComp+=1;
 
                     document.getElementById("p1").src="./Types/"+fmonres1[0]+".png";
                     if (fmonres1.length!=1 && (fmonres1.length==2 && fmonres1[0]!=fmonres1[1])) {
