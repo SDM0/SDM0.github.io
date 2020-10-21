@@ -4,7 +4,7 @@ ids=
 ,["Wynaut",253]
 ,["Ambipom",254]
 ,["Mismagius",255]
-,["Honchrow",256]
+,["Honchkrow",256]
 ,["Bonsly",257]
 ,["Mime-jr",258]
 ,["Happiny",259]
