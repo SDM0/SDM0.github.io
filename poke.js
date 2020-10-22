@@ -303,9 +303,7 @@ function selectPoke() {
         } else {
             //Type selector for fusion type knowledge of the 1st mon
             var type1 = jsonString.types;
-            console.log(type1[0].type.name);
             var poke1 = 'https://pokeapi.co/api/v2/pokemon/'+type1[0].type.name;
-            console.log(poke1);
             var mon1types = [];
             var compt=0
 
@@ -486,7 +484,11 @@ function selectPoke() {
                     }
 
                     //Writting stat in HTML
-                    document.getElementById("hp1").innerHTML="HP: "+Math.floor(hp1);
+                    if (mon1=="shedinja" || mon2=="shedinja") {
+                        document.getElementById("hp1").innerHTML="HP: 1";
+                    } else {
+                        document.getElementById("hp1").innerHTML="HP: "+Math.floor(hp1);
+                    }
                     document.getElementById("atk1").innerHTML="ATK: "+Math.floor(atk1);
                     document.getElementById("def1").innerHTML="DEF: "+Math.floor(def1);
                     document.getElementById("spatk1").innerHTML="SPE.ATK: "+Math.floor(spatk1);
@@ -494,7 +496,11 @@ function selectPoke() {
                     document.getElementById("spe1").innerHTML="SPEED: "+Math.floor(spe1);
                     document.getElementById("bs1").innerHTML="TOTAL: "+Math.floor(bs1);
 
-                    document.getElementById("hp2").innerHTML="HP: "+Math.floor(hp2);
+                    if (mon1=="shedinja" || mon2=="shedinja") {
+                        document.getElementById("hp2").innerHTML="HP: 1";
+                    } else {
+                        document.getElementById("hp2").innerHTML="HP: "+Math.floor(hp2);
+                    }
                     document.getElementById("atk2").innerHTML="ATK: "+Math.floor(atk2);
                     document.getElementById("def2").innerHTML="DEF: "+Math.floor(def2);
                     document.getElementById("spatk2").innerHTML="SPE.ATK: "+Math.floor(spatk2);
@@ -511,10 +517,7 @@ function selectPoke() {
                     var fmonres1 = fusType(mon1types,mon2types);
                     var fmonres2 = fusType(mon2types,mon1types);
 
-                    console.log(fmonres1);
-
                     //Types effectiveness
-
                     if (typeComp>0) {
                         c = document.getElementsByClassName('monweak');
                         for( b=0; b < c.length; b++ )
@@ -528,12 +531,10 @@ function selectPoke() {
 
                     tyeffid1 = typeId(fmonres1);
                     tyeffid2 = typeId(fmonres1);
-                    console.log(tyeffid1,tyeffid2);
 
                     for (i=0; i<=17; i++) {
                         result1[i] = (types[i][tyeffid1[0]] * types[i][tyeffid1[1]]);
                         }
-                    console.log(result1);
 
                     for (i=0; i<=typeName.length;i++) {
                         var image = new Image()
@@ -560,7 +561,6 @@ function selectPoke() {
 
                     tyeffid1 = typeId(fmonres2);
                     tyeffid2 = typeId(fmonres2);
-                    console.log(tyeffid1,tyeffid2);
 
                     for (i=0; i<=17; i++) {
                         result2[i] = (types[i][tyeffid1[0]] * types[i][tyeffid1[1]]);
