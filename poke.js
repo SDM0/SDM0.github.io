@@ -144,7 +144,7 @@ ids=
 ,["Vibrava",393]
 ,["Feebas",394]
 ,["Bagon",395]
-,["Shellgon",396]
+,["Shelgon",396]
 ,["Klink",397]
 ,["Klank",398]
 ,["Zorua",399]
@@ -281,11 +281,18 @@ function selectPoke() {
 
         //First request
         var txhr = new XMLHttpRequest();  
-        var poke1 = 'https://pokeapi.co/api/v2/pokemon/'+mon1
+        var poke1 = 'https://pokeapi.co/api/v2/pokemon/'+mon1;
         txhr.open('GET', poke1, true);
         txhr.send();
         txhr.onload = function() {
         var jsonBody = txhr.responseText;
+        if(jsonBody) {
+            try {
+                a = JSON.parse(jsonBody);
+            } catch(e) {
+                alert("The first pokemon was misspelled!"); // error in the above string (in this case, yes)!
+            }
+        }
         var jsonString = JSON.parse(jsonBody);
 
         //ID selector for sprite showcase of the 1st mon/ Validator for 1st mon
@@ -357,6 +364,16 @@ function selectPoke() {
             pxhr.send();
             pxhr.onload = function() {
                 
+                var jsonBody = pxhr.responseText;
+                if(jsonBody) {
+                    try {
+                        a = JSON.parse(jsonBody);
+                    } catch(e) {
+                        alert("The second pokemon was misspelled!"); // error in the above string (in this case, yes)!
+                    }
+                }
+                var jsonString = JSON.parse(jsonBody);
+
                 //Name of fusion
                 if (!nameFix.includes(mon1) && !nameFix.includes(mon2)) {
                     var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
@@ -371,9 +388,6 @@ function selectPoke() {
                     var fmon1 = nameException[nameFix.indexOf(mon1)].charAt(0).toUpperCase() + nameException[nameFix.indexOf(mon1)].slice(1);
                     var fmon2 = nameException[nameFix.indexOf(mon2)].charAt(0).toUpperCase() + nameException[nameFix.indexOf(mon2)].slice(1);
                 }
-
-                var jsonBody = pxhr.responseText;
-                var jsonString = JSON.parse(jsonBody);
 
                 //ID selector for sprite showcase of the 2st mon
                 var num2 = jsonString.id;
