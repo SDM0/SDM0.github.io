@@ -221,7 +221,7 @@ weezingabilities={
     "abilities":[
        {
           "ability":{
-             "name":"levitating",
+             "name":"levitate",
              "url":"https://pokeapi.co/api/v2/ability/69/"
           },
           "is_hidden":false,
