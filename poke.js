@@ -217,6 +217,35 @@ typeUni=
 ,["dragon","Dragonite"]
 ,["steel","Steelix"]]
 
+weezingabilities={
+    "abilities":[
+       {
+          "ability":{
+             "name":"levitating",
+             "url":"https://pokeapi.co/api/v2/ability/69/"
+          },
+          "is_hidden":false,
+          "slot":1
+       },
+       {
+          "ability":{
+             "name":"neutralizing-gas",
+             "url":"https://pokeapi.co/api/v2/ability/5/"
+          },
+          "is_hidden":false,
+          "slot":2
+       },
+       {
+          "ability":{
+             "name":"stench",
+             "url":"https://pokeapi.co/api/v2/ability/125/"
+          },
+          "is_hidden":true,
+          "slot":3
+       }
+    ]
+ }
+
 var types = new Array(
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],// Normal
     [1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1, 1],// Fire
@@ -261,6 +290,89 @@ pkmn2.addEventListener("keydown",function(event) {
         document.getElementById("button").click();
     }
 });
+
+//Empty pokemon text area
+function resetPoke() {
+    document.getElementById("fname1").value = null;
+    document.getElementById("fname2").value = null;
+}
+
+//Random pokemon
+function randomPoke() {
+    var randList = [];
+    for (var i = 0; i<2; i++) {
+        randList.push(Math.floor(Math.random() * Math.floor(2)));
+    }
+    if (randList[0]==0) {
+        var rand1 = Math.floor(Math.random() * Math.floor(251));
+        if (rand1==0) {
+            rand1+=1
+        }
+        var mode1 = 0;
+    } else {
+        var rand1 = Math.floor(Math.random() * Math.floor(170));
+        var mode1 = 1;
+    }
+    if (randList[1]==0) {
+        var rand2 = Math.floor(Math.random() * Math.floor(251));
+        if (rand2==0) {
+            rand2+=1
+        }
+        var mode2 = 0;
+    } else {
+        var rand2= Math.floor(Math.random() * Math.floor(170));
+        var mode2 = 1;
+    }
+
+    if (mode1==0) {
+        var zxhr = new XMLHttpRequest();
+        var poke1 = 'https://pokeapi.co/api/v2/pokemon/'+rand1;
+        zxhr.open('GET', poke1, true);
+        zxhr.send();
+        zxhr.onload = function() {
+            var jsonBody = zxhr.responseText;
+            var jsonString = JSON.parse(jsonBody);
+            var name = jsonString.name;
+            if (nameFix.includes(name)) {
+                name=nameException[nameFix.indexOf(name)];
+            }
+            setTimeout(() => {document.getElementById("fname1").value = name},450);
+        }
+    } else {
+        var name = ids[rand1][0].toLowerCase();
+        if (nameFix.includes(name)) {
+            name=nameException[nameFix.indexOf(name)];
+        }
+        setTimeout(() => {document.getElementById("fname1").value = name},450);
+    }
+
+    if (mode2==0) {
+        var vxhr = new XMLHttpRequest();  
+        var poke2 = 'https://pokeapi.co/api/v2/pokemon/'+rand2;
+        vxhr.open('GET', poke2, true);
+        vxhr.send();
+        vxhr.onload = function() {
+            var jsonBody = vxhr.responseText;
+            var jsonString = JSON.parse(jsonBody);
+            var name1 = jsonString.name;
+            if (nameFix.includes(name1)) {
+                name1=nameException[nameFix.indexOf(name1)];
+            }
+            setTimeout(() => {document.getElementById("fname2").value = name1},500);
+        }
+    } else {
+        var name2 = ids[rand2][0].toLowerCase();
+        if (name2==document.getElementById("fname1").value) {
+            var rand2 = Math.floor(Math.random() * Math.floor(251));
+            name2 = ids[rand2][0].toLowerCase();
+        }
+        if (nameFix.includes(name2)) {
+            name2=nameException[nameFix.indexOf(name2)];
+        }
+        setTimeout(() => {document.getElementById("fname2").value = name2},500);
+    }
+    setTimeout(() => { selectPoke() }, 600);
+}
 
 //Fusion calculation function
 function selectPoke() {
@@ -351,11 +463,15 @@ function selectPoke() {
             }
 
             //Ability of 1st mon
-            var ab1 = jsonString.abilities;
             var mon1abilities = [];
-                for (i=0; i<ab1.length;i++) {
-                    mon1abilities.push([ab1[i].ability,ab1[i].is_hidden]);
-                }
+            if (mon1!="weezing") {
+                var ab1 = jsonString.abilities;
+            } else {
+                var ab1 = weezingabilities.abilities;
+            }
+            for (i=0; i<ab1.length;i++) {
+                mon1abilities.push([ab1[i].ability,ab1[i].is_hidden]);
+            }
 
             //2nd request
             var pxhr = new XMLHttpRequest();
@@ -453,7 +569,11 @@ function selectPoke() {
                     }
 
                     //Abilities of 2nd mon
-                    var ab2 = jsonString.abilities;
+                    if (mon2!="weezing") {
+                        var ab2 = jsonString.abilities;
+                    } else {
+                        var ab2 = weezingabilities.abilities;
+                    }
                     var mon2abilities = [];
                     for (i=0; i<ab2.length;i++) {
                         mon2abilities.push([ab2[i].ability,ab2[i].is_hidden]);

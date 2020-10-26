@@ -13,6 +13,8 @@
         </h1>
         <div id="text">
             <h4>(Only works with natives mons avaible in Pokemon Infinite Fusions! <a href="https://infinitefusion.fandom.com/wiki/Pokédex">Click here for the list</a></a>)</h4>
+            <button id="random" class="button" onclick="randomPoke()">Random</button>
+            <button id="reset" class="button" onclick="resetPoke()">Reset</button>
             <div id="t1">
                 <label for="fname1">Insert first Pokemon:</label>
                 <input type="text" id="fname1" name="fname1" value=""  autocomplete="off"><br>
@@ -22,10 +24,8 @@
                 <input type="text" id="fname2" name="fname2" value="" autocomplete="off"><br>
             </div>
         </div>
-        <h2>
-        <button id="button" class="button" onclick="selectPoke()">Fuse!</button>
+        <button id="button" class="button" onclick="selectPoke()">Fuse</button>
         <h3>(or press Enter)</h3>
-        </h2>
             <sector id="stats" class="stats">
                 <div id="L2">
                     <img class="picpok" id="pic1" alt="" src="question.png" onError="this.src=picError(this.src)">
