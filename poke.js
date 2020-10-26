@@ -299,6 +299,7 @@ function resetPoke() {
 
 //Random pokemon
 function randomPoke() {
+    document.getElementById("random").disabled = true; 
     var randList = [];
     for (var i = 0; i<2; i++) {
         randList.push(Math.floor(Math.random() * Math.floor(2)));
@@ -775,6 +776,8 @@ function selectPoke() {
 
                     document.getElementById("ab2").innerHTML=" ";
                     document.getElementById("ab2").innerHTML=listAb2;
+
+                    document.getElementById("random").disabled = false
                     }
                 }
             }
