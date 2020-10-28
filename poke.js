@@ -217,6 +217,48 @@ typeUni=
 ,["dragon","Dragonite"]
 ,["steel","Steelix"]]
 
+abilitySwap=
+["pidgey",
+"pidgeotto",
+"pidgeot",
+"ekans",
+"arbok",
+"diglett",
+"dugtrio",
+"growlithe",
+"arcanine",
+"machop",
+"machoke",
+"machamp",
+"geodude",
+"graveler",
+"golem",
+"farfetchd",
+"onix",
+"steelix",
+"krabby",
+"kingler",
+"voltorb",
+"electrode",
+"cubone",
+"marowak",
+"hitmonchan",
+"lapras",
+"snorlax",
+"aerodactyl",
+"chinchou",
+"lanturn",
+"marill",
+"azumarill",
+"dunsparce",
+"murkrow",
+"honchkrow",
+"snubbull",
+"granbull",
+"teddiursa",
+"ursaring",
+"absol"]
+
 weezingabilities={
     "abilities":[
        {
@@ -644,6 +686,12 @@ function selectPoke() {
                     document.getElementById("bs2").innerHTML="TOTAL: "+Math.floor(bs2);
 
                     //Abilities of fused mons
+                    if (abilitySwap.includes(mon1)) {
+                        [mon1abilities[0], mon1abilities[1]] = [mon1abilities[1], mon1abilities[0]];
+                    }
+                    if (abilitySwap.includes(mon2)) {
+                        [mon2abilities[0], mon2abilities[1]] = [mon2abilities[1], mon2abilities[0]];
+                    }
                     var abres1 = fusAb(mon1abilities,mon2abilities);
                     var abres2 = fusAb(mon2abilities,mon1abilities);
                     
