@@ -643,18 +643,29 @@ function selectPoke() {
                     var L1=["hp2","atk2","def2","spatk2","spdef2","spe2","bs2"];
                     var L2=[Math.floor(hp1),Math.floor(atk1),Math.floor(def1),Math.floor(spatk1),Math.floor(spdef1),Math.floor(spe1),Math.floor(bs1)];
                     var L3=[Math.floor(hp2),Math.floor(atk2),Math.floor(def2),Math.floor(spatk2),Math.floor(spdef2),Math.floor(spe2),Math.floor(bs2)];
-
+                    var L4=[]
+                    var L5=[]
+                    for (i=0;i<L0.length;i++) {
+                        L4.push(Math.max(L2[i],L3[i])-Math.min(L2[i],L3[i]))
+                    }
+                    console.log(L4)
                     //Color of stats
                     for (i=0;i<L1.length;i++) {
                         if (L2[i]<L3[i]) {
                             document.getElementById(L0[i]).style.color="red";
                             document.getElementById(L1[i]).style.color="green";
+                            L5.push(" (+"+L4[i]+")")
+                            L4[i]=" (-"+L4[i]+")";
                         } else if (L2[i]>L3[i]) {
                             document.getElementById(L1[i]).style.color="red";
                             document.getElementById(L0[i]).style.color="green";
+                            L5.push(" (-"+L4[i]+")")
+                            L4[i]=" (+"+L4[i]+")";
                         } else {
                             document.getElementById(L1[i]).style.color="orange";
                             document.getElementById(L0[i]).style.color="orange";
+                            L4[i]=" (0)"
+                            L5.push(" (0)");
                         }
                         document.getElementById(L0[i]).innerHTML=L0[i].slice(-1)+": "+L2[i];
                         document.getElementById(L1[i]).innerHTML=L1[i].slice(-1)+": "+L3[i];
@@ -662,28 +673,30 @@ function selectPoke() {
 
                     //Writting stat in HTML
                     if (mon1=="shedinja" || mon2=="shedinja") {
-                        document.getElementById("hp1").innerHTML="HP: 1";
+                        document.getElementById("hp1").innerHTML="HP: 1 (0)"
+                        document.getElementById("hp1").style.color="orange";
                     } else {
-                        document.getElementById("hp1").innerHTML="HP: "+Math.floor(hp1);
+                        document.getElementById("hp1").innerHTML="HP: "+Math.floor(hp1) + L4[0];
                     }
-                    document.getElementById("atk1").innerHTML="ATK: "+Math.floor(atk1);
-                    document.getElementById("def1").innerHTML="DEF: "+Math.floor(def1);
-                    document.getElementById("spatk1").innerHTML="SPE.ATK: "+Math.floor(spatk1);
-                    document.getElementById("spdef1").innerHTML="SPE.DEF: "+Math.floor(spdef1);
-                    document.getElementById("spe1").innerHTML="SPEED: "+Math.floor(spe1);
-                    document.getElementById("bs1").innerHTML="TOTAL: "+Math.floor(bs1);
+                    document.getElementById("atk1").innerHTML="ATK: "+Math.floor(atk1) + L4[1];
+                    document.getElementById("def1").innerHTML="DEF: "+Math.floor(def1) + L4[2];
+                    document.getElementById("spatk1").innerHTML="SPE.ATK: "+Math.floor(spatk1) + L4[3];
+                    document.getElementById("spdef1").innerHTML="SPE.DEF: "+Math.floor(spdef1) + L4[4];
+                    document.getElementById("spe1").innerHTML="SPEED: "+Math.floor(spe1) + L4[5];
+                    document.getElementById("bs1").innerHTML="TOTAL: "+Math.floor(bs1) + L4[6];
 
                     if (mon1=="shedinja" || mon2=="shedinja") {
-                        document.getElementById("hp2").innerHTML="HP: 1";
+                        document.getElementById("hp2").innerHTML="HP: 1 (0)";
+                        document.getElementById("hp2").style.color="orange";
                     } else {
-                        document.getElementById("hp2").innerHTML="HP: "+Math.floor(hp2);
+                        document.getElementById("hp2").innerHTML="HP: "+Math.floor(hp2) + L5[0];
                     }
-                    document.getElementById("atk2").innerHTML="ATK: "+Math.floor(atk2);
-                    document.getElementById("def2").innerHTML="DEF: "+Math.floor(def2);
-                    document.getElementById("spatk2").innerHTML="SPE.ATK: "+Math.floor(spatk2);
-                    document.getElementById("spdef2").innerHTML="SPE.DEF: "+Math.floor(spdef2);
-                    document.getElementById("spe2").innerHTML="SPEED: "+Math.floor(spe2);
-                    document.getElementById("bs2").innerHTML="TOTAL: "+Math.floor(bs2);
+                    document.getElementById("atk2").innerHTML="ATK: "+Math.floor(atk2) + L5[1];
+                    document.getElementById("def2").innerHTML="DEF: "+Math.floor(def2) + L5[2];
+                    document.getElementById("spatk2").innerHTML="SPE.ATK: "+Math.floor(spatk2) + L5[3];
+                    document.getElementById("spdef2").innerHTML="SPE.DEF: "+Math.floor(spdef2) + L5[4];
+                    document.getElementById("spe2").innerHTML="SPEED: "+Math.floor(spe2) + L5[5];
+                    document.getElementById("bs2").innerHTML="TOTAL: "+Math.floor(bs2) + L5[6];
 
                     //Abilities of fused mons
                     if (abilitySwap.includes(mon1)) {
