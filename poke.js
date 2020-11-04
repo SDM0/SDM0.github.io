@@ -648,7 +648,6 @@ function selectPoke() {
                     for (i=0;i<L0.length;i++) {
                         L4.push(Math.max(L2[i],L3[i])-Math.min(L2[i],L3[i]))
                     }
-                    console.log(L4)
                     //Color of stats
                     for (i=0;i<L1.length;i++) {
                         if (L2[i]<L3[i]) {
@@ -1139,9 +1138,14 @@ function fusType(mon1,mon2) {
         }
     } else if (mon1.length==1 && mon2.length==2) {
     //cas H0/null + B0/B1 [H0#B1] -> H0/B1
+        if (mon1[0]!=mon2[1]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[1]);
-
+    //cas H0/null + B0/B1 [H0=B1] -> H0/B0
+        } else {
+            fmon.push(mon1[0])
+            fmon.push(mon2[0]);
+        }
     //cas H0/H1 + B0/B1 [H0=B1] -> H0/B0
     } else if (mon1.length==2 && mon2.length==2) {
         if (mon1[0]==mon2[1]) {
