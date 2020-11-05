@@ -833,7 +833,6 @@ function selectPoke() {
                         listAb2[i] = listAb2[i][0].toUpperCase() + listAb2[i].substr(1);
                     }
                     listAb2=listAb2.join(" ").slice(0,-2);
-
                     document.getElementById("ab2").innerHTML=" ";
                     document.getElementById("ab2").innerHTML=listAb2;
 
@@ -908,7 +907,7 @@ function fusAb(mon1,mon2) {
         }
     //cas H0/null/HH + B0/null/null [H0=B0 | HH=B0] -> H0/null/HH
     } else if (mon1.length==2 && mon2.length==1 && mon1[0][1]==false && mon1[1][1]==true && mon2[0][1]==false) {
-        if (H0==B0 || H1==B0) {
+        if (H0==B0 || HH==B0) {
             fabs.push(H0);
             fabs.push(HH);
     //cas H0/null/HH + B0/null/null [H0#B0 & HH#B0] -> H0/B0/HH
