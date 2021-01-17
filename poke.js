@@ -146,7 +146,7 @@ ids=
 ,["Bagon",395]
 ,["Shelgon",396]
 ,["Klink",397]
-,["Klank",398]
+,["Klang",398]
 ,["Zorua",399]
 ,["Budew",400]
 ,["Roselia",401]
