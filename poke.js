@@ -414,11 +414,11 @@ function randomPoke() {
         }
         setTimeout(() => {document.getElementById("fname2").value = name2},500);
     }
-    setTimeout(() => { selectPoke() }, 600);
+    setTimeout(() => { fusePoke() }, 600);
 }
 
 //Fusion calculation function
-function selectPoke() {
+function fusePoke() {
 
     //Pokemon from both text area
     var mon1 = (document.getElementById("fname1")).value.toLowerCase();
