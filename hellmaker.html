@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>HellMaker</title>
+  <audio controls id="audio" autoplay loop>
+    <source src="Vitality.mp3" type="audio/mpeg"  />
+    This text displays if the audio tag isn't supported.
+  </audio>
+  <link rel="stylesheet" href="hellmaker.css">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300&display=swap" rel="stylesheet"> 
+</head>
+<body>
+  <div class="screen">
+    <div class="divimg" id="divimage">
+      <img src ="images/az_idle.png" alt="woa" class="img2" id="img2">
+    </div>
+    <h2 id="h2">• Azazel, the Curious Angel •</h2>
+    <h1 id="h1">Hey! Insert some text down there to change what you're currently reading!</h1>
+    <h3 id="h3">⮜⏺⮞</h3>
+  </div>
+  <section class="selector">
+    <div id="divselector1">
+      <form>
+        <label for="name" id="insert" >Insert text:</label><br>
+        <textarea id="name" name="name" maxlength="1000" autocomplete="off" rows="6" spellcheck="false"></textarea>
+        <br>
+      </form>
+    </div>
+    <div id="divselector2">
+      <form action="action" class="act">
+        <label for="character">Choose a character and pose:</label><br>
+        <select name="character" id="chars">
+          <option value="az">Azazel</option>
+          <option value="beel">Beelzebub</option>
+          <option value="truebeel">Beelzebub Insect</option>
+          <option value="cerbes">Cerberus</option>
+          <option value="judge">Judgement</option>
+          <option value="justice">Justice</option>
+          <option value="lucifer">Lucifer</option>
+          <option value="luciferpan">Lucifer Pancake</option>
+          <option value="malina">Malina</option>
+          <option value="modeus">Modeus</option>
+          <option value="pandem">Pandemonica</option>
+          <option value="pandems">Pandemonica Sadistic</option>
+          <option value="police">Police</option>
+          <!--<option value="sdm">SDM</option>
+          <option value="trance">Trance</option>
+          <option value="trancette">Trancette</option>-->
+          <option value="ht">Helltaker</option>
+          <option value="htske">Helltaker Skeleton</option>
+          <option value="zdrada">Zdrada</option>
+        </select>
+        <br>
+      </form>
+    </div>
+    <div>
+      <form action="action" class="act">
+        <label for="bg">Choose a background and border:</label><br>
+        <span class="span"></span>
+        <select name="bg" id="bgs">
+          <option value="bg1">Abyss</option>
+          <option value="bg2">Dark Hell</option>
+          <option value="bg3">Hell</option>
+          <option value="bg4">Sin</option>
+          <option value="bg5">Home</option>
+        </select>
+        <select name="bd" id="bds">
+          <option value="0">Small</option>
+          <option value="1">Normal</option>
+          <option value="2">Big</option>
+        </select>
+        <br>
+      </form>
+    </div>
+    <div>
+      <label for="btn" id="btnsave" >Save here:</label><br>
+      <button id=btn>Save</button>
+    </div>
+</section>
+</body>
+<script src="hellmaker.js"></script>
+</html>
