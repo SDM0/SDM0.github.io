@@ -147,3 +147,7 @@ textarea {
     width: auto;
     height: 40px;
 }
+
+audio {
+    display: none;
+}
