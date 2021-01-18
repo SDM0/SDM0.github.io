@@ -259,7 +259,8 @@ abilitySwap=
 "ursaring",
 "absol"]
 
-weezingabilities={
+//Data exceptions (poke-api isn't fully updated)
+weezingabilities = {
     "abilities":[
        {
           "ability":{
@@ -286,7 +287,60 @@ weezingabilities={
           "slot":3
        }
     ]
- }
+}
+
+aegislashstats = {
+"stats": [
+    {
+      "base_stat": 60,
+      "effort": 0,
+      "stat": {
+        "name": "hp",
+        "url": "https://pokeapi.co/api/v2/stat/1/"
+      }
+    },
+    {
+      "base_stat": 50,
+      "effort": 0,
+      "stat": {
+        "name": "attack",
+        "url": "https://pokeapi.co/api/v2/stat/2/"
+      }
+    },
+    {
+      "base_stat": 140,
+      "effort": 2,
+      "stat": {
+        "name": "defense",
+        "url": "https://pokeapi.co/api/v2/stat/3/"
+      }
+    },
+    {
+      "base_stat": 50,
+      "effort": 0,
+      "stat": {
+        "name": "special-attack",
+        "url": "https://pokeapi.co/api/v2/stat/4/"
+      }
+    },
+    {
+      "base_stat": 140,
+      "effort": 1,
+      "stat": {
+        "name": "special-defense",
+        "url": "https://pokeapi.co/api/v2/stat/5/"
+      }
+    },
+    {
+      "base_stat": 60,
+      "effort": 0,
+      "stat": {
+        "name": "speed",
+        "url": "https://pokeapi.co/api/v2/stat/6/"
+      }
+    }
+  ]
+}
 
 var types = new Array(
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],// Normal
@@ -499,8 +553,12 @@ function selectPoke() {
             }
             
             //Stats of 1st mon
-            var stats1 = jsonString.stats;
             var mon1stats = [];
+            if (mon1!="aegislash-shield") {
+                var stats1 = jsonString.stats;
+            } else {
+                var stats1 = aegislashstats.stats;
+            }
             for (i=0; i<stats1.length;i++) {
                 mon1stats.push(stats1[i].base_stat)
             }
@@ -605,8 +663,12 @@ function selectPoke() {
                     }
 
                     //Stats of 2nd mon
-                    var stats2 = jsonString.stats;
                     var mon2stats = [];
+                    if (mon2!="aegislash-shield") {
+                        var stats2 = jsonString.stats;
+                    } else {
+                        var stats2 = aegislashstats.stats;
+                    }
                     for (i=0; i<stats2.length;i++) {
                         mon2stats.push(stats2[i].base_stat)
                     }
