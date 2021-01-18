@@ -146,7 +146,7 @@ ids=
 ,["Bagon",395]
 ,["Shelgon",396]
 ,["Klink",397]
-,["Klank",398]
+,["Klang",398]
 ,["Zorua",399]
 ,["Budew",400]
 ,["Roselia",401]
@@ -468,11 +468,11 @@ function randomPoke() {
         }
         setTimeout(() => {document.getElementById("fname2").value = name2},500);
     }
-    setTimeout(() => { selectPoke() }, 600);
+    setTimeout(() => { fusePoke() }, 600);
 }
 
 //Fusion calculation function
-function selectPoke() {
+function fusePoke() {
 
     //Pokemon from both text area
     var mon1 = (document.getElementById("fname1")).value.toLowerCase();
