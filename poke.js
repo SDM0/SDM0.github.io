@@ -478,6 +478,7 @@ function fusePoke() {
     var mon1 = (document.getElementById("fname1")).value.toLowerCase();
     var mon2 = (document.getElementById("fname2")).value.toLowerCase();
     if ((mon1 == "" || mon1.length == 0 || mon1 == null) || (mon2 == "" || mon2.length == 0 || mon2 == null)) {
+	document.getElementById("random").disabled = false
         alert("Please fill the two text inputs!");
     } else {
         //Special mon selector: Giratina, Deoxys
