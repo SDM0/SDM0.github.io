@@ -102,3 +102,11 @@ h3 {
     width: 52px;
     height: 22px;
 }
+
+#browser-warning {
+    display: none;
+}
+
+#browser-warning.warning {
+    display:block
+}

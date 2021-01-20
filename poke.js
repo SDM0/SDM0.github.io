@@ -1221,3 +1221,12 @@ function fusType(mon1,mon2) {
     }
     return fmon
 }
+
+
+//Detects if the user is using Google Chrome
+function checkBrowser(){
+    if(navigator.userAgent.includes("Chrome")){
+        document.getElementById("browser-warning").classList.add("warning");
+    }
+}
+checkBrowser();
