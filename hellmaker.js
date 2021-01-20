@@ -43,7 +43,7 @@ function change2() {
             break;
         case "judge":
             document.getElementById("h2").innerHTML= "• Judgement, the High Prosecutor •";
-            document.getElementById("img2").src="images/j_introAnim3.png"
+            document.getElementById("img2").src="images/J_introAnim3.png"
             break;
         case "lucifer":
             document.getElementById("h2").innerHTML= "• Lucifer, the CEO of Hell •";
