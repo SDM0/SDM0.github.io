@@ -13,14 +13,6 @@ h4 {
     margin: 0;
 }
 
-.green {
-    color: green !important;
-}
-
-.red {
-    color: red !important;
-}
-
 label {
     font-family: 'Piazzolla', serif;
     font-weight: bolder;
@@ -113,10 +105,11 @@ h3 {
     height: 22px;
 }
 
-#browser-warning {
+.browser-warning-hidden {
     display: none;
 }
 
-#browser-warning.warning {
-    display:block
+.browser-warning-visible {
+    display:block;
+    color: red;
 }

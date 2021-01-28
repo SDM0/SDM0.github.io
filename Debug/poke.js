@@ -1231,19 +1231,13 @@ function checkBrowser(){
 
     if( isChrome ){
         console.warn(message);
-        document.getElementById("userAgent").classList.add("red");
+        document.getElementById("browser-warning").classList.add("browser-warning-visible");
+        document.getElementById("browser-warning").classList.remove("browser-warning-hidden");
     }
     else{
         console.log(message);
-        document.getElementById("userAgent").classList.add("green");
     }
-
     document.getElementById("userAgent").innerHTML = userAgent;
-
-    /*
-    if(navigator.userAgent.includes("Chrome")){
-        document.getElementById("browser-warning").classList.add("warning");
-    }
-    */
 }
+
 checkBrowser();
