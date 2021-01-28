@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Debug</title>
+        <link rel="stylesheet" href="poke.css">
+        <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@500;600;700&display=swap" rel="stylesheet"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>
+            Debug mode
+        </h1>
+        <div id="text">
+            <h4>
+                <div id="userAgent">Y</div>
+            </h4>
+            <br>
+            <button id="random" class="button" onclick="randomPoke()">Random</button>
+            <button id="reset" class="button" onclick="resetPoke()">Reset</button>
+            <div id="t1">
+                <label for="fname1">First Pokemon:</label>
+                <input type="text" id="fname1" name="fname1" value=""  autocomplete="off"><br>
+            </div>
+            <div id="t2">
+                <label for="fname2">Second Pokemon:</label>
+                <input type="text" id="fname2" name="fname2" value="" autocomplete="off"><br>
+            </div>
+        </div>
+        <button id="button" class="button" onclick="fusePoke()">Fuse</button>
+        <h3>(or press Enter)</h3>
+            <sector id="stats" class="stats">
+                <div id="L2">
+                    <img class="picpok" id="pic1" alt="" src="../question.png" onError="this.src=picError(this.src)">
+                    <div id="FP1">mon1/mon2</div>
+                    <div id="typecont">
+                        <img class="pictype" id="p1" src="../Types/normal.png">
+                        <img class="pictype" id="p2" style="display:none">
+                    </div>
+                    <div class="monstats" id="hp1">HP: </div>
+                    <div class="monstats" id="atk1">ATK: </div>
+                    <div class="monstats" id="def1">DEF: </div>
+                    <div class="monstats" id="spatk1">SPE.ATK: </div>
+                    <div class="monstats" id="spdef1">SPE.DEF: </div>
+                    <div class="monstats" id="spe1">SPEED: </div>
+                    <div class="montotal" id="bs1">TOTAL: </div>
+                    <div class="monab" id="ab1">ABILITY:</div>
+                    <div class="monweak" data-default="x4: " id="weak14">x4: </div>
+                    <div class="monweak" data-default="x2: " id="weak12">x2: </div>
+                    <div class="monweak" data-default="x1: " id="weak11">x1: </div>
+                    <div class="monweak" data-default="x0.5: " id="weak105">x0.5: </div>
+                    <div class="monweak" data-default="x0.25: " id="weak1025">x0.25: </div>
+                    <div class="monweak" data-default="x0: " id="weak100">x0: </div>
+                </div>
+                <div id="R2">
+                    <img class="picpok" id="pic2" alt="" src="../question.png" onError="this.src=picError(this.src)">
+                    <div id="FP2">mon2/mon1</div>
+                    <div id="typecont">
+                        <img class="pictype" id="p3" src="../Types/normal.png">
+                        <img class="pictype" id="p4" style="display:none">
+                    </div>
+                    <div class="monstats" id="hp2">HP: </div>
+                    <div class="monstats" id="atk2">ATK: </div>
+                    <div class="monstats" id="def2">DEF: </div>
+                    <div class="monstats" id="spatk2">SPE.ATK: </div>
+                    <div class="monstats" id="spdef2">SPE.DEF: </div>
+                    <div class="monstats" id="spe2">SPEED: </div>
+                    <div class="montotal" id="bs2">TOTAL: </div>
+                    <div class="monab" id="ab2">ABILITY:</div>
+                    <div class="monweak" data-default="x4: " id="weak24">x4: </div>
+                    <div class="monweak" data-default="x2: " id="weak22">x2: </div>
+                    <div class="monweak" data-default="x1: " id="weak21">x1: </div>
+                    <div class="monweak" data-default="x0.5: " id="weak205">x0.5: </div>
+                    <div class="monweak" data-default="x0.25: " id="weak2025">x0.25: </div>
+                    <div class="monweak" data-default="x0: " id="weak200">x0: </div>
+                </div>
+            </sector>
+            <!--<p id="bottom">All rights reserved to Pokemon</p>-->
+        </body>
+    <script src="poke.js"></script>  
+</html>

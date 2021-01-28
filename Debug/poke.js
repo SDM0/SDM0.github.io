@@ -796,7 +796,7 @@ function fusePoke() {
 
                     for (i=0; i<=typeName.length;i++) {
                         var image = new Image()
-                        image.src = 'Types/'+typeName[i]+".png";
+                        image.src = '../Types/'+typeName[i]+".png";
                         if (result1[i]==4) {
                             document.getElementById("weak14").appendChild(image);
                         }
@@ -826,7 +826,7 @@ function fusePoke() {
 
                     for (i=0; i<=typeName.length;i++) {
                         var image = new Image()
-                        image.src = 'Types/'+typeName[i]+".png";
+                        image.src = '../Types/'+typeName[i]+".png";
                         if (result2[i]==4) {
                             document.getElementById("weak24").appendChild(image);
                         }
@@ -849,26 +849,26 @@ function fusePoke() {
 
                     typeComp+=1;
 
-                    document.getElementById("p1").src="./Types/"+fmonres1[0]+".png";
+                    document.getElementById("p1").src="../Types/"+fmonres1[0]+".png";
                     if (fmonres1.length!=1 && (fmonres1.length==2 && fmonres1[0]!=fmonres1[1])) {
                         document.getElementById("p2").style.display="inline-block";
-                        document.getElementById("p2").src="./Types/"+fmonres1[1]+".png";
+                        document.getElementById("p2").src="../Types/"+fmonres1[1]+".png";
                     } else {
                         document.getElementById("p2").style.display="none";
                     }
 
-                    document.getElementById("p3").src="./Types/"+fmonres2[0]+".png";
+                    document.getElementById("p3").src="../Types/"+fmonres2[0]+".png";
 
                     if (fmonres2.length!=1 && (fmonres2.length==2 && fmonres2[0]!=fmonres2[1])) {
                         document.getElementById("p4").style.display="inline-block";
-                        document.getElementById("p4").src="./Types/"+fmonres2[1]+".png";
+                        document.getElementById("p4").src="../Types/"+fmonres2[1]+".png";
                     } else {
                         document.getElementById("p4").style.display="none";
                     }
 
                     //Picture of fusion (if in folder)
-                    document.getElementById("pic1").src="./CustomBattlers/"+pic1;
-                    document.getElementById("pic2").src="./CustomBattlers/"+pic2;
+                    document.getElementById("pic1").src="../CustomBattlers/"+pic1;
+                    document.getElementById("pic2").src="../CustomBattlers/"+pic2;
 
                     var listAb1 = "ABILITY: ";
                     for (i=0;i<abres1.length;i++) {
@@ -1223,9 +1223,27 @@ function fusType(mon1,mon2) {
 }
 
 
-//Detects if the user is using Google Chrome Mobile
-// Because of cross-origin, pics wont load
+//Detects if the user is using Google Chrome
 function checkBrowser(){
-    //TODO
+    var userAgent = navigator.userAgent;
+    var isChrome = userAgent.includes("Chrome");
+    var message = "(isChrome:" + isChrome + ") " + userAgent;
+
+    if( isChrome ){
+        console.warn(message);
+        document.getElementById("userAgent").classList.add("red");
+    }
+    else{
+        console.log(message);
+        document.getElementById("userAgent").classList.add("green");
+    }
+
+    document.getElementById("userAgent").innerHTML = userAgent;
+
+    /*
+    if(navigator.userAgent.includes("Chrome")){
+        document.getElementById("browser-warning").classList.add("warning");
+    }
+    */
 }
 checkBrowser();
