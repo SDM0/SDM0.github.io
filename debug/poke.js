@@ -1237,7 +1237,6 @@ function checkBrowser(){
     else{
         console.log(message);
     }
-    document.getElementById("userAgent").innerHTML = userAgent;
 }
 
 checkBrowser();
