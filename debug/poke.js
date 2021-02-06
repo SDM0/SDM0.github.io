@@ -867,8 +867,8 @@ function fusePoke() {
                     }
 
                     //Picture of fusion (if in folder)
-                    document.getElementById("pic1").src="../CustomBattlers/"+pic1;
-                    document.getElementById("pic2").src="../CustomBattlers/"+pic2;
+                    showFusion("pic1", pic1);
+                    showFusion("pic2", pic2);
 
                     var listAb1 = "ABILITY: ";
                     for (i=0;i<abres1.length;i++) {
@@ -926,6 +926,29 @@ function picError(imgsrc) {
     return imgsrc;
 }
 
+//Custom sprite fusion function
+function showFusion(elementId, fusionId){
+    
+    fusionUrl = "https://aegide.github.io/CustomBattlers/" + fusionId;
+    //https://aegide.github.io/CustomBattlers/244.299.png
+
+    if(doesImageExists(fusionUrl)){
+        document.getElementById(elementId).src = fusionUrl;
+    }
+    else{
+        headId = fusionId.split(".")[0];
+        fallbackFusionUrl = "http://51.68.229.67/B2/" + headId + "/" + fusionId;
+        document.getElementById(elementId).src = fallbackFusionUrl;
+    }
+}
+
+//Detects an incoming url error before it occurs
+function doesImageExists(imageUrl){
+    var http = new XMLHttpRequest();
+    http.open('HEAD', imageUrl, false);
+    http.send();
+    return http.status != 404;
+}
 
 //Ability fusion function
 function fusAb(mon1,mon2) {
