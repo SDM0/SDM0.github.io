@@ -938,7 +938,7 @@ function showFusion(elementId, fusionId){
     }
     else{
         headId = fusionId.split(".")[0];
-        fallbackFusionUrl = "https://51.68.229.67/B2/" + headId + "/" + fusionId;
+        fallbackFusionUrl = "http://51.68.229.67/B2/" + headId + "/" + fusionId;
         document.getElementById(elementId).src = fallbackFusionUrl;
     }
 }
