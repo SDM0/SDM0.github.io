@@ -919,25 +919,26 @@ function typeId(ftype) {
 
 
 //Screenshot of autogen pokemon
+/*
 function picError(imgsrc) {
     imgsrc=imgsrc.split("/")[imgsrc.split("/").length-1];
     var index=imgsrc.split(".")[0];
-    imgsrc="http://51.68.229.67/B2/"+index+"/"+imgsrc
+    imgsrc="https://51.68.229.67/B2/"+index+"/"+imgsrc
     return imgsrc;
 }
+*/
 
 //Custom sprite fusion function
 function showFusion(elementId, fusionId){
     
     fusionUrl = "https://aegide.github.io/CustomBattlers/" + fusionId;
-    //https://aegide.github.io/CustomBattlers/244.299.png
 
     if(doesImageExists(fusionUrl)){
         document.getElementById(elementId).src = fusionUrl;
     }
     else{
         headId = fusionId.split(".")[0];
-        fallbackFusionUrl = "http://51.68.229.67/B2/" + headId + "/" + fusionId;
+        fallbackFusionUrl = "https://51.68.229.67/B2/" + headId + "/" + fusionId;
         document.getElementById(elementId).src = fallbackFusionUrl;
     }
 }
