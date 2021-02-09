@@ -1,4 +1,4 @@
-ids= 
+const ids= 
 [["Slowking",199]
 ,["Azurill",252]
 ,["Wynaut",253]
@@ -170,7 +170,7 @@ ids=
 ,["Larvesta",419]
 ,["Stunfisk",420]]
 
-nameException=[
+const nameException=[
 "mr.mime",
 "mime.jr",
 "deoxys",
@@ -179,7 +179,7 @@ nameException=[
 "aegislash",
 ]
 
-nameFix=[
+const nameFix=[
 "mr-mime",
 "mime-jr",
 "deoxys-normal",
@@ -188,7 +188,7 @@ nameFix=[
 "aegislash-shield",
 ]
 
-typeSwap=
+const typeSwap=
 [["steel","electric","Magnemite"]
 ,["steel","electric","Magneton"]
 ,["ice","water","Dewgong"]
@@ -197,7 +197,7 @@ typeSwap=
 ,["steel","bug","Scizor"]
 ,["steel","electric","Magnezone"]]
 
-typeUni=
+const typeUni =
 [["grass","Bulbasaur"]
 ,["grass","Ivysaur"]
 ,["grass","Venusaur"]
@@ -217,7 +217,7 @@ typeUni=
 ,["dragon","Dragonite"]
 ,["steel","Steelix"]]
 
-abilitySwap=
+const abilitySwap =
 ["pidgey",
 "pidgeotto",
 "pidgeot",
@@ -260,7 +260,7 @@ abilitySwap=
 "absol"]
 
 //Data exceptions (poke-api isn't fully updated)
-weezingabilities = {
+const weezingabilities = {
     "abilities":[
        {
           "ability":{
@@ -289,7 +289,7 @@ weezingabilities = {
     ]
 }
 
-aegislashstats = {
+const aegislashstats = {
 "stats": [
     {
       "base_stat": 60,
@@ -342,7 +342,7 @@ aegislashstats = {
   ]
 }
 
-var types = new Array(
+const types = new Array(
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],// Normal
     [1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1, 1],// Fire
     [1, 2, 0.5, 1, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1, 1],// Water
@@ -363,7 +363,7 @@ var types = new Array(
     [1, 0.5, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 0.5, 1, 1],// Fairy
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);// None
     
-var typeName = ["normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
+const typeName = ["normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
 var result1 = new Array();
 var result2 = new Array();
 
@@ -790,14 +790,14 @@ function fusePoke() {
                     tyeffid1 = typeId(fmonres1);
                     tyeffid2 = typeId(fmonres1);
 
-                    for (i=0; i<=17; i++) {
+                    for (var i=0; i<typeName.length; i++) {
                         result1[i] = (types[i][tyeffid1[0]] * types[i][tyeffid1[1]]);
-                        }
+                    }
 
-                    for (i=0; i<=typeName.length;i++) {
+                    for (var i=0; i<typeName.length; i++) {
                         var image = new Image()
-                        //TODO : fix undefined.png
-                        image.src = 'Types/'+typeName[i]+".png";
+                        image.src = '../Types/' + typeName[i] + ".png";
+                        
                         if (result1[i]==4) {
                             document.getElementById("weak14").appendChild(image);
                         }
@@ -821,14 +821,14 @@ function fusePoke() {
                     tyeffid1 = typeId(fmonres2);
                     tyeffid2 = typeId(fmonres2);
 
-                    for (i=0; i<=17; i++) {
+                    for (i=0; i<typeName.length; i++) {
                         result2[i] = (types[i][tyeffid1[0]] * types[i][tyeffid1[1]]);
-                        }
+                    }
 
-                    for (i=0; i<=typeName.length;i++) {
+                    for (i=0; i<typeName.length; i++) {
                         var image = new Image()
-                        //TODO : fix undefined.png
-                        image.src = 'Types/'+typeName[i]+".png";
+                        image.src = '../Types/' + typeName[i] + ".png";
+
                         if (result2[i]==4) {
                             document.getElementById("weak24").appendChild(image);
                         }
