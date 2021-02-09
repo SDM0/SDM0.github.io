@@ -796,6 +796,7 @@ function fusePoke() {
 
                     for (i=0; i<=typeName.length;i++) {
                         var image = new Image()
+                        //TODO : fix undefined.png
                         image.src = 'Types/'+typeName[i]+".png";
                         if (result1[i]==4) {
                             document.getElementById("weak14").appendChild(image);
@@ -826,6 +827,7 @@ function fusePoke() {
 
                     for (i=0; i<=typeName.length;i++) {
                         var image = new Image()
+                        //TODO : fix undefined.png
                         image.src = 'Types/'+typeName[i]+".png";
                         if (result2[i]==4) {
                             document.getElementById("weak24").appendChild(image);
@@ -849,26 +851,26 @@ function fusePoke() {
 
                     typeComp+=1;
 
-                    document.getElementById("p1").src="./Types/"+fmonres1[0]+".png";
+                    document.getElementById("p1").src="Types/"+fmonres1[0]+".png";
                     if (fmonres1.length!=1 && (fmonres1.length==2 && fmonres1[0]!=fmonres1[1])) {
                         document.getElementById("p2").style.display="inline-block";
-                        document.getElementById("p2").src="./Types/"+fmonres1[1]+".png";
+                        document.getElementById("p2").src="Types/"+fmonres1[1]+".png";
                     } else {
                         document.getElementById("p2").style.display="none";
                     }
 
-                    document.getElementById("p3").src="./Types/"+fmonres2[0]+".png";
+                    document.getElementById("p3").src="Types/"+fmonres2[0]+".png";
 
                     if (fmonres2.length!=1 && (fmonres2.length==2 && fmonres2[0]!=fmonres2[1])) {
                         document.getElementById("p4").style.display="inline-block";
-                        document.getElementById("p4").src="./Types/"+fmonres2[1]+".png";
+                        document.getElementById("p4").src="Types/"+fmonres2[1]+".png";
                     } else {
                         document.getElementById("p4").style.display="none";
                     }
 
-                    //Picture of fusion (if in folder)
-                    document.getElementById("pic1").src="./CustomBattlers/"+pic1;
-                    document.getElementById("pic2").src="./CustomBattlers/"+pic2;
+                    //Picture of fusion (if inside CustomBattlers)
+                    showFusion("pic1", pic1);
+                    showFusion("pic2", pic2);
 
                     var listAb1 = "ABILITY: ";
                     for (i=0;i<abres1.length;i++) {
@@ -917,15 +919,30 @@ function typeId(ftype) {
     return [ty1,ty2];
 }
 
+//Custom sprite fusion function
+function showFusion(elementId, fusionId){
+    
+    fusionUrl = "https://aegide.github.io/CustomBattlers/" + fusionId;
 
-//Screenshot of autogen pokemon
-function picError(imgsrc) {
-    imgsrc=imgsrc.split("/")[imgsrc.split("/").length-1];
-    var index=imgsrc.split(".")[0];
-    imgsrc="http://51.68.229.67/B2/"+index+"/"+imgsrc
-    return imgsrc;
+    if(doesImageExists(fusionUrl)){
+        document.getElementById(elementId).src = fusionUrl;
+    }
+    else{//Screenshot of autogen pokemon
+        fallbackFusionRepository = "https://raw.githubusercontent.com/Aegide/FusionSprites/master/Japeal/"
+        headId = fusionId.split(".")[0];
+        fallbackFusionUrl = fallbackFusionRepository + headId + "/" + fusionId;
+        
+        document.getElementById(elementId).src = fallbackFusionUrl;
+    }
 }
 
+//Error detection
+function doesImageExists(imageUrl){
+    var http = new XMLHttpRequest();
+    http.open('HEAD', imageUrl, false);
+    http.send();
+    return http.status != 404;
+}
 
 //Ability fusion function
 function fusAb(mon1,mon2) {
@@ -1221,11 +1238,3 @@ function fusType(mon1,mon2) {
     }
     return fmon
 }
-
-
-//Detects if the user is using Google Chrome Mobile
-// Because of cross-origin, pics wont load
-function checkBrowser(){
-    //TODO
-}
-checkBrowser();
