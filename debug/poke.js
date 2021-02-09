@@ -797,8 +797,12 @@ function fusePoke() {
                     for (i=0; i<=typeName.length;i++) {
                         var image = new Image()
 
-                        //TODO : fix undefined
-                        image.src = '../Types/'+typeName[i]+".png";
+                        if (typeName[i] !== undefined) {
+                            image.src = '../Types/'+typeName[i]+".png";
+                        }
+                        else{
+                            console.error(typeName[i])
+                        }
                         
                         if (result1[i]==4) {
                             document.getElementById("weak14").appendChild(image);
@@ -830,8 +834,12 @@ function fusePoke() {
                     for (i=0; i<=typeName.length;i++) {
                         var image = new Image()
 
-                        //TODO : fix undefined
-                        image.src = '../Types/'+typeName[i]+".png";
+                        if (typeName[i] !== undefined) {
+                            image.src = '../Types/'+typeName[i]+".png";
+                        }
+                        else{
+                            console.error(typeName[i])
+                        }
 
                         if (result2[i]==4) {
                             document.getElementById("weak24").appendChild(image);
