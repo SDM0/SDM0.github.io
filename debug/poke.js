@@ -796,7 +796,10 @@ function fusePoke() {
 
                     for (i=0; i<=typeName.length;i++) {
                         var image = new Image()
+
+                        //TODO : fix undefined
                         image.src = '../Types/'+typeName[i]+".png";
+                        
                         if (result1[i]==4) {
                             document.getElementById("weak14").appendChild(image);
                         }
@@ -826,7 +829,10 @@ function fusePoke() {
 
                     for (i=0; i<=typeName.length;i++) {
                         var image = new Image()
+
+                        //TODO : fix undefined
                         image.src = '../Types/'+typeName[i]+".png";
+
                         if (result2[i]==4) {
                             document.getElementById("weak24").appendChild(image);
                         }
@@ -937,8 +943,10 @@ function showFusion(elementId, fusionId){
         document.getElementById(elementId).src = fusionUrl;
     }
     else{
+        fallbackFusionRepository = "https://raw.githubusercontent.com/Aegide/FusionSprites/master/Japeal/"
         headId = fusionId.split(".")[0];
-        fallbackFusionUrl = "http://51.68.229.67/B2/" + headId + "/" + fusionId;
+        fallbackFusionUrl = fallbackFusionRepository + headId + "/" + fusionId;
+        
         document.getElementById(elementId).src = fallbackFusionUrl;
     }
 }
