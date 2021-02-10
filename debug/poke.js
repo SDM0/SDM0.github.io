@@ -823,7 +823,7 @@ function fusePoke() {
 
                     for (i=0; i<typeName.length; i++) {
                         result2[i] = (types[i][tyeffid1[0]] * types[i][tyeffid1[1]]);
-                        }
+                    }
 
                     for (i=0; i<typeName.length; i++) {
                         var image = new Image()
@@ -868,7 +868,7 @@ function fusePoke() {
                         document.getElementById("p4").style.display="none";
                     }
 
-                    //Picture of fusion (if in folder)
+                    //Picture of fusion (if inside CustomBattlers)
                     showFusion("pic1", pic1);
                     showFusion("pic2", pic2);
 
@@ -919,17 +919,6 @@ function typeId(ftype) {
     return [ty1,ty2];
 }
 
-
-//Screenshot of autogen pokemon
-/*
-function picError(imgsrc) {
-    imgsrc=imgsrc.split("/")[imgsrc.split("/").length-1];
-    var index=imgsrc.split(".")[0];
-    imgsrc="http://51.68.229.67/B2/"+index+"/"+imgsrc
-    return imgsrc;
-}
-*/
-
 //Custom sprite fusion function
 function showFusion(elementId, fusionId){
     
@@ -938,7 +927,7 @@ function showFusion(elementId, fusionId){
     if(doesImageExists(fusionUrl)){
         document.getElementById(elementId).src = fusionUrl;
     }
-    else{
+    else{//Screenshot of autogen pokemon
         fallbackFusionRepository = "https://raw.githubusercontent.com/Aegide/FusionSprites/master/Japeal/"
         headId = fusionId.split(".")[0];
         fallbackFusionUrl = fallbackFusionRepository + headId + "/" + fusionId;
@@ -947,7 +936,7 @@ function showFusion(elementId, fusionId){
     }
 }
 
-//Detects an incoming url error before it occurs
+//Error detection
 function doesImageExists(imageUrl){
     var http = new XMLHttpRequest();
     http.open('HEAD', imageUrl, false);
@@ -1249,22 +1238,3 @@ function fusType(mon1,mon2) {
     }
     return fmon
 }
-
-
-//Detects if the user is using Google Chrome
-function checkBrowser(){
-    var userAgent = navigator.userAgent;
-    var isChrome = userAgent.includes("Chrome");
-    var message = "(isChrome:" + isChrome + ") " + userAgent;
-
-    if( isChrome ){
-        console.warn(message);
-        document.getElementById("browser-warning").classList.add("browser-warning-visible");
-        document.getElementById("browser-warning").classList.remove("browser-warning-hidden");
-    }
-    else{
-        console.log(message);
-    }
-}
-
-checkBrowser();
