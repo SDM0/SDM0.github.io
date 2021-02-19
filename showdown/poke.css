@@ -1,0 +1,104 @@
+body {
+    background-color: rgb(20,20,20);
+    text-align: center;
+    font-family: 'Piazzolla', serif;
+    color: white;
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 16px;
+    margin: 0;
+}
+
+label {
+    font-family: 'Piazzolla', serif;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.picpok {
+    width:  150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.pictype {
+    width: 89px;
+    height: 39px;
+}
+
+.button {
+    margin: 0px;
+    font-size: 20px;
+}
+
+h1 {
+    margin:0;
+}
+
+h2 {
+    font-weight: 400;
+    margin: 0;
+    padding-bottom: 14px;
+    height: 20px;
+}
+
+h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 0;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#FP1 {
+    padding-bottom:4px;
+}
+
+#FP2 {
+    padding-bottom:4px;
+}
+
+#R2 {
+    height: 30px;
+}
+
+#L2 {
+    height: 30px;
+}
+
+#bottom {
+    font-family: 'Arial', serif;
+    font-size: 12px;
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    text-align: center
+}
+
+.monstats {
+    padding-bottom: 2px;
+}
+
+.montotal {
+    padding-bottom: 10px;
+}
+
+.monab {
+    padding-bottom: 8px;
+}
+
+.monweak {
+    vertical-align: auto;
+    padding-bottom: 4px;
+}
+
+.monweak img {
+    width: 52px;
+    height: 22px;
+}
