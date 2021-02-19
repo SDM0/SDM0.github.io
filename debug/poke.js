@@ -259,90 +259,61 @@ const abilitySwap =
 "ursaring",
 "absol"]
 
-//Data exceptions (poke-api isn't fully updated)
-const weezingabilities = {
-    "abilities":[
-       {
-          "ability":{
-             "name":"levitate",
-             "url":"https://pokeapi.co/api/v2/ability/69/"
-          },
-          "is_hidden":false,
-          "slot":1
-       },
-       {
-          "ability":{
-             "name":"neutralizing-gas",
-             "url":"https://pokeapi.co/api/v2/ability/5/"
-          },
-          "is_hidden":false,
-          "slot":2
-       },
-       {
-          "ability":{
-             "name":"stench",
-             "url":"https://pokeapi.co/api/v2/ability/125/"
-          },
-          "is_hidden":true,
-          "slot":3
-       }
-    ]
-}
-
+//Data exception
 const aegislashstats = {
-"stats": [
-    {
-      "base_stat": 60,
-      "effort": 0,
-      "stat": {
-        "name": "hp",
-        "url": "https://pokeapi.co/api/v2/stat/1/"
-      }
-    },
-    {
-      "base_stat": 50,
-      "effort": 0,
-      "stat": {
-        "name": "attack",
-        "url": "https://pokeapi.co/api/v2/stat/2/"
-      }
-    },
-    {
-      "base_stat": 140,
-      "effort": 2,
-      "stat": {
-        "name": "defense",
-        "url": "https://pokeapi.co/api/v2/stat/3/"
-      }
-    },
-    {
-      "base_stat": 50,
-      "effort": 0,
-      "stat": {
-        "name": "special-attack",
-        "url": "https://pokeapi.co/api/v2/stat/4/"
-      }
-    },
-    {
-      "base_stat": 140,
-      "effort": 1,
-      "stat": {
-        "name": "special-defense",
-        "url": "https://pokeapi.co/api/v2/stat/5/"
-      }
-    },
-    {
-      "base_stat": 60,
-      "effort": 0,
-      "stat": {
-        "name": "speed",
-        "url": "https://pokeapi.co/api/v2/stat/6/"
-      }
+    "stats": [
+        {
+          "base_stat": 60,
+          "effort": 0,
+          "stat": {
+            "name": "hp",
+            "url": "https://pokeapi.co/api/v2/stat/1/"
+          }
+        },
+        {
+          "base_stat": 50,
+          "effort": 0,
+          "stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+          }
+        },
+        {
+          "base_stat": 150,
+          "effort": 2,
+          "stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+          }
+        },
+        {
+          "base_stat": 50,
+          "effort": 0,
+          "stat": {
+            "name": "special-attack",
+            "url": "https://pokeapi.co/api/v2/stat/4/"
+          }
+        },
+        {
+          "base_stat": 150,
+          "effort": 1,
+          "stat": {
+            "name": "special-defense",
+            "url": "https://pokeapi.co/api/v2/stat/5/"
+          }
+        },
+        {
+          "base_stat": 60,
+          "effort": 0,
+          "stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+          }
+        }
+      ]
     }
-  ]
-}
 
-const types = new Array(
+    const types = new Array(
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],// Normal
     [1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1, 1],// Fire
     [1, 2, 0.5, 1, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1, 1],// Water
@@ -565,12 +536,8 @@ function fusePoke() {
             }
 
             //Ability of 1st mon
+            var ab1 = jsonString.abilities;
             var mon1abilities = [];
-            if (mon1!="weezing") {
-                var ab1 = jsonString.abilities;
-            } else {
-                var ab1 = weezingabilities.abilities;
-            }
             for (i=0; i<ab1.length;i++) {
                 mon1abilities.push([ab1[i].ability,ab1[i].is_hidden]);
             }
@@ -675,11 +642,7 @@ function fusePoke() {
                     }
 
                     //Abilities of 2nd mon
-                    if (mon2!="weezing") {
-                        var ab2 = jsonString.abilities;
-                    } else {
-                        var ab2 = weezingabilities.abilities;
-                    }
+                    var ab2 = jsonString.abilities;
                     var mon2abilities = [];
                     for (i=0; i<ab2.length;i++) {
                         mon2abilities.push([ab2[i].ability,ab2[i].is_hidden]);
@@ -796,7 +759,7 @@ function fusePoke() {
 
                     for (var i=0; i<typeName.length; i++) {
                         var image = new Image()
-                        image.src = '../Types/' + typeName[i] + ".png";
+                        image.src = './Types/' + typeName[i] + ".png";
                         
                         if (result1[i]==4) {
                             document.getElementById("weak14").appendChild(image);
@@ -827,7 +790,7 @@ function fusePoke() {
 
                     for (i=0; i<typeName.length; i++) {
                         var image = new Image()
-                        image.src = '../Types/' + typeName[i] + ".png";
+                        image.src = './Types/' + typeName[i] + ".png";
 
                         if (result2[i]==4) {
                             document.getElementById("weak24").appendChild(image);
@@ -851,19 +814,19 @@ function fusePoke() {
 
                     typeComp+=1;
 
-                    document.getElementById("p1").src="../Types/"+fmonres1[0]+".png";
+                    document.getElementById("p1").src="Types/"+fmonres1[0]+".png";
                     if (fmonres1.length!=1 && (fmonres1.length==2 && fmonres1[0]!=fmonres1[1])) {
                         document.getElementById("p2").style.display="inline-block";
-                        document.getElementById("p2").src="../Types/"+fmonres1[1]+".png";
+                        document.getElementById("p2").src="Types/"+fmonres1[1]+".png";
                     } else {
                         document.getElementById("p2").style.display="none";
                     }
 
-                    document.getElementById("p3").src="../Types/"+fmonres2[0]+".png";
+                    document.getElementById("p3").src="Types/"+fmonres2[0]+".png";
 
                     if (fmonres2.length!=1 && (fmonres2.length==2 && fmonres2[0]!=fmonres2[1])) {
                         document.getElementById("p4").style.display="inline-block";
-                        document.getElementById("p4").src="../Types/"+fmonres2[1]+".png";
+                        document.getElementById("p4").src="Types/"+fmonres2[1]+".png";
                     } else {
                         document.getElementById("p4").style.display="none";
                     }
