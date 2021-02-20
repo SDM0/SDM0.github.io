@@ -168,7 +168,8 @@ const ids=
 ,["Fletchling",417]
 ,["Fletchinder",418]
 ,["Larvesta",419]
-,["Stunfisk",420]]
+,["Stunfisk",420]
+]
 
 const nameException=[
 "mr.mime",
@@ -195,7 +196,8 @@ const typeSwap=
 ,["water","rock","Omanyte"]
 ,["water","rock","Omastar"]
 ,["steel","bug","Scizor"]
-,["steel","electric","Magnezone"]]
+,["steel","electric","Magnezone"]
+]
 
 const typeUni =
 [["grass","Bulbasaur"]
@@ -215,7 +217,8 @@ const typeUni =
 ,["electric","Zapdos"]
 ,["fire","Moltres"]
 ,["dragon","Dragonite"]
-,["steel","Steelix"]]
+,["steel","Steelix"]
+]
 
 const abilitySwap =
 ["pidgey",
@@ -257,82 +260,77 @@ const abilitySwap =
 "granbull",
 "teddiursa",
 "ursaring",
-"absol"]
+"absol"
+]
 
-//Data exception
-const aegislashstats = {
+//Aegislash
+const aegislash = {
     "stats": [
         {
-          "base_stat": 60,
-          "effort": 0,
-          "stat": {
-            "name": "hp",
-            "url": "https://pokeapi.co/api/v2/stat/1/"
-          }
+            "base_stat": 60//hp
         },
         {
-          "base_stat": 50,
-          "effort": 0,
-          "stat": {
-            "name": "attack",
-            "url": "https://pokeapi.co/api/v2/stat/2/"
-          }
+            "base_stat": 50//attack
         },
         {
-          "base_stat": 150,
-          "effort": 2,
-          "stat": {
-            "name": "defense",
-            "url": "https://pokeapi.co/api/v2/stat/3/"
-          }
+            "base_stat": 150//defense
         },
         {
-          "base_stat": 50,
-          "effort": 0,
-          "stat": {
-            "name": "special-attack",
-            "url": "https://pokeapi.co/api/v2/stat/4/"
-          }
+            "base_stat": 50//special-attack
         },
         {
-          "base_stat": 150,
-          "effort": 1,
-          "stat": {
-            "name": "special-defense",
-            "url": "https://pokeapi.co/api/v2/stat/5/"
-          }
+            "base_stat": 150//special-defense
         },
         {
-          "base_stat": 60,
-          "effort": 0,
-          "stat": {
-            "name": "speed",
-            "url": "https://pokeapi.co/api/v2/stat/6/"
-          }
+            "base_stat": 60//speed
         }
-      ]
-    }
+    ]
+}
 
-    const types = new Array(
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],// Normal
-    [1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1, 1],// Fire
-    [1, 2, 0.5, 1, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1, 1],// Water
-    [1, 1, 2, 0.5, 0.5, 1, 1, 1, 0, 2, 1, 1, 1, 1, 0.5, 1, 1, 1, 1],// Electric
-    [1, 0.5, 2, 1, 0.5, 1, 1, 0.5, 2, 0.5, 1, 0.5, 2, 1, 0.5, 1, 0.5, 1, 1],// Grass
-    [1, 0.5, 0.5, 1, 2, 0.5, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 0.5, 1, 1],// Ice
-    [2, 1, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0, 1, 2, 2, 0.5, 1],// Fighting
-    [1, 1, 1, 1, 2, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 1, 1, 0, 2, 1],// Poison
-    [1, 2, 1, 2, 0.5, 1, 1, 2, 1, 0, 1, 0.5, 2, 1, 1, 1, 2, 1, 1],// Ground
-    [1, 1, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 0.5, 1, 1],// Flying
-    [1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1, 1, 1, 0, 0.5, 1, 1],// Psychic
-    [1, 0.5, 1, 1, 2, 1, 0.5, 0.5, 1, 0.5, 2, 1, 1, 0.5, 1, 2, 0.5, 0.5, 1],// Bug
-    [1, 2, 1, 1, 1, 2, 0.5, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 0.5, 1, 1],// Rock
-    [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 1, 1],// Ghost
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0.5, 0, 1],// Dragon
-    [1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 0.5, 1],// Dark
-    [1, 0.5, 0.5, 0.5, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0.5, 2, 1],// Steel
-    [1, 0.5, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 0.5, 1, 1],// Fairy
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);// None
+//Chandelure, Lampent, Litwick
+const chandelure = {
+    "abilities": [
+        {
+            "ability": {
+                "name": "flash-fire"
+            },
+            "is_hidden": false,
+        },
+        {
+            "ability": {
+                "name": "flame-body",
+            },
+            "is_hidden": false,
+        },
+        {
+            "ability": {
+                "name": "shadow-tag",
+            },
+            "is_hidden": true,
+        }
+    ]
+}
+
+const types = new Array(
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],// Normal
+[1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1, 1],// Fire
+[1, 2, 0.5, 1, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1, 1],// Water
+[1, 1, 2, 0.5, 0.5, 1, 1, 1, 0, 2, 1, 1, 1, 1, 0.5, 1, 1, 1, 1],// Electric
+[1, 0.5, 2, 1, 0.5, 1, 1, 0.5, 2, 0.5, 1, 0.5, 2, 1, 0.5, 1, 0.5, 1, 1],// Grass
+[1, 0.5, 0.5, 1, 2, 0.5, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 0.5, 1, 1],// Ice
+[2, 1, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0, 1, 2, 2, 0.5, 1],// Fighting
+[1, 1, 1, 1, 2, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 1, 1, 0, 2, 1],// Poison
+[1, 2, 1, 2, 0.5, 1, 1, 2, 1, 0, 1, 0.5, 2, 1, 1, 1, 2, 1, 1],// Ground
+[1, 1, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 0.5, 1, 1],// Flying
+[1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1, 1, 1, 0, 0.5, 1, 1],// Psychic
+[1, 0.5, 1, 1, 2, 1, 0.5, 0.5, 1, 0.5, 2, 1, 1, 0.5, 1, 2, 0.5, 0.5, 1],// Bug
+[1, 2, 1, 1, 1, 2, 0.5, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 0.5, 1, 1],// Rock
+[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 1, 1],// Ghost
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0.5, 0, 1],// Dragon
+[1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 0.5, 1],// Dark
+[1, 0.5, 0.5, 0.5, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0.5, 2, 1],// Steel
+[1, 0.5, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 0.5, 1, 1],// Fairy
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);// None
     
 const typeName = ["normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
 var result1 = new Array();
@@ -342,7 +340,7 @@ var typeComp = 0;
 
 //Press ENTER on text area 1
 var pkmn1 = document.getElementById('fname1');
-pkmn1.addEventListener("keydown",function(event) {
+pkmn1.addEventListener("keydown", function(event) {
     if (event.keyCode === 13) {
         event.preventDefault();
         document.getElementById("button").click();
@@ -351,7 +349,7 @@ pkmn1.addEventListener("keydown",function(event) {
 
 //Press ENTER on text area 2
 var pkmn2 = document.getElementById('fname2');
-pkmn2.addEventListener("keydown",function(event) {
+pkmn2.addEventListener("keydown", function(event) {
     if (event.keyCode === 13) {
         event.preventDefault();
         document.getElementById("button").click();
@@ -525,22 +523,29 @@ function fusePoke() {
             }
             
             //Stats of 1st mon
-            var mon1stats = [];
-            if (mon1 != "aegislash-shield") {
-                var stats1 = jsonString.stats;
+            var stats1;
+            if (mon1 == "aegislash-shield") {
+                stats1 = aegislash.stats;
             } else {
-                var stats1 = aegislashstats.stats;
+                stats1 = jsonString.stats;
             }
+            var mon1stats = [];
             for (var i = 0; i < stats1.length; i++) {
                 mon1stats.push(stats1[i].base_stat)
             }
 
             //Ability of 1st mon
-            var ab1 = jsonString.abilities;
+            var ab1;
+            if (mon1 == "chandelure" || mon1 == "lampent" || mon1 == "litwick") {
+                ab1 = chandelure.abilities;
+            } else {
+                ab1 = jsonString.abilities;
+            }
+
             var mon1abilities = [];
             for (var i = 0; i < ab1.length; i++) {
-                mon1abilities.push([ab1[i].ability,ab1[i].is_hidden]);
-            }
+                mon1abilities.push([ab1[i].ability, ab1[i].is_hidden]);
+            }  
 
             //2nd request
             var pxhr = new XMLHttpRequest();
@@ -629,23 +634,30 @@ function fusePoke() {
                             }
                         }
                     }
-
+                    
                     //Stats of 2nd mon
-                    var mon2stats = [];
-                    if (mon2 != "aegislash-shield") {
-                        var stats2 = jsonString.stats;
+                    var stats2;
+                    if (mon2 == "aegislash-shield") {
+                        stats2 = aegislash.stats;
                     } else {
-                        var stats2 = aegislashstats.stats;
+                        stats2 = jsonString.stats;
                     }
+                    var mon2stats = [];
                     for (var i = 0; i < stats2.length; i++) {
                         mon2stats.push(stats2[i].base_stat)
                     }
 
                     //Abilities of 2nd mon
-                    var ab2 = jsonString.abilities;
+                    var ab2;
+                    if (mon2 == "chandelure" || mon2 == "lampent" || mon2 == "litwick") {
+                        ab2 = chandelure.abilities;
+                    } else {
+                        ab2 = jsonString.abilities;
+                    }
+
                     var mon2abilities = [];
                     for (var i = 0; i < ab2.length; i++) {
-                        mon2abilities.push([ab2[i].ability,ab2[i].is_hidden]);
+                        mon2abilities.push([ab2[i].ability, ab2[i].is_hidden]);
                     }                     
 
                     //Stats calculation
@@ -914,19 +926,22 @@ function fusionAbilities(headAbilities, bodyAbilities) {
 //NEW
 function fusionHiddenAbilities(headAbilities, bodyAbilities, fusionAbilities){
 
-    var ability = "";
-    var hiddenAbilities = [];
+    var headAbility, bodyAbility;
+    var allAbilities = [];
 
-    for(var h = 0; h < headAbilities.length; h++){
-        ability = headAbilities[h][0].name;
-        hiddenAbilities.push(ability);
-    }
-    for(var b = 0; b < bodyAbilities.length; b++){
-        ability = bodyAbilities[b][0].name;
-        hiddenAbilities.push(ability);
+    var maxAbilities = 3;//Pokémons can't have more than 3 abilities
+    for(var a = 0; a < maxAbilities; a++){
+        if( a < headAbilities.length){
+            headAbility = ability = headAbilities[a][0].name;
+            allAbilities.push(headAbility);
+        }
+        if( a < bodyAbilities.length){
+            bodyAbility = bodyAbilities[a][0].name;
+            allAbilities.push(bodyAbility);
+        }
     }
 
-    hiddenAbilities = hiddenAbilities.filter(n => !fusionAbilities.includes(n));
+    hiddenAbilities = allAbilities.filter(n => !fusionAbilities.includes(n));
 
     return hiddenAbilities;
 }
