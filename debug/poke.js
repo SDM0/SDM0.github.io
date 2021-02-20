@@ -908,14 +908,7 @@ function fusionAbilities(headAbilities, bodyAbilities) {
         H1 = headAbilities[0][0].name;
     }
 
-    var abilities;
-    if(B0 == H1){
-        abilities = [H1];
-    }
-    else{
-        abilities = [H1, B0];
-    }
-    return abilities;
+    return [B0, H1];
 }
 
 //NEW
@@ -938,12 +931,19 @@ function fusionHiddenAbilities(headAbilities, bodyAbilities, fusionAbilities){
     return hiddenAbilities;
 }
 
+
+function removeDuplicates(list){
+    return Array.from(new Set(list));
+}
+
 //NEW
 function sanitizeAbilityList(abilityList){
 
     if(abilityList.length == 0){
         return abilityList;
     }
+
+    abilityList = removeDuplicates(abilityList);
 
     var listAb1 = "";
     for (var i = 0; i < abilityList.length; i++) {
