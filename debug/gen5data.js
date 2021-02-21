@@ -277,7 +277,6 @@ const jigglypuffAbilities = [
 //Igglybuff
 const igglybuffAbilities = jigglypuffAbilities;
 
-
 //Zapdos
 const zapdosAbilities = [
     {
@@ -294,50 +293,6 @@ const zapdosAbilities = [
     }
 ]
 
-
-/*
-//Meganium
-const meganiumAbilities = [
-    {
-        "ability": {
-            "name": "overgrown"
-        },
-        "is_hidden": false,
-    }
-]
-//Bayleef
-const bayleefAbilities = meganiumAbilities;
-//Chikorita
-const chikoritaAbilities = meganiumAbilities;
-//Typhlosion
-const typhlosionAbilities = [
-    {
-        "ability": {
-            "name": "blaze"
-        },
-        "is_hidden": false,
-    }
-]
-//Quilava
-const quilavaAbilities = typhlosionAbilities;
-//Cyndaquil
-const cyndaquilAbilities = typhlosionAbilities;
-//Feraligatr
-const feraligatrAbilities = [
-    {
-        "ability": {
-            "name": "torrent"
-        },
-        "is_hidden": false,
-    }
-]
-//Croconaw
-const croconawAbilities = feraligatrAbilities;
-//Totodile
-const totodileAbilities = feraligatrAbilities;
-*/
-
-/*
 //Raikou
 const raikouAbilities = [
     {
@@ -345,21 +300,44 @@ const raikouAbilities = [
             "name": "pressure"
         },
         "is_hidden": false,
-    }
-]
-//Entei
-const enteiAbilities = raikouAbilities;
-//Suicune
-const suicuneAbilities = raikouAbilities;
-*/
-
-//Kecleon
-const kecleonAbilities = [
+    },
     {
         "ability": {
-            "name": "color-change"
+            "name": "volt-absorb",
+        },
+        "is_hidden": true,
+    }
+]
+
+//Entei
+const enteiAbilities = [
+    {
+        "ability": {
+            "name": "pressure"
         },
         "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "flash-fire",
+        },
+        "is_hidden": true,
+    }
+]
+
+//Suicune
+const suicuneAbilities = [
+    {
+        "ability": {
+            "name": "pressure"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "water-absorb",
+        },
+        "is_hidden": true,
     }
 ]
 
@@ -395,70 +373,6 @@ const feebasAbilities = [
     }
 ]
 
-//Dusknoir
-const dusknoirAbilities = [
-    {
-        "ability": {
-            "name": "pressure"
-        },
-        "is_hidden": false,
-    }
-]
-
-//Dusclops
-const dusclopsAbilities = dusknoirAbilities;
-
-//Duskull
-const duskullAbilities = [
-    {
-        "ability": {
-            "name": "levitate"
-        },
-        "is_hidden": false,
-    }
-]
-
-//Ferrothorn
-const ferrothornAbilities = [
-    {
-        "ability": {
-            "name": "iron-barbs"
-        },
-        "is_hidden": false,
-    }
-]
-
-//Klink
-const klinkAbilities = [
-    {
-        "ability": {
-            "name": "plus"
-        },
-        "is_hidden": false,
-    },
-    {
-        "ability": {
-            "name": "minus",
-        },
-        "is_hidden": true,
-    }
-]
-
-//Volcarona
-const volcaronaAbilities = [
-    {
-        "ability": {
-            "name": "flame-body"
-        },
-        "is_hidden": false,
-    }
-]
-
-//Larvesta
-const larvestaAbilities = volcaronaAbilities;
-
-
-
 // ##### Tables
 
 const abilitiesException = [
@@ -469,16 +383,11 @@ const abilitiesException = [
     "jigglypuff",
     "igglybuff",
     "zapdos",
-    "kecleon",
+    "raikou",
+    "entei",
+    "suicune",
     "milotic",
-    "feebas",
-    "dusknoir",
-    "dusclops",
-    "duskull",
-    "ferrothorn",
-    "klink",
-    "volcarona",
-    "larvesta"
+    "feebas"
 ]
 
 const abilitiesFix = [
@@ -489,16 +398,11 @@ const abilitiesFix = [
     jigglypuffAbilities,
     igglybuffAbilities,
     zapdosAbilities,
-    kecleonAbilities,
+    raikouAbilities,
+    enteiAbilities,
+    suicuneAbilities,
     miloticAbilities,
-    feebasAbilities,
-    dusknoirAbilities,
-    dusclopsAbilities,
-    duskullAbilities,
-    ferrothornAbilities,
-    klinkAbilities,
-    volcaronaAbilities,
-    larvestaAbilities
+    feebasAbilities
 ]
 
 const statsException = [
