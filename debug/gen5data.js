@@ -373,7 +373,45 @@ const feebasAbilities = [
     }
 ]
 
+//Metapod
+const metapodAbilities = [
+    {
+        "ability": {
+            "name": "shed-skin"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "shed-skin",
+        },
+        "is_hidden": true,
+    }
+]
+
+//Kakuna
+const kakunaAbilities = [
+    {
+        "ability": {
+            "name": "shed-skin"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "shed-skin",
+        },
+        "is_hidden": true,
+    }
+]
+
+
+
+
 // ##### Tables
+
+//gengar
+//Metapod
 
 const abilitiesException = [
     "chandelure",
