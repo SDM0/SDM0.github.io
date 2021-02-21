@@ -277,21 +277,23 @@ const jigglypuffAbilities = [
 //Igglybuff
 const igglybuffAbilities = jigglypuffAbilities;
 
-/*
-//Articuno
-const articunoAbilities = [
+
+//Zapdos
+const zapdosAbilities = [
     {
         "ability": {
             "name": "pressure"
         },
         "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "lightning-rod",
+        },
+        "is_hidden": true,
     }
 ]
-//Zapdos
-const zapdosAbilities = articunoAbilities;
-//Moltres
-const moltresAbilities = articunoAbilities;
-*/
+
 
 /*
 //Meganium
@@ -466,6 +468,7 @@ const abilitiesException = [
     "wigglytuff",
     "jigglypuff",
     "igglybuff",
+    "zapdos",
     "kecleon",
     "milotic",
     "feebas",
@@ -485,6 +488,7 @@ const abilitiesFix = [
     wigglytuffAbilities,
     jigglypuffAbilities,
     igglybuffAbilities,
+    zapdosAbilities,
     kecleonAbilities,
     miloticAbilities,
     feebasAbilities,
