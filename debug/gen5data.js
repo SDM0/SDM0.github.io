@@ -373,8 +373,34 @@ const feebasAbilities = [
     }
 ]
 
+//Gengar
+const gengarAbilities = [
+    {
+        "ability": {
+            "name": "levitate"
+        },
+        "is_hidden": false,
+    },
+]
 
+//Weezing
+const weezingAbilities = [
+    {
+        "ability": {
+            "name": "levitate"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "stench",
+        },
+        "is_hidden": true,
+    }
+]
 
+//Koffing
+const koffingAbilities = weezingAbilities;
 
 
 // ##### Tables
@@ -391,7 +417,10 @@ const abilitiesException = [
     "entei",
     "suicune",
     "milotic",
-    "feebas"
+    "feebas",
+    "gengar",
+    "weezing",
+    "koffing"
 ]
 
 const abilitiesFix = [
@@ -406,7 +435,10 @@ const abilitiesFix = [
     enteiAbilities,
     suicuneAbilities,
     miloticAbilities,
-    feebasAbilities
+    feebasAbilities,
+    gengarAbilities,
+    weezingAbilities,
+    koffingAbilities
 ]
 
 const statsException = [
