@@ -866,11 +866,13 @@ function fusionAbilities(headAbilities, bodyAbilities) {
     var B0 = bodyAbilities[0][0].name;
     var H1;
     
-    if(headAbilities.length > 1){
-        H1 = headAbilities[1][0].name;
+    //If the secondary ability is a hidden ability, pick the fist ability
+    if(headAbilities[1][1] == True){
+        H1 = headAbilities[0][0].name
     }
+    //Otherwise, actually take the secondary ability
     else{
-        H1 = headAbilities[0][0].name;
+        H1 = headAbilities[1][0].name;
     }
 
     return [B0, H1];
