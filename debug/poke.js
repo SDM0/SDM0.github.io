@@ -547,8 +547,8 @@ function fusePoke() {
                 } else {
 
                     //Name of fusions
-                    document.getElementById("FP1").innerHTML=fmon1+"/"+fmon2;
-                    document.getElementById("FP2").innerHTML=fmon2+"/"+fmon1;
+                    document.getElementById("FP1").innerHTML = fmon1+ "/" + fmon2;
+                    document.getElementById("FP2").innerHTML = fmon2 + "/" + fmon1;
 
                     //Name of pictures
                     var pic1 = num1 + "." + num2 + ".png";
@@ -560,7 +560,7 @@ function fusePoke() {
                     var compt=0
 
                     //Exception mon selected for swapped types
-                    for (i = 0; i<typeSwap.length; i++) {
+                    for (var i = 0; i < typeSwap.length; i++) {
                         if (typeSwap[i][2] == mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
                             mon2types.push(typeSwap[i][0]);
                             mon2types.push(typeSwap[i][1]);
@@ -569,8 +569,8 @@ function fusePoke() {
                     }
             
                     //Exception mon selected for one type
-                    for (i = 0; i<typeUni.length; i++) {
-                        if (typeUni[i][1]==mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
+                    for (var i = 0; i < typeUni.length; i++) {
+                        if (typeUni[i][1] == mon2.charAt(0).toUpperCase() + mon2.slice(1)) {
                             mon2types.push(typeUni[i][0]);
                             var compt = 2;
                         }
@@ -746,30 +746,30 @@ function fusePoke() {
                     tyeffid1 = typeId(fmonres2);
                     tyeffid2 = typeId(fmonres2);
 
-                    for (i=0; i<typeName.length; i++) {
+                    for (var i = 0; i < typeName.length; i++) {
                         result2[i] = (types[i][tyeffid1[0]] * types[i][tyeffid1[1]]);
                     }
 
-                    for (i=0; i<typeName.length; i++) {
-                        var image = new Image()
+                    for (var i = 0; i < typeName.length; i++) {
+                        var image = new Image();
                         image.src = '../Types/' + typeName[i] + ".png";
 
-                        if (result2[i]==4) {
+                        if (result2[i] == 4) {
                             document.getElementById("weak24").appendChild(image);
                         }
-                        if (result2[i]==2) {
+                        if (result2[i] == 2) {
                             document.getElementById("weak22").appendChild(image);
                         }
-                        if (result2[i]==1) {
+                        if (result2[i] == 1) {
                             document.getElementById("weak21").appendChild(image);
                         }
-                        if (result2[i]==0.5) {
+                        if (result2[i] == 0.5) {
                             document.getElementById("weak205").appendChild(image);
                         }
-                        if (result2[i]==0.25) {
+                        if (result2[i] == 0.25) {
                             document.getElementById("weak2025").appendChild(image);
                         }
-                        if (result2[i]==0) {
+                        if (result2[i] == 0) {
                             document.getElementById("weak200").appendChild(image);
                         }
                     }
@@ -899,7 +899,7 @@ function fusionHiddenAbilities(headAbilities, bodyAbilities, fusionAbilities){
     return hiddenAbilities;
 }
 
-
+//NEW
 function removeDuplicates(list){
     return Array.from(new Set(list));
 }
@@ -1100,14 +1100,14 @@ function fusAb(mon1, mon2) {
             fabs.push(B0);
             fabs.push(HH);
     //cas H0/H1/HH + B0/null/BH [H0#BH & HH#BH] -> H0/BH/HH
-        } else if (H0!=BH && HH!=BH) {
+        } else if (H0 != BH && HH != BH) {
             fabs.push(H0);
             fabs.push(BH);
             fabs.push(HH);
         }
     //cas H0/null/null + B0/B1/BH [H0#B1 & H0#BH] -> H0/B1/BH
     } else if (mon1.length == 1 && mon2.length == 3 && mon1[0][1] == false  && mon2[0][1] == false && mon2[1][1] == false && mon2[2][1] == true) {
-        if (H0!=B1 && H0!=BH) {
+        if (H0 != B1 && H0 != BH) {
             fabs.push(H0);
             fabs.push(B1);
             fabs.push(BH);
@@ -1158,7 +1158,7 @@ function fusAb(mon1, mon2) {
         }
     //cas H0/H1/HH + B0/B1/BH [H0#B1 & HH#B1] -> H0/B1/HH
     } else if (mon1.length == 3 && mon2.length == 3 && mon1[0][1] == false && mon1[1][1] == false && mon1[2][1] == true && mon2[0][1] == false && mon2[1][1] == false && mon2[2][1] == true) {
-        if (H0!=B1 && HH!=B1) {
+        if (H0 != B1 && HH != B1) {
             fabs.push(H0);
             fabs.push(B1);
             fabs.push(HH);
@@ -1179,11 +1179,11 @@ function fusAb(mon1, mon2) {
 
 
 //Type fusion function
-function fusType(mon1,mon2) {
+function fusType(mon1, mon2) {
     //cas H0/null + B0/null [H0#B0] -> H0/B0
     var fmon = []
     if (mon1.length == 1 && mon2.length == 1) {
-        if (mon1[0]!=mon2[0]) {
+        if (mon1[0] != mon2[0]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[0])
     //cas H0/null + B0/null [H0=B0] -> H0/null
@@ -1192,7 +1192,7 @@ function fusType(mon1,mon2) {
         }
     } else if (mon1.length == 2 && mon2.length == 1) {
     //cas H0/H1 + B0/null [H0#B0] -> H0/B0
-        if (mon1[0]!=mon2[0]) {
+        if (mon1[0] != mon2[0]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[0]);
     //cas H0/H1 + B0/null [H0=B0] -> H0/H1
@@ -1202,7 +1202,7 @@ function fusType(mon1,mon2) {
         }
     } else if (mon1.length == 1 && mon2.length == 2) {
     //cas H0/null + B0/B1 [H0#B1] -> H0/B1
-        if (mon1[0]!=mon2[1]) {
+        if (mon1[0] != mon2[1]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[1]);
     //cas H0/null + B0/B1 [H0=B1] -> H0/B0
