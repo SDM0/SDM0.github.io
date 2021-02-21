@@ -1,4 +1,4 @@
-const ids= 
+const ids = 
 [["Slowking",199]
 ,["Azurill",252]
 ,["Wynaut",253]
@@ -171,7 +171,7 @@ const ids=
 ,["Stunfisk",420]
 ]
 
-const nameException=[
+const nameException = [
 "mr.mime",
 "mime.jr",
 "deoxys",
@@ -180,7 +180,7 @@ const nameException=[
 "aegislash",
 ]
 
-const nameFix=[
+const nameFix = [
 "mr-mime",
 "mime-jr",
 "deoxys-normal",
@@ -189,7 +189,7 @@ const nameFix=[
 "aegislash-shield",
 ]
 
-const typeSwap=
+const typeSwap =
 [["steel","electric","Magnemite"]
 ,["steel","electric","Magneton"]
 ,["ice","water","Dewgong"]
@@ -262,54 +262,6 @@ const abilitySwap =
 "ursaring",
 "absol"
 ]
-
-//Aegislash
-const aegislash = {
-    "stats": [
-        {
-            "base_stat": 60//hp
-        },
-        {
-            "base_stat": 50//attack
-        },
-        {
-            "base_stat": 150//defense
-        },
-        {
-            "base_stat": 50//special-attack
-        },
-        {
-            "base_stat": 150//special-defense
-        },
-        {
-            "base_stat": 60//speed
-        }
-    ]
-}
-
-//Chandelure, Lampent, Litwick
-const chandelure = {
-    "abilities": [
-        {
-            "ability": {
-                "name": "flash-fire"
-            },
-            "is_hidden": false,
-        },
-        {
-            "ability": {
-                "name": "flame-body",
-            },
-            "is_hidden": false,
-        },
-        {
-            "ability": {
-                "name": "shadow-tag",
-            },
-            "is_hidden": true,
-        }
-    ]
-}
 
 const types = new Array(
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],// Normal
@@ -524,11 +476,12 @@ function fusePoke() {
             
             //Stats of 1st mon
             var stats1;
-            if (mon1 == "aegislash-shield") {
-                stats1 = aegislash.stats;
+            if (statsException.includes(mon1)) {
+                stats1 = statsFix[statsException.indexOf(mon1)];
             } else {
                 stats1 = jsonString.stats;
             }
+
             var mon1stats = [];
             for (var i = 0; i < stats1.length; i++) {
                 mon1stats.push(stats1[i].base_stat)
@@ -536,8 +489,8 @@ function fusePoke() {
 
             //Ability of 1st mon
             var ab1;
-            if (mon1 == "chandelure" || mon1 == "lampent" || mon1 == "litwick") {
-                ab1 = chandelure.abilities;
+            if (abilitiesException.includes(mon1)) {
+                ab1 = abilitiesFix[abilitiesException.indexOf(mon1)];
             } else {
                 ab1 = jsonString.abilities;
             }
@@ -549,7 +502,7 @@ function fusePoke() {
 
             //2nd request
             var pxhr = new XMLHttpRequest();
-            var poke2 = 'https://pokeapi.co/api/v2/pokemon/'+mon2
+            var poke2 = 'https://pokeapi.co/api/v2/pokemon/' + mon2
             pxhr.open('GET', poke2, true);
             pxhr.send();
             pxhr.onload = function() {
@@ -637,8 +590,8 @@ function fusePoke() {
                     
                     //Stats of 2nd mon
                     var stats2;
-                    if (mon2 == "aegislash-shield") {
-                        stats2 = aegislash.stats;
+                    if (statsException.includes(mon2)) {
+                        stats2 = statsFix[statsException.indexOf(mon2)];
                     } else {
                         stats2 = jsonString.stats;
                     }
@@ -649,8 +602,8 @@ function fusePoke() {
 
                     //Abilities of 2nd mon
                     var ab2;
-                    if (mon2 == "chandelure" || mon2 == "lampent" || mon2 == "litwick") {
-                        ab2 = chandelure.abilities;
+                    if (abilitiesException.includes(mon2)) {
+                        ab2 = abilitiesFix[abilitiesException.indexOf(mon2)];
                     } else {
                         ab2 = jsonString.abilities;
                     }
