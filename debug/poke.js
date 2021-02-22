@@ -264,25 +264,25 @@ const abilitySwap =
 ]
 
 const types = new Array(
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],// Normal
-[1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1, 1],// Fire
-[1, 2, 0.5, 1, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1, 1],// Water
-[1, 1, 2, 0.5, 0.5, 1, 1, 1, 0, 2, 1, 1, 1, 1, 0.5, 1, 1, 1, 1],// Electric
-[1, 0.5, 2, 1, 0.5, 1, 1, 0.5, 2, 0.5, 1, 0.5, 2, 1, 0.5, 1, 0.5, 1, 1],// Grass
-[1, 0.5, 0.5, 1, 2, 0.5, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 0.5, 1, 1],// Ice
-[2, 1, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0, 1, 2, 2, 0.5, 1],// Fighting
-[1, 1, 1, 1, 2, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 1, 1, 0, 2, 1],// Poison
-[1, 2, 1, 2, 0.5, 1, 1, 2, 1, 0, 1, 0.5, 2, 1, 1, 1, 2, 1, 1],// Ground
-[1, 1, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 0.5, 1, 1],// Flying
-[1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1, 1, 1, 0, 0.5, 1, 1],// Psychic
-[1, 0.5, 1, 1, 2, 1, 0.5, 0.5, 1, 0.5, 2, 1, 1, 0.5, 1, 2, 0.5, 0.5, 1],// Bug
-[1, 2, 1, 1, 1, 2, 0.5, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 0.5, 1, 1],// Rock
-[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 1, 1],// Ghost
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0.5, 0, 1],// Dragon
-[1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 0.5, 1],// Dark
-[1, 0.5, 0.5, 0.5, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0.5, 2, 1],// Steel
-[1, 0.5, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 0.5, 1, 1],// Fairy
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);// None
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],              // Normal
+[1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1, 1],          // Fire
+[1, 2, 0.5, 1, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1, 1],            // Water
+[1, 1, 2, 0.5, 0.5, 1, 1, 1, 0, 2, 1, 1, 1, 1, 0.5, 1, 1, 1, 1],            // Electric
+[1, 0.5, 2, 1, 0.5, 1, 1, 0.5, 2, 0.5, 1, 0.5, 2, 1, 0.5, 1, 0.5, 1, 1],    // Grass
+[1, 0.5, 0.5, 1, 2, 0.5, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 0.5, 1, 1],          // Ice
+[2, 1, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0, 1, 2, 2, 0.5, 1],        // Fighting
+[1, 1, 1, 1, 2, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 1, 1, 0, 2, 1],          // Poison
+[1, 2, 1, 2, 0.5, 1, 1, 2, 1, 0, 1, 0.5, 2, 1, 1, 1, 2, 1, 1],              // Ground
+[1, 1, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 0.5, 1, 1],            // Flying
+[1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1, 1, 1, 0, 0.5, 1, 1],              // Psychic
+[1, 0.5, 1, 1, 2, 1, 0.5, 0.5, 1, 0.5, 2, 1, 1, 0.5, 1, 2, 0.5, 0.5, 1],    // Bug
+[1, 2, 1, 1, 1, 2, 0.5, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 0.5, 1, 1],            // Rock
+[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 1, 1],                // Ghost
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0.5, 0, 1],                // Dragon
+[1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 0.5, 1],            // Dark
+[1, 0.5, 0.5, 0.5, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0.5, 2, 1],          // Steel
+[1, 0.5, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 0.5, 1, 1],            // Fairy
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);                 // None
     
 const typeName = ["normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
 var result1 = new Array();
@@ -324,7 +324,7 @@ function randomPoke() {
     if (randList[0] == 0) {
         var rand1 = Math.floor(Math.random() * Math.floor(251));
         if (rand1 == 0) {
-            rand1 += 1
+            rand1 += 1;
         }
         var mode1 = 0;
     } else {
@@ -334,7 +334,7 @@ function randomPoke() {
     if (randList[1] == 0) {
         var rand2 = Math.floor(Math.random() * Math.floor(251));
         if (rand2 == 0) {
-            rand2 += 1
+            rand2 += 1;
         }
         var mode2 = 0;
     } else {
@@ -484,7 +484,7 @@ function fusePoke() {
 
             var mon1stats = [];
             for (var i = 0; i < stats1.length; i++) {
-                mon1stats.push(stats1[i].base_stat)
+                mon1stats.push(stats1[i].base_stat);
             }
 
             //Ability of 1st mon
@@ -552,12 +552,12 @@ function fusePoke() {
 
                     //Name of pictures
                     var pic1 = num1 + "." + num2 + ".png";
-                    var pic2 = num2 + "." +num1 + ".png";
+                    var pic2 = num2 + "." + num1 + ".png";
 
                     //Type selector for fusion type knowledge of the 2nd mon
                     var type2 = jsonString.types;
                     var mon2types = [];
-                    var compt=0
+                    var compt = 0;
 
                     //Exception mon selected for swapped types
                     for (var i = 0; i < typeSwap.length; i++) {
@@ -597,7 +597,7 @@ function fusePoke() {
                     }
                     var mon2stats = [];
                     for (var i = 0; i < stats2.length; i++) {
-                        mon2stats.push(stats2[i].base_stat)
+                        mon2stats.push(stats2[i].base_stat);
                     }
 
                     //Abilities of 2nd mon
@@ -634,10 +634,10 @@ function fusePoke() {
                     var L1 = ["hp2","atk2","def2","spatk2","spdef2","spe2","bs2"];
                     var L2 = [Math.floor(hp1), Math.floor(atk1), Math.floor(def1), Math.floor(spatk1), Math.floor(spdef1), Math.floor(spe1), Math.floor(bs1)];
                     var L3 = [Math.floor(hp2), Math.floor(atk2), Math.floor(def2), Math.floor(spatk2), Math.floor(spdef2), Math.floor(spe2), Math.floor(bs2)];
-                    var L4 = []
-                    var L5 = []
+                    var L4 = [];
+                    var L5 = [];
                     for (var i = 0; i < L0.length; i++) {
-                        L4.push(Math.max(L2[i], L3[i])-Math.min(L2[i], L3[i]))
+                        L4.push(Math.max(L2[i], L3[i])-Math.min(L2[i], L3[i]));
                     }
                     //Color of stats
                     for (var i = 0; i < L1.length; i++) {
@@ -657,8 +657,8 @@ function fusePoke() {
                             L4[i] = " (0)";
                             L5.push(" (0)");
                         }
-                        document.getElementById(L0[i]).innerHTML = L0[i].slice(-1) + ": "+L2[i];
-                        document.getElementById(L1[i]).innerHTML = L1[i].slice(-1) + ": "+L3[i];
+                        document.getElementById(L0[i]).innerHTML = L0[i].slice(-1) + ": " + L2[i];
+                        document.getElementById(L1[i]).innerHTML = L1[i].slice(-1) + ": " + L3[i];
                     }
 
                     //Writting stat in HTML
@@ -679,7 +679,7 @@ function fusePoke() {
                         document.getElementById("hp2").innerHTML = "HP: 1 (0)";
                         document.getElementById("hp2").style.color = "orange";
                     } else {
-                        document.getElementById("hp2").innerHTML="HP: " + Math.floor(hp2) + L5[0];
+                        document.getElementById("hp2").innerHTML = "HP: " + Math.floor(hp2) + L5[0];
                     }
                     document.getElementById("atk2").innerHTML = "ATK: " + Math.floor(atk2) + L5[1];
                     document.getElementById("def2").innerHTML = "DEF: " + Math.floor(def2) + L5[2];
