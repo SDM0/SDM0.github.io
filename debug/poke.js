@@ -818,7 +818,7 @@ function fusePoke() {
                     document.getElementById("hab2").innerHTML = hiddenAbilitiesText2;
 
                     //Fusion done
-                    document.getElementById("random").disabled = false
+                    document.getElementById("random").disabled = false;
                     }
                 }
             }
@@ -868,12 +868,12 @@ function fusionAbilities(headAbilities, bodyAbilities) {
     
     //If there is only ability, pick that one
     if(headAbilities.length == 1){
-        H1 = headAbilities[0][0].name
+        H1 = headAbilities[0][0].name;
     }
 
     //If the second ability is a hidden ability, pick the first ability
     else if(headAbilities[1][1] == true){
-        H1 = headAbilities[0][0].name
+        H1 = headAbilities[0][0].name;
     }
     //Otherwise, actually take the second ability
     else{
