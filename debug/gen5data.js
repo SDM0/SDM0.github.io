@@ -402,6 +402,26 @@ const weezingAbilities = [
 //Koffing
 const koffingAbilities = weezingAbilities;
 
+//Mewtwo
+const mewtwoAbilities = [
+    {
+        "ability": {
+            "name": "pressure"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "immunity",
+        },
+        "is_hidden": true,
+    }
+]
+
+
+
+
+
 
 // ##### Tables
 
@@ -420,7 +440,8 @@ const abilitiesException = [
     "feebas",
     "gengar",
     "weezing",
-    "koffing"
+    "koffing",
+    "mewtwo"
 ]
 
 const abilitiesFix = [
@@ -438,7 +459,8 @@ const abilitiesFix = [
     feebasAbilities,
     gengarAbilities,
     weezingAbilities,
-    koffingAbilities
+    koffingAbilities,
+    mewtwoAbilities
 ]
 
 const statsException = [
