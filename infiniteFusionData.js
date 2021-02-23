@@ -590,10 +590,6 @@ const hydreigonAbilities = [
 
 
 
-
-
-
-
 // ##### Tables
 
 const abilitiesException = [
