@@ -482,6 +482,113 @@ const darkraiAbilities = [
     }
 ]
 
+//Genesect
+const genesectAbilities = [
+    {
+        "ability": {
+            "name": "download"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "motor-drive",
+        },
+        "is_hidden": true,
+    }
+]
+
+//Reshiram
+const reshiramAbilities = [
+    {
+        "ability": {
+            "name": "turboblaze"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "flare-boost",
+        },
+        "is_hidden": true,
+    }
+]
+
+//Zekrom
+const zekromAbilities = [
+    {
+        "ability": {
+            "name": "teravolt"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "volt-absorb",
+        },
+        "is_hidden": true,
+    }
+]
+
+//Kyurem
+const kyuremAbilities = [
+    {
+        "ability": {
+            "name": "pressure"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "ice-body",
+        },
+        "is_hidden": true,
+    }
+]
+
+//Ferrothorn
+const ferrothornAbilities = [
+    {
+        "ability": {
+            "name": "iron-barbs"
+        },
+        "is_hidden": false,
+    },
+]
+
+//Talonflame
+const talonflameAbilities = [
+    {
+        "ability": {
+            "name": "big-pecks"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "gale-wings",
+        },
+        "is_hidden": true,
+    }
+]
+
+//Hydreigon
+const hydreigonAbilities = [
+    {
+        "ability": {
+            "name": "levitate"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "hustle",
+        },
+        "is_hidden": true,
+    }
+]
+
+
 
 
 
@@ -509,7 +616,14 @@ const abilitiesException = [
     "unown",
     "flygon",
     "regigigas",
-    "darkrai"
+    "darkrai",
+    "genesect",
+    "reshiram",
+    "zekrom",
+    "kyurem",
+    "ferrothorn",
+    "talonflame",
+    "hydreigon"
 ]
 
 const abilitiesFix = [
@@ -532,7 +646,14 @@ const abilitiesFix = [
     unownAbilities,
     flygonAbilities,
     regigigasAbilities,
-    darkraiAbilities
+    darkraiAbilities,
+    genesectAbilities,
+    reshiramAbilities,
+    zekromAbilities,
+    kyuremAbilities,
+    ferrothornAbilities,
+    talonflameAbilities,
+    hydreigonAbilities
 ]
 
 const statsException = [
