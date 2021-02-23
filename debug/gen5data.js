@@ -434,6 +434,56 @@ const unownAbilities = [
     }
 ]
 
+//Flygon
+const flygonAbilities = [
+    {
+        "ability": {
+            "name": "levitate"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "dry-skin",
+        },
+        "is_hidden": true,
+    }
+]
+
+//Regigigas
+const regigigasAbilities = [
+    {
+        "ability": {
+            "name": "slow-start"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "mold-breaker",
+        },
+        "is_hidden": true,
+    }
+]
+
+//Darkrai
+const darkraiAbilities = [
+    {
+        "ability": {
+            "name": "bad-dreams"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "white-smoke",
+        },
+        "is_hidden": true,
+    }
+]
+
+
+
 
 
 
@@ -456,7 +506,10 @@ const abilitiesException = [
     "weezing",
     "koffing",
     "mewtwo",
-    "unown"
+    "unown",
+    "flygon",
+    "regigigas",
+    "darkrai"
 ]
 
 const abilitiesFix = [
@@ -476,7 +529,10 @@ const abilitiesFix = [
     weezingAbilities,
     koffingAbilities,
     mewtwoAbilities,
-    unownAbilities
+    unownAbilities,
+    flygonAbilities,
+    regigigasAbilities,
+    darkraiAbilities
 ]
 
 const statsException = [
