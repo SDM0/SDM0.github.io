@@ -418,7 +418,21 @@ const mewtwoAbilities = [
     }
 ]
 
-
+//Unown
+const unownAbilities = [
+    {
+        "ability": {
+            "name": "levitate"
+        },
+        "is_hidden": false,
+    },
+    {
+        "ability": {
+            "name": "mummy",
+        },
+        "is_hidden": true,
+    }
+]
 
 
 
@@ -441,7 +455,8 @@ const abilitiesException = [
     "gengar",
     "weezing",
     "koffing",
-    "mewtwo"
+    "mewtwo",
+    "unown"
 ]
 
 const abilitiesFix = [
@@ -460,7 +475,8 @@ const abilitiesFix = [
     gengarAbilities,
     weezingAbilities,
     koffingAbilities,
-    mewtwoAbilities
+    mewtwoAbilities,
+    unownAbilities
 ]
 
 const statsException = [
