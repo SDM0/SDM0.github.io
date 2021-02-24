@@ -197,6 +197,9 @@ const typeSwap =
 ,["water","rock","Omastar"]
 ,["steel","bug","Scizor"]
 ,["steel","electric","Magnezone"]
+,["steel","water","Empoleon"]
+,["dark","ghost","Spiritomb"]
+,["steel","grass","Ferrothorn"]
 ]
 
 const typeUni =
