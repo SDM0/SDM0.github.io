@@ -345,9 +345,9 @@ function randomPoke() {
         var mode2 = 1;
     }
 
-    if (mode1==0) {
+    if (mode1 == 0) {
         var zxhr = new XMLHttpRequest();
-        var poke1 = 'https://pokeapi.co/api/v2/pokemon/'+rand1;
+        var poke1 = 'https://pokeapi.co/api/v2/pokemon/' + rand1;
         zxhr.open('GET', poke1, true);
         zxhr.send();
         zxhr.onload = function() {
@@ -367,9 +367,9 @@ function randomPoke() {
         setTimeout(() => {document.getElementById("fname1").value = name}, 450);
     }
 
-    if (mode2==0) {
+    if (mode2 == 0) {
         var vxhr = new XMLHttpRequest();  
-        var poke2 = 'https://pokeapi.co/api/v2/pokemon/'+rand2;
+        var poke2 = 'https://pokeapi.co/api/v2/pokemon/' + rand2;
         vxhr.open('GET', poke2, true);
         vxhr.send();
         vxhr.onload = function() {
@@ -395,12 +395,16 @@ function randomPoke() {
     setTimeout(() => { fusePoke() }, 600);
 }
 
+function getPokemonName(htmlId){
+    return (document.getElementById(htmlId)).value.toLowerCase().trim();
+}
+
 //Fusion calculation function
 function fusePoke() {
 
     //Pokemon from both text area
-    var mon1 = (document.getElementById("fname1")).value.toLowerCase();
-    var mon2 = (document.getElementById("fname2")).value.toLowerCase();
+    var mon1 = getPokemonName("fname1");
+    var mon2 = getPokemonName("fname2");
     if ((mon1 == "" || mon1.length == 0 || mon1 == null) || (mon2 == "" || mon2.length == 0 || mon2 == null)) {
 	document.getElementById("random").disabled = false
         alert("Please fill the two text inputs!");
@@ -415,7 +419,7 @@ function fusePoke() {
 
         //First request
         var txhr = new XMLHttpRequest();  
-        var poke1 = 'https://pokeapi.co/api/v2/pokemon/'+mon1;
+        var poke1 = "https://pokeapi.co/api/v2/pokemon/" + mon1 + "/";
         txhr.open('GET', poke1, true);
         txhr.send();
         txhr.onload = function() {
@@ -446,7 +450,7 @@ function fusePoke() {
             var type1 = jsonString.types;
             var poke1 = 'https://pokeapi.co/api/v2/pokemon/' + type1[0].type.name;
             var mon1types = [];
-            var compt=0
+            var compt = 0;
 
             //Exception mon selected for swapped types
             for (var i = 0; i < typeSwap.length; i++) {
@@ -505,7 +509,7 @@ function fusePoke() {
 
             //2nd request
             var pxhr = new XMLHttpRequest();
-            var poke2 = 'https://pokeapi.co/api/v2/pokemon/' + mon2
+            var poke2 = "https://pokeapi.co/api/v2/pokemon/" + mon2 + "/";
             pxhr.open('GET', poke2, true);
             pxhr.send();
             pxhr.onload = function() {
