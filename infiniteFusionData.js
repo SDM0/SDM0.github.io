@@ -220,6 +220,24 @@ const magcargoStats = [
     {"base_stat": 30}
 ]
 
+//Arbok
+const arbokStats = [
+    {"base_stat": 60},
+    {"base_stat": 85},
+    {"base_stat": 69},
+    {"base_stat": 65},
+    {"base_stat": 79},
+    {"base_stat": 80}
+]
+
+
+
+
+
+
+
+
+
 
 
 // ##### Abilities 
@@ -683,7 +701,8 @@ const statsException = [
     "azumarill",
     "jumpluff",
     "roserade",
-    "magcargo"
+    "magcargo",
+    "arbok"
 ]
 
 const statsFix = [
@@ -707,5 +726,6 @@ const statsFix = [
     azumarillStats,
     jumpluffStats,
     roseradeStats,
-    magcargoStats
+    magcargoStats,
+    arbokStats
 ]
