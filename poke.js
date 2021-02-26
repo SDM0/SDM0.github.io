@@ -180,6 +180,10 @@ const nameException = [
 "mime jr",
 "mrmime",
 "mr mime",
+"nidoran m",
+"nidoranm",
+"nidoran f",
+"nidoranf"
 ]
 
 const nameFix = [
@@ -190,7 +194,11 @@ const nameFix = [
 "mime-jr",
 "mime-jr",
 "mr-mime",
-"mr-mime"
+"mr-mime",
+"nidoran-m",
+"nidoran-m",
+"nidoran-f",
+"nidoran-f"
 ]
 
 const typeSwap =
