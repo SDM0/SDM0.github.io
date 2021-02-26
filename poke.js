@@ -172,21 +172,25 @@ const ids =
 ]
 
 const nameException = [
-"mr.mime",
-"mime.jr",
 "deoxys",
 "giratina",
 "mimikyu",
 "aegislash",
+"mimejr",
+"mime jr",
+"mrmime",
+"mr mime",
 ]
 
 const nameFix = [
-"mr-mime",
-"mime-jr",
 "deoxys-normal",
 "giratina-altered",
 "mimikyu-disguised",
 "aegislash-shield",
+"mime-jr",
+"mime-jr",
+"mr-mime",
+"mr-mime"
 ]
 
 const typeSwap =
@@ -396,7 +400,9 @@ function randomPoke() {
 }
 
 function getPokemonName(htmlId){
-    return (document.getElementById(htmlId)).value.toLowerCase().trim();
+    var pokemonName = (document.getElementById(htmlId)).value.toLowerCase();
+    pokemonName = pokemonName.replace(/\./g, '').trim();
+    return pokemonName;
 }
 
 //Fusion calculation function
