@@ -240,7 +240,15 @@ const ariadosStats = [
     {"base_stat": 40}
 ]
 
-
+//Mantine
+const mantineStats = [
+    {"base_stat": 65},
+    {"base_stat": 40},
+    {"base_stat": 70},
+    {"base_stat": 80},
+    {"base_stat": 140},
+    {"base_stat": 70}
+]
 
 
 
@@ -713,7 +721,8 @@ const statsException = [
     "roserade",
     "magcargo",
     "arbok",
-    "ariados"
+    "ariados",
+    "mantine"
 ]
 
 const statsFix = [
@@ -739,5 +748,6 @@ const statsFix = [
     roseradeStats,
     magcargoStats,
     arbokStats,
-    ariadosStats
+    ariadosStats,
+    mantineStats
 ]
