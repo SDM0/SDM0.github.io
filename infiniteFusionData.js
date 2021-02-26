@@ -210,6 +210,16 @@ const krookodileStats = [
     {"base_stat": 92}
 ]
 
+//Magcargo
+const magcargoStats = [
+    {"base_stat": 50},
+    {"base_stat": 50},
+    {"base_stat": 120},
+    {"base_stat": 80},
+    {"base_stat": 80},
+    {"base_stat": 30}
+]
+
 
 
 // ##### Abilities 
@@ -672,7 +682,8 @@ const statsException = [
     "bellossom",
     "azumarill",
     "jumpluff",
-    "roserade"
+    "roserade",
+    "magcargo"
 ]
 
 const statsFix = [
@@ -695,5 +706,6 @@ const statsFix = [
     bellossomStats,
     azumarillStats,
     jumpluffStats,
-    roseradeStats
+    roseradeStats,
+    magcargoStats
 ]
