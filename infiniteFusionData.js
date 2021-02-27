@@ -290,7 +290,15 @@ const qwilfishStats = [
     {"base_stat": 85}
 ]
 
-
+//Dugtrio
+const dugtrioStats = [
+    {"base_stat": 35},
+    {"base_stat": 80},
+    {"base_stat": 50},
+    {"base_stat": 50},
+    {"base_stat": 70},
+    {"base_stat": 120}
+]
 
 
 
@@ -767,7 +775,8 @@ const statsException = [
     "electrode",
     "dodrio",
     "noctowl",
-    "qwilfish"
+    "qwilfish",
+    "dugtrio"
 ]
 
 const statsFix = [
@@ -798,5 +807,6 @@ const statsFix = [
     electrodeStats,
     dodrioStats,
     noctowlStats,
-    qwilfishStats
+    qwilfishStats,
+    dugtrioStats
 ]
