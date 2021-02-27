@@ -172,33 +172,27 @@ const ids =
 ]
 
 const nameException = [
-"deoxys",
-"giratina",
-"mimikyu",
-"aegislash",
-"mimejr",
-"mime jr",
-"mrmime",
-"mr mime",
-"nidoran m",
-"nidoranm",
-"nidoran f",
-"nidoranf"
+    "deoxys",
+    "giratina",
+    "mimikyu",
+    "aegislash",
+    "mimejr",
+    "mrmime",
+    "nidoranm",
+    "nidoranf",
+    "porygonz"
 ]
 
 const nameFix = [
-"deoxys-normal",
-"giratina-altered",
-"mimikyu-disguised",
-"aegislash-shield",
-"mime-jr",
-"mime-jr",
-"mr-mime",
-"mr-mime",
-"nidoran-m",
-"nidoran-m",
-"nidoran-f",
-"nidoran-f"
+    "deoxys-normal",
+    "giratina-altered",
+    "mimikyu-disguised",
+    "aegislash-shield",
+    "mime-jr",
+    "mr-mime",
+    "nidoran-m",
+    "nidoran-f",
+    "porygon-z"
 ]
 
 const typeSwap =
@@ -409,7 +403,7 @@ function randomPoke() {
 
 function getPokemonName(htmlId){
     var pokemonName = (document.getElementById(htmlId)).value.toLowerCase();
-    pokemonName = pokemonName.replace(/\./g, '').trim();
+    pokemonName = pokemonName.replace(/\W/g, '');
     return pokemonName;
 }
 
