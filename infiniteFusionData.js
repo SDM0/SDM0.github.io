@@ -250,7 +250,6 @@ const mantineStats = [
     {"base_stat": 70}
 ]
 
-
 //Electrode
 const electrodeStats = [
     {"base_stat": 60},
@@ -260,6 +259,19 @@ const electrodeStats = [
     {"base_stat": 80},
     {"base_stat": 140}
 ]
+
+//Dodrio
+const dodrioStats = [
+    {"base_stat": 60},
+    {"base_stat": 110},
+    {"base_stat": 70},
+    {"base_stat": 60},
+    {"base_stat": 60},
+    {"base_stat": 100}
+]
+
+
+
 
 
 
@@ -732,7 +744,8 @@ const statsException = [
     "arbok",
     "ariados",
     "mantine",
-    "electrode"
+    "electrode",
+    "dodrio"
 ]
 
 const statsFix = [
@@ -760,5 +773,6 @@ const statsFix = [
     arbokStats,
     ariadosStats,
     mantineStats,
-    electrodeStats
+    electrodeStats,
+    dodrioStats
 ]
