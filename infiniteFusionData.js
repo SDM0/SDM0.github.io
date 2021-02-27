@@ -197,7 +197,7 @@ const roseradeStats = [
     {"base_stat": 55},
     {"base_stat": 125},
     {"base_stat": 105},
-    {"base_stat": 100}
+    {"base_stat": 90}
 ]
 
 //Krookodile
@@ -250,15 +250,6 @@ const mantineStats = [
     {"base_stat": 70}
 ]
 
-//Roserade
-const roseradeStats = [
-    {"base_stat": 60},
-    {"base_stat": 70},
-    {"base_stat": 55},
-    {"base_stat": 125},
-    {"base_stat": 105},
-    {"base_stat": 90}
-]
 
 
 
@@ -731,8 +722,7 @@ const statsException = [
     "magcargo",
     "arbok",
     "ariados",
-    "mantine",
-    "roserade"
+    "mantine"
 ]
 
 const statsFix = [
@@ -759,6 +749,4 @@ const statsFix = [
     magcargoStats,
     arbokStats,
     ariadosStats,
-    mantineStats,
-    roseradeStats
-]
+    mantineStats]
