@@ -275,7 +275,7 @@ const noctowlStats = [
     {"base_stat": 100},
     {"base_stat": 50},
     {"base_stat": 50},
-    {"base_stat": 86},
+    {"base_stat": 76},
     {"base_stat": 96},
     {"base_stat": 70}
 ]
