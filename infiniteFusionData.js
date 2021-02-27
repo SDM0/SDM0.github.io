@@ -270,6 +270,20 @@ const dodrioStats = [
     {"base_stat": 100}
 ]
 
+//Noctowl
+const noctowlStats = [
+    {"base_stat": 100},
+    {"base_stat": 50},
+    {"base_stat": 50},
+    {"base_stat": 86},
+    {"base_stat": 96},
+    {"base_stat": 70}
+]
+
+
+
+
+
 
 
 
@@ -745,7 +759,8 @@ const statsException = [
     "ariados",
     "mantine",
     "electrode",
-    "dodrio"
+    "dodrio",
+    "noctowl"
 ]
 
 const statsFix = [
@@ -774,5 +789,6 @@ const statsFix = [
     ariadosStats,
     mantineStats,
     electrodeStats,
-    dodrioStats
+    dodrioStats,
+    noctowlStats
 ]
