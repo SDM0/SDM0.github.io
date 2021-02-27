@@ -251,6 +251,15 @@ const mantineStats = [
 ]
 
 
+//Electrode
+const electrodeStats = [
+    {"base_stat": 60},
+    {"base_stat": 50},
+    {"base_stat": 70},
+    {"base_stat": 80},
+    {"base_stat": 80},
+    {"base_stat": 140}
+]
 
 
 
@@ -722,7 +731,8 @@ const statsException = [
     "magcargo",
     "arbok",
     "ariados",
-    "mantine"
+    "mantine",
+    "electrode"
 ]
 
 const statsFix = [
@@ -749,4 +759,6 @@ const statsFix = [
     magcargoStats,
     arbokStats,
     ariadosStats,
-    mantineStats]
+    mantineStats,
+    electrodeStats
+]
