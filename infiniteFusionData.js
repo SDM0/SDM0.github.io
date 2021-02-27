@@ -310,7 +310,15 @@ const farfetchdStats = [
     {"base_stat": 60}
 ]
 
-
+//Corsola
+const corsolaStats = [
+    {"base_stat": 55},
+    {"base_stat": 55},
+    {"base_stat": 85},
+    {"base_stat": 65},
+    {"base_stat": 85},
+    {"base_stat": 35}
+]
 
 
 
@@ -785,7 +793,8 @@ const statsException = [
     "noctowl",
     "qwilfish",
     "dugtrio",
-    "farfetchd"
+    "farfetchd",
+    "corsola"
 ]
 
 const statsFix = [
@@ -818,5 +827,6 @@ const statsFix = [
     noctowlStats,
     qwilfishStats,
     dugtrioStats,
-    farfetchdStats
+    farfetchdStats,
+    corsolaStats
 ]
