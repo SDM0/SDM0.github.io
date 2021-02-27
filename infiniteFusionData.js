@@ -320,6 +320,26 @@ const corsolaStats = [
     {"base_stat": 35}
 ]
 
+//Exeggutor
+const exeggutorStats = [
+    {"base_stat": 95},
+    {"base_stat": 95},
+    {"base_stat": 85},
+    {"base_stat": 125},
+    {"base_stat": 65},
+    {"base_stat": 55}
+]
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -794,7 +814,8 @@ const statsException = [
     "qwilfish",
     "dugtrio",
     "farfetchd",
-    "corsola"
+    "corsola",
+    "exeggutor"
 ]
 
 const statsFix = [
@@ -828,5 +849,6 @@ const statsFix = [
     qwilfishStats,
     dugtrioStats,
     farfetchdStats,
-    corsolaStats
+    corsolaStats,
+    exeggutorStats
 ]
