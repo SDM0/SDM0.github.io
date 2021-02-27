@@ -300,7 +300,15 @@ const dugtrioStats = [
     {"base_stat": 120}
 ]
 
-
+//Farfetchd
+const farfetchdStats = [
+    {"base_stat": 52},
+    {"base_stat": 65},
+    {"base_stat": 55},
+    {"base_stat": 58},
+    {"base_stat": 62},
+    {"base_stat": 60}
+]
 
 
 
@@ -776,7 +784,8 @@ const statsException = [
     "dodrio",
     "noctowl",
     "qwilfish",
-    "dugtrio"
+    "dugtrio",
+    "farfetchd"
 ]
 
 const statsFix = [
@@ -808,5 +817,6 @@ const statsFix = [
     dodrioStats,
     noctowlStats,
     qwilfishStats,
-    dugtrioStats
+    dugtrioStats,
+    farfetchdStats
 ]
