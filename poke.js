@@ -677,12 +677,15 @@ function fusePoke() {
                     }
 
                     //Writting stat in HTML
+
+                    /*
                     if (mon1 == "shedinja" || mon2 == "shedinja") {
                         document.getElementById("hp1").innerHTML = "HP: 1 (0)";
                         document.getElementById("hp1").style.color = "orange";
-                    } else {
-                        document.getElementById("hp1").innerHTML = "HP: " + Math.floor(hp1) + L4[0];
-                    }
+                    } else {*/
+                    document.getElementById("hp1").innerHTML = "HP: " + Math.floor(hp1) + L4[0];
+                    /*}*/
+
                     document.getElementById("atk1").innerHTML = "ATK: " + Math.floor(atk1) + L4[1];
                     document.getElementById("def1").innerHTML = "DEF: " + Math.floor(def1) + L4[2];
                     document.getElementById("spatk1").innerHTML = "SPE.ATK: " + Math.floor(spatk1) + L4[3];
@@ -690,12 +693,13 @@ function fusePoke() {
                     document.getElementById("spe1").innerHTML = "SPEED: " + Math.floor(spe1) + L4[5];
                     document.getElementById("bs1").innerHTML = "TOTAL: " + Math.floor(bs1) + L4[6];
 
+                    /*
                     if (mon1 == "shedinja" || mon2 == "shedinja") {
                         document.getElementById("hp2").innerHTML = "HP: 1 (0)";
                         document.getElementById("hp2").style.color = "orange";
-                    } else {
-                        document.getElementById("hp2").innerHTML = "HP: " + Math.floor(hp2) + L5[0];
-                    }
+                    } else {*/
+                    document.getElementById("hp2").innerHTML = "HP: " + Math.floor(hp2) + L5[0];
+                    /*}*/
                     document.getElementById("atk2").innerHTML = "ATK: " + Math.floor(atk2) + L5[1];
                     document.getElementById("def2").innerHTML = "DEF: " + Math.floor(def2) + L5[2];
                     document.getElementById("spatk2").innerHTML = "SPE.ATK: " + Math.floor(spatk2) + L5[3];
