@@ -172,21 +172,27 @@ const ids =
 ]
 
 const nameException = [
-"mr.mime",
-"mime.jr",
-"deoxys",
-"giratina",
-"mimikyu",
-"aegislash",
+    "deoxys",
+    "giratina",
+    "mimikyu",
+    "aegislash",
+    "mimejr",
+    "mrmime",
+    "nidoranm",
+    "nidoranf",
+    "porygonz"
 ]
 
 const nameFix = [
-"mr-mime",
-"mime-jr",
-"deoxys-normal",
-"giratina-altered",
-"mimikyu-disguised",
-"aegislash-shield",
+    "deoxys-normal",
+    "giratina-altered",
+    "mimikyu-disguised",
+    "aegislash-shield",
+    "mime-jr",
+    "mr-mime",
+    "nidoran-m",
+    "nidoran-f",
+    "porygon-z"
 ]
 
 const typeSwap =
@@ -197,6 +203,9 @@ const typeSwap =
 ,["water","rock","Omastar"]
 ,["steel","bug","Scizor"]
 ,["steel","electric","Magnezone"]
+,["steel","water","Empoleon"]
+,["dark","ghost","Spiritomb"]
+,["steel","grass","Ferrothorn"]
 ]
 
 const typeUni =
@@ -342,9 +351,9 @@ function randomPoke() {
         var mode2 = 1;
     }
 
-    if (mode1==0) {
+    if (mode1 == 0) {
         var zxhr = new XMLHttpRequest();
-        var poke1 = 'https://pokeapi.co/api/v2/pokemon/'+rand1;
+        var poke1 = 'https://pokeapi.co/api/v2/pokemon/' + rand1;
         zxhr.open('GET', poke1, true);
         zxhr.send();
         zxhr.onload = function() {
@@ -364,9 +373,9 @@ function randomPoke() {
         setTimeout(() => {document.getElementById("fname1").value = name}, 450);
     }
 
-    if (mode2==0) {
+    if (mode2 == 0) {
         var vxhr = new XMLHttpRequest();  
-        var poke2 = 'https://pokeapi.co/api/v2/pokemon/'+rand2;
+        var poke2 = 'https://pokeapi.co/api/v2/pokemon/' + rand2;
         vxhr.open('GET', poke2, true);
         vxhr.send();
         vxhr.onload = function() {
@@ -392,12 +401,18 @@ function randomPoke() {
     setTimeout(() => { fusePoke() }, 600);
 }
 
+function getPokemonName(htmlId){
+    var pokemonName = (document.getElementById(htmlId)).value.toLowerCase();
+    pokemonName = pokemonName.replace(/\W/g, '');
+    return pokemonName;
+}
+
 //Fusion calculation function
 function fusePoke() {
 
     //Pokemon from both text area
-    var mon1 = (document.getElementById("fname1")).value.toLowerCase();
-    var mon2 = (document.getElementById("fname2")).value.toLowerCase();
+    var mon1 = getPokemonName("fname1");
+    var mon2 = getPokemonName("fname2");
     if ((mon1 == "" || mon1.length == 0 || mon1 == null) || (mon2 == "" || mon2.length == 0 || mon2 == null)) {
 	document.getElementById("random").disabled = false
         alert("Please fill the two text inputs!");
@@ -412,7 +427,7 @@ function fusePoke() {
 
         //First request
         var txhr = new XMLHttpRequest();  
-        var poke1 = 'https://pokeapi.co/api/v2/pokemon/'+mon1;
+        var poke1 = "https://pokeapi.co/api/v2/pokemon/" + mon1 + "/";
         txhr.open('GET', poke1, true);
         txhr.send();
         txhr.onload = function() {
@@ -443,7 +458,7 @@ function fusePoke() {
             var type1 = jsonString.types;
             var poke1 = 'https://pokeapi.co/api/v2/pokemon/' + type1[0].type.name;
             var mon1types = [];
-            var compt=0
+            var compt = 0;
 
             //Exception mon selected for swapped types
             for (var i = 0; i < typeSwap.length; i++) {
@@ -466,7 +481,7 @@ function fusePoke() {
             if (compt == 0) {
                 mon1types.push(type1[0].type.name);
                 if (type1.length == 2 && compt != 2) {
-                    if (type1[0].type.name == "normal" && type1[1].type.name == "flying") {
+                    if (type1[0].type.name == "normal" && type1[1].type.name == "flying" && mon1 != "fletchling") {
                         mon1types[0] = "flying";
                     } else {
                         mon1types.push(type1[1].type.name);
@@ -502,7 +517,7 @@ function fusePoke() {
 
             //2nd request
             var pxhr = new XMLHttpRequest();
-            var poke2 = 'https://pokeapi.co/api/v2/pokemon/' + mon2
+            var poke2 = "https://pokeapi.co/api/v2/pokemon/" + mon2 + "/";
             pxhr.open('GET', poke2, true);
             pxhr.send();
             pxhr.onload = function() {
@@ -580,7 +595,7 @@ function fusePoke() {
                     if (compt == 0) {
                         mon2types.push(type2[0].type.name);
                         if (type2.length == 2 && compt != 2) {
-                            if (type2[0].type.name == "normal" && type2[1].type.name == "flying") {
+                            if (type2[0].type.name == "normal" && type2[1].type.name == "flying" && mon2 != "fletchling") {
                                 mon2types[0] = "flying";
                             } else {
                                 mon2types.push(type2[1].type.name);
@@ -662,12 +677,15 @@ function fusePoke() {
                     }
 
                     //Writting stat in HTML
+
+                    /*
                     if (mon1 == "shedinja" || mon2 == "shedinja") {
                         document.getElementById("hp1").innerHTML = "HP: 1 (0)";
                         document.getElementById("hp1").style.color = "orange";
-                    } else {
-                        document.getElementById("hp1").innerHTML = "HP: " + Math.floor(hp1) + L4[0];
-                    }
+                    } else {*/
+                    document.getElementById("hp1").innerHTML = "HP: " + Math.floor(hp1) + L4[0];
+                    /*}*/
+
                     document.getElementById("atk1").innerHTML = "ATK: " + Math.floor(atk1) + L4[1];
                     document.getElementById("def1").innerHTML = "DEF: " + Math.floor(def1) + L4[2];
                     document.getElementById("spatk1").innerHTML = "SPE.ATK: " + Math.floor(spatk1) + L4[3];
@@ -675,12 +693,13 @@ function fusePoke() {
                     document.getElementById("spe1").innerHTML = "SPEED: " + Math.floor(spe1) + L4[5];
                     document.getElementById("bs1").innerHTML = "TOTAL: " + Math.floor(bs1) + L4[6];
 
+                    /*
                     if (mon1 == "shedinja" || mon2 == "shedinja") {
                         document.getElementById("hp2").innerHTML = "HP: 1 (0)";
                         document.getElementById("hp2").style.color = "orange";
-                    } else {
-                        document.getElementById("hp2").innerHTML = "HP: " + Math.floor(hp2) + L5[0];
-                    }
+                    } else {*/
+                    document.getElementById("hp2").innerHTML = "HP: " + Math.floor(hp2) + L5[0];
+                    /*}*/
                     document.getElementById("atk2").innerHTML = "ATK: " + Math.floor(atk2) + L5[1];
                     document.getElementById("def2").innerHTML = "DEF: " + Math.floor(def2) + L5[2];
                     document.getElementById("spatk2").innerHTML = "SPE.ATK: " + Math.floor(spatk2) + L5[3];
@@ -1187,41 +1206,53 @@ function fusAb(mon1, mon2) {
 
 //Type fusion function
 function fusType(mon1, mon2) {
-    //cas H0/null + B0/null [H0#B0] -> H0/B0
     var fmon = []
+
+    //cas H0/null + B0/null [H0#B0] -> H0/B0
     if (mon1.length == 1 && mon2.length == 1) {
         if (mon1[0] != mon2[0]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[0])
+
     //cas H0/null + B0/null [H0=B0] -> H0/null
         } else {
             fmon.push(mon1[0]);
         }
     } else if (mon1.length == 2 && mon2.length == 1) {
+
     //cas H0/H1 + B0/null [H0#B0] -> H0/B0
         if (mon1[0] != mon2[0]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[0]);
-    //cas H0/H1 + B0/null [H0=B0] -> H0/H1
+
+    // Exception:
+    // The body will provide its primary type
+    // instead of the secondary
+    // if the head is already providing that element.
+
+    //cas H0/H1 + B0/null [H0=B0] -> H0
         } else {
             fmon.push(mon1[0]);
-            fmon.push(mon1[1]);
         }
     } else if (mon1.length == 1 && mon2.length == 2) {
+
     //cas H0/null + B0/B1 [H0#B1] -> H0/B1
         if (mon1[0] != mon2[1]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[1]);
+
     //cas H0/null + B0/B1 [H0=B1] -> H0/B0
         } else {
             fmon.push(mon1[0])
             fmon.push(mon2[0]);
         }
+
     //cas H0/H1 + B0/B1 [H0=B1] -> H0/B0
     } else if (mon1.length == 2 && mon2.length == 2) {
         if (mon1[0] == mon2[1]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[0]);
+
     //cas H0/H1 + B0/B1 [H0#B1] -> H0/B1
         } else {
             fmon.push(mon1[0]);

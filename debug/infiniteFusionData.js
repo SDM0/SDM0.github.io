@@ -197,7 +197,7 @@ const roseradeStats = [
     {"base_stat": 55},
     {"base_stat": 125},
     {"base_stat": 105},
-    {"base_stat": 100}
+    {"base_stat": 90}
 ]
 
 //Krookodile
@@ -209,6 +209,137 @@ const krookodileStats = [
     {"base_stat": 70},
     {"base_stat": 92}
 ]
+
+//Magcargo
+const magcargoStats = [
+    {"base_stat": 50},
+    {"base_stat": 50},
+    {"base_stat": 120},
+    {"base_stat": 80},
+    {"base_stat": 80},
+    {"base_stat": 30}
+]
+
+//Arbok
+const arbokStats = [
+    {"base_stat": 60},
+    {"base_stat": 85},
+    {"base_stat": 69},
+    {"base_stat": 65},
+    {"base_stat": 79},
+    {"base_stat": 80}
+]
+
+//Ariados
+const ariadosStats = [
+    {"base_stat": 70},
+    {"base_stat": 90},
+    {"base_stat": 70},
+    {"base_stat": 60},
+    {"base_stat": 60},
+    {"base_stat": 40}
+]
+
+//Mantine
+const mantineStats = [
+    {"base_stat": 65},
+    {"base_stat": 40},
+    {"base_stat": 70},
+    {"base_stat": 80},
+    {"base_stat": 140},
+    {"base_stat": 70}
+]
+
+//Electrode
+const electrodeStats = [
+    {"base_stat": 60},
+    {"base_stat": 50},
+    {"base_stat": 70},
+    {"base_stat": 80},
+    {"base_stat": 80},
+    {"base_stat": 140}
+]
+
+//Dodrio
+const dodrioStats = [
+    {"base_stat": 60},
+    {"base_stat": 110},
+    {"base_stat": 70},
+    {"base_stat": 60},
+    {"base_stat": 60},
+    {"base_stat": 100}
+]
+
+//Noctowl
+const noctowlStats = [
+    {"base_stat": 100},
+    {"base_stat": 50},
+    {"base_stat": 50},
+    {"base_stat": 76},
+    {"base_stat": 96},
+    {"base_stat": 70}
+]
+
+//Qwilfish
+const qwilfishStats = [
+    {"base_stat": 65},
+    {"base_stat": 95},
+    {"base_stat": 75},
+    {"base_stat": 55},
+    {"base_stat": 55},
+    {"base_stat": 85}
+]
+
+//Dugtrio
+const dugtrioStats = [
+    {"base_stat": 35},
+    {"base_stat": 80},
+    {"base_stat": 50},
+    {"base_stat": 50},
+    {"base_stat": 70},
+    {"base_stat": 120}
+]
+
+//Farfetchd
+const farfetchdStats = [
+    {"base_stat": 52},
+    {"base_stat": 65},
+    {"base_stat": 55},
+    {"base_stat": 58},
+    {"base_stat": 62},
+    {"base_stat": 60}
+]
+
+//Corsola
+const corsolaStats = [
+    {"base_stat": 55},
+    {"base_stat": 55},
+    {"base_stat": 85},
+    {"base_stat": 65},
+    {"base_stat": 85},
+    {"base_stat": 35}
+]
+
+//Exeggutor
+const exeggutorStats = [
+    {"base_stat": 95},
+    {"base_stat": 95},
+    {"base_stat": 85},
+    {"base_stat": 125},
+    {"base_stat": 65},
+    {"base_stat": 55}
+]
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -590,10 +721,6 @@ const hydreigonAbilities = [
 
 
 
-
-
-
-
 // ##### Tables
 
 const abilitiesException = [
@@ -676,7 +803,19 @@ const statsException = [
     "bellossom",
     "azumarill",
     "jumpluff",
-    "roserade"
+    "roserade",
+    "magcargo",
+    "arbok",
+    "ariados",
+    "mantine",
+    "electrode",
+    "dodrio",
+    "noctowl",
+    "qwilfish",
+    "dugtrio",
+    "farfetchd",
+    "corsola",
+    "exeggutor"
 ]
 
 const statsFix = [
@@ -699,5 +838,17 @@ const statsFix = [
     bellossomStats,
     azumarillStats,
     jumpluffStats,
-    roseradeStats
+    roseradeStats,
+    magcargoStats,
+    arbokStats,
+    ariadosStats,
+    mantineStats,
+    electrodeStats,
+    dodrioStats,
+    noctowlStats,
+    qwilfishStats,
+    dugtrioStats,
+    farfetchdStats,
+    corsolaStats,
+    exeggutorStats
 ]
