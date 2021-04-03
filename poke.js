@@ -435,18 +435,26 @@ function fusePoke() {
 
         //First request
         var txhr = new XMLHttpRequest();  
-        var poke1 = "https://pokeapi.co/api/v2/pokemon/" + mon1 + "/";
+        var poke1 = "https://pokeapi.co/api/v2/pokemon/" + mon1; //may cause issues
         txhr.open('GET', poke1, true);
         txhr.send();
         txhr.onload = function() {
         var jsonBody = txhr.responseText;
+
         if(jsonBody) {
-            try {
-                a = JSON.parse(jsonBody);
-            } catch(e) {
-                alert("The first pokemon was misspelled!"); // error in the above string (in this case, yes)!
+            if(jsonBody != "Not Found"){
+                try {
+                    a = JSON.parse(jsonBody);
+                } catch(e) {
+                    alert("First pokemon was misspelled or PokeAPI is having issues !");
+                }
+            }
+            else{
+                alert("First pokemon was misspelled or PokeAPI is having issues !");
             }
         }
+
+        // Can't parse if the json is trash
         var jsonString = JSON.parse(jsonBody);
 
         //ID selector for sprite showcase of the 1st mon/ Validator for 1st mon
@@ -525,19 +533,26 @@ function fusePoke() {
 
             //2nd request
             var pxhr = new XMLHttpRequest();
-            var poke2 = "https://pokeapi.co/api/v2/pokemon/" + mon2 + "/";
+            var poke2 = "https://pokeapi.co/api/v2/pokemon/" + mon2; //may cause issues
             pxhr.open('GET', poke2, true);
             pxhr.send();
             pxhr.onload = function() {
-                
                 var jsonBody = pxhr.responseText;
+
                 if(jsonBody) {
-                    try {
-                        a = JSON.parse(jsonBody);
-                    } catch(e) {
-                        alert("The second pokemon was misspelled!"); // error in the above string (in this case, yes)!
+                    if(jsonBody != "Not Found"){
+                        try {
+                            a = JSON.parse(jsonBody);
+                        } catch(e) {
+                            alert("Second pokemon was misspelled or PokeAPI is having issues !");
+                        }
+                    }
+                    else{
+                        alert("Second pokemon was misspelled or PokeAPI is having issues !");
                     }
                 }
+        
+                // Can't parse if the json is trash
                 var jsonString = JSON.parse(jsonBody);
 
                 //Name of fusion
