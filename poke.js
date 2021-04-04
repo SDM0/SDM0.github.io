@@ -1,307 +1,3 @@
-const ids = 
-[["Slowking",199]
-,["Azurill",252]
-,["Wynaut",253]
-,["Ambipom",254]
-,["Mismagius",255]
-,["Honchkrow",256]
-,["Bonsly",257]
-,["Mime-jr",258]
-,["Happiny",259]
-,["Munchlax",260]
-,["Mantyke",261]
-,["Weavile",262]
-,["Magnezone",263]
-,["Lickilicky",264]
-,["Rhyperior",265]
-,["Tangrowth",266]
-,["Electivire",267]
-,["Magmortar",268]
-,["Togekiss",269]
-,["Yanmega",270]
-,["Leafeon",271]
-,["Glaceon",272]
-,["Gliscor",273]
-,["Mamoswine",274]
-,["Porygon-z",275]
-,["Treecko",276]
-,["Grovyle",277]
-,["Sceptile",278]
-,["Torchic",279]
-,["Combusken",280]
-,["Blaziken",281]
-,["Mudkip",282]
-,["Marshtomp",283]
-,["Swampert",284]
-,["Ralts",285]
-,["Kirlia",286]
-,["Gardevoir",287]
-,["Gallade",288]
-,["Shedinja",289]
-,["Kecleon",290]
-,["Beldum",291]
-,["Metang",292]
-,["Metagross",293]
-,["Bidoof",294]
-,["Spiritomb",295]
-,["Lucario",296]
-,["Gible",297]
-,["Gabite",298]
-,["Garchomp",299]
-,["Mawile",300]
-,["Lileep",301]
-,["Cradily",302]
-,["Anorith",303]
-,["Armaldo",304]
-,["Cranidos",305]
-,["Rampardos",306]
-,["Shieldon",307]
-,["Bastiodon",308]
-,["Slaking",309]
-,["Absol",310]
-,["Duskull",311]
-,["Dusclops",312]
-,["Dusknoir",313]
-,["Wailord",314]
-,["Arceus",315]
-,["Turtwig",316]
-,["Grotle",317]
-,["Torterra",318]
-,["Chimchar",319]
-,["Monferno",320]
-,["Infernape",321]
-,["Piplup",322]
-,["Prinplup",323]
-,["Empoleon",324]
-,["Nosepass",325]
-,["Probopass",326]
-,["Honedge",327]
-,["Doublade",328]
-,["Aegislash-shield",329]
-,["Pawniard",330]
-,["Bisharp",331]
-,["Luxray",332]
-,["Aggron",333]
-,["Flygon",334]
-,["Milotic",335]
-,["Salamence",336]
-,["Klinklang",337]
-,["Zoroark",338]
-,["Sylveon",339]
-,["Kyogre",340]
-,["Groudon",341]
-,["Rayquaza",342]
-,["Dialga",343]
-,["Palkia",344]
-,["Giratina-altered",345]
-,["Regigigas",346]
-,["Darkrai",347]
-,["Genesect",348]
-,["Reshiram",349]
-,["Zekrom",350]
-,["Kyurem",351]
-,["Roserade",352]
-,["Drifblim",353]
-,["Lopunny",354]
-,["Breloom",355]
-,["Ninjask",356]
-,["Banette",357]
-,["Rotom",358]
-,["Reuniclus",359]
-,["Whimsicott",360]
-,["Krookodile",361]
-,["Cofagrigus",362]
-,["Galvantula",363]
-,["Ferrothorn",364]
-,["Litwick",365]
-,["Lampent",366]
-,["Chandelure",367]
-,["Haxorus",368]
-,["Golurk",369]
-,["Pyukumuku",370]
-,["Klefki",371]
-,["Talonflame",372]
-,["Mimikyu-disguised",373]
-,["Volcarona",374]
-,["Deino",375]
-,["Zweilous",376]
-,["Hydreigon",377]
-,["Latias",378]
-,["Latios",379]
-,["Deoxys-normal",380]
-,["Jirachi",381]
-,["Nincada",382]
-,["Bibarel",383]
-,["Riolu",384]
-,["Slakoth",385]
-,["Vigoroth",386]
-,["Wailmer",387]
-,["Shinx",388]
-,["Luxio",389]
-,["Aron",390]
-,["Lairon",391]
-,["Trapinch",392]
-,["Vibrava",393]
-,["Feebas",394]
-,["Bagon",395]
-,["Shelgon",396]
-,["Klink",397]
-,["Klang",398]
-,["Zorua",399]
-,["Budew",400]
-,["Roselia",401]
-,["Drifloon",402]
-,["Buneary",403]
-,["Shroomish",404]
-,["Shuppet",405]
-,["Solosis",406]
-,["Duosion",407]
-,["Cottonee",408]
-,["Sandile",409]
-,["Krokorok",410]
-,["Yamask",411]
-,["Joltik",412]
-,["Ferroseed",413]
-,["Axew",414]
-,["Fraxure",415]
-,["Golett",416]
-,["Fletchling",417]
-,["Fletchinder",418]
-,["Larvesta",419]
-,["Stunfisk",420]
-]
-
-const nameException = [
-    "deoxys",
-    "giratina",
-    "mimikyu",
-    "aegislash",
-    "mimejr",
-    "mrmime",
-    "nidoranm",
-    "nidoranf",
-    "porygonz",
-    "hooh",
-    "hoho",
-    "ohho",
-    "ohoh"
-]
-
-const nameFix = [
-    "deoxys-normal",
-    "giratina-altered",
-    "mimikyu-disguised",
-    "aegislash-shield",
-    "mime-jr",
-    "mr-mime",
-    "nidoran-m",
-    "nidoran-f",
-    "porygon-z",
-    "ho-oh",
-    "ho-oh",
-    "ho-oh",
-    "ho-oh"
-]
-
-const typeSwap =
-[["steel","electric","Magnemite"]
-,["steel","electric","Magneton"]
-,["ice","water","Dewgong"]
-,["water","rock","Omanyte"]
-,["water","rock","Omastar"]
-,["steel","bug","Scizor"]
-,["steel","electric","Magnezone"]
-,["steel","water","Empoleon"]
-,["dark","ghost","Spiritomb"]
-,["steel","grass","Ferrothorn"]
-]
-
-const typeUni =
-[["grass","Bulbasaur"]
-,["grass","Ivysaur"]
-,["grass","Venusaur"]
-,["fire","Charizard"]
-,["rock","Geodude"]
-,["rock","Graveler"]
-,["rock","Golem"]
-,["ghost","Gastly"]
-,["ghost","Haunter"]
-,["ghost","Gengar"]
-,["rock","Onix"]
-,["bug","Scyther"]
-,["water","Gyarados"]
-,["ice","Articuno"]
-,["electric","Zapdos"]
-,["fire","Moltres"]
-,["dragon","Dragonite"]
-,["steel","Steelix"]
-]
-
-const abilitySwap =
-["pidgey",
-"pidgeotto",
-"pidgeot",
-"ekans",
-"arbok",
-"diglett",
-"dugtrio",
-"growlithe",
-"arcanine",
-"machop",
-"machoke",
-"machamp",
-"geodude",
-"graveler",
-"golem",
-"farfetchd",
-"onix",
-"steelix",
-"krabby",
-"kingler",
-"voltorb",
-"electrode",
-"cubone",
-"marowak",
-"hitmonchan",
-"lapras",
-"snorlax",
-"aerodactyl",
-"chinchou",
-"lanturn",
-"marill",
-"azumarill",
-"dunsparce",
-"murkrow",
-"honchkrow",
-"snubbull",
-"granbull",
-"teddiursa",
-"ursaring",
-"absol"
-]
-
-const types = new Array(
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],              // Normal
-[1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1, 1],          // Fire
-[1, 2, 0.5, 1, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1, 1],            // Water
-[1, 1, 2, 0.5, 0.5, 1, 1, 1, 0, 2, 1, 1, 1, 1, 0.5, 1, 1, 1, 1],            // Electric
-[1, 0.5, 2, 1, 0.5, 1, 1, 0.5, 2, 0.5, 1, 0.5, 2, 1, 0.5, 1, 0.5, 1, 1],    // Grass
-[1, 0.5, 0.5, 1, 2, 0.5, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 0.5, 1, 1],          // Ice
-[2, 1, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0, 1, 2, 2, 0.5, 1],        // Fighting
-[1, 1, 1, 1, 2, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 1, 1, 0, 2, 1],          // Poison
-[1, 2, 1, 2, 0.5, 1, 1, 2, 1, 0, 1, 0.5, 2, 1, 1, 1, 2, 1, 1],              // Ground
-[1, 1, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 0.5, 1, 1],            // Flying
-[1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1, 1, 1, 0, 0.5, 1, 1],              // Psychic
-[1, 0.5, 1, 1, 2, 1, 0.5, 0.5, 1, 0.5, 2, 1, 1, 0.5, 1, 2, 0.5, 0.5, 1],    // Bug
-[1, 2, 1, 1, 1, 2, 0.5, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 0.5, 1, 1],            // Rock
-[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 1, 1],                // Ghost
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0.5, 0, 1],                // Dragon
-[1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 0.5, 1],            // Dark
-[1, 0.5, 0.5, 0.5, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0.5, 2, 1],          // Steel
-[1, 0.5, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 0.5, 1, 1],            // Fairy
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);                 // None
-    
-const typeName = ["normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
 var result1 = new Array();
 var result2 = new Array();
 
@@ -331,82 +27,31 @@ function resetPoke() {
     document.getElementById("fname2").value = null;
 }
 
-//Random pokemon
+function getRandomPokeID(){
+    minPoke = 1
+    maxPoke = 420
+    return Math.floor(minPoke + Math.random() * Math.floor(maxPoke - minPoke + 1));
+}
+
 function randomPoke() {
-    document.getElementById("random").disabled = true; 
-    var randList = [];
-    for (var i = 0; i < 2; i++) {
-        randList.push(Math.floor(Math.random() * Math.floor(2)));
-    }
-    if (randList[0] == 0) {
-        var rand1 = Math.floor(Math.random() * Math.floor(251));
-        if (rand1 == 0) {
-            rand1 += 1;
-        }
-        var mode1 = 0;
-    } else {
-        var rand1 = Math.floor(Math.random() * Math.floor(170));
-        var mode1 = 1;
-    }
-    if (randList[1] == 0) {
-        var rand2 = Math.floor(Math.random() * Math.floor(251));
-        if (rand2 == 0) {
-            rand2 += 1;
-        }
-        var mode2 = 0;
-    } else {
-        var rand2 = Math.floor(Math.random() * Math.floor(170));
-        var mode2 = 1;
-    }
 
-    if (mode1 == 0) {
-        var zxhr = new XMLHttpRequest();
-        var poke1 = 'https://pokeapi.co/api/v2/pokemon/' + rand1;
-        zxhr.open('GET', poke1, true);
-        zxhr.send();
-        zxhr.onload = function() {
-            var jsonBody = zxhr.responseText;
-            var jsonString = JSON.parse(jsonBody);
-            var name = jsonString.name;
-            if (nameFix.includes(name)) {
-                name = nameException[nameFix.indexOf(name)];
-            }
-            setTimeout(() => {document.getElementById("fname1").value = name}, 450);
-        }
-    } else {
-        var name = ids[rand1][0].toLowerCase();
-        if (nameFix.includes(name)) {
-            name = nameException[nameFix.indexOf(name)];
-        }
-        setTimeout(() => {document.getElementById("fname1").value = name}, 450);
-    }
+    document.getElementById("random").disabled = true;
+    rand1 = getRandomPokeID()
+    rand2 = getRandomPokeID()
 
-    if (mode2 == 0) {
-        var vxhr = new XMLHttpRequest();  
-        var poke2 = 'https://pokeapi.co/api/v2/pokemon/' + rand2;
-        vxhr.open('GET', poke2, true);
-        vxhr.send();
-        vxhr.onload = function() {
-            var jsonBody = vxhr.responseText;
-            var jsonString = JSON.parse(jsonBody);
-            var name1 = jsonString.name;
-            if (nameFix.includes(name1)) {
-                name1 = nameException[nameFix.indexOf(name1)];
-            }
-            setTimeout(() => {document.getElementById("fname2").value = name1}, 500);
-        }
-    } else {
-        var name2 = ids[rand2][0].toLowerCase();
-        if (name2 == document.getElementById("fname1").value) {
-            var rand2 = Math.floor(Math.random() * Math.floor(251));
-            name2 = ids[rand2][0].toLowerCase();
-        }
-        if (nameFix.includes(name2)) {
-            name2 = nameException[nameFix.indexOf(name2)];
-        }
-        setTimeout(() => {document.getElementById("fname2").value = name2}, 500);
+    var name = ids[rand1][0].toLowerCase();
+    if (nameFix.includes(name)) {
+        name = nameException[nameFix.indexOf(name)];
     }
-    setTimeout(() => { fusePoke() }, 600);
+    document.getElementById("fname1").value = name
+
+    var name2 = ids[rand2][0].toLowerCase();
+    if (nameFix.includes(name2)) {
+        name2 = nameException[nameFix.indexOf(name2)];
+    }
+    document.getElementById("fname2").value = name2
+
+    fusePoke()
 }
 
 function getPokemonName(htmlId){
@@ -434,7 +79,7 @@ function fusePoke() {
          }
 
         //First request
-        var txhr = new XMLHttpRequest();  
+        var txhr = new XMLHttpRequest();
         var poke1 = "https://pokeapi.co/api/v2/pokemon/" + mon1; //may cause issues
         txhr.open('GET', poke1, true);
         txhr.send();
