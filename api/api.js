@@ -1,20 +1,44 @@
-function urlExists(url, callback){
-    $.ajax({
-      type: 'HEAD',
-      url: url,
-      success: function(){
-        callback(true);
-      },
-      error: function() {
-        callback(false);
-      }
-    });
-  }
 
-function someCallback(){
-    // do something, perhaps
+indexMax = ids.length
+baseURL = "https://pokeapi.co/api/v2/pokemon/"
+
+for(var i=0; i<indexMax; i++){
+  var element = ids[i][0].toLowerCase()
+
+  url_A = baseURL + element
+  url_B = baseURL + element + "/" 
+  urlExists(url_A, someCallback)
+  urlExists(url_B, someCallback)
 }
 
+
+function urlExists(url, callback){
+  $.ajax({
+    type: 'HEAD',
+    url: url,
+    success: function(){
+      // callback(url, true);
+    },
+    error: function() {
+      // callback(url, false);
+    }
+  });
+}
+
+
+function someCallback(url, isSuccess){
+
+    if(isSuccess){
+      console.log(url)
+    }
+    else{
+      console.error(url)
+    }
+    
+}
+
+
+/*
 function testAPI() {
     console.log("START")
     baseURL = "https://pokeapi.co/api/v2/pokemon/"
@@ -31,7 +55,7 @@ function testAPI() {
 }
 
 testAPI()
-
+*/
 
 
 /*
