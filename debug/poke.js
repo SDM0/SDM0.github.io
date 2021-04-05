@@ -17,18 +17,19 @@ var mon2types;
 var mon1abilities;
 var mon2abilities;
 
+var jsonBody;
+
 
 function isMissingNames(mon1, mon2){
     return (mon1 == "" || mon1.length == 0 || mon1 == null) || (mon2 == "" || mon2.length == 0 || mon2 == null)
 }
 
 
-
 //Fusion calculation function
 function fusePoke() {
 
     //Pokemon from both text area
-    mon1 = "haunter"  // getPokemonName("fname1");
+    mon1 = "hypno"  // getPokemonName("fname1");
     mon2 = "heracross"  // getPokemonName("fname2");
 
     if (isMissingNames(mon1, mon2)) {
@@ -36,6 +37,9 @@ function fusePoke() {
         alert("Please fill the two text inputs!");
     }
 
+    // TODO : test if poke is in fangame
+    // idCheck
+    
     else {
         //Special mon selector: Giratina, Deoxys
         if (nameException.includes(mon1)) {
@@ -47,12 +51,12 @@ function fusePoke() {
         }
 
         // First request - version A
-        var txhr = new XMLHttpRequest();
-        var poke1 = "https://pokeapi.co/api/v2/pokemon/" + mon1; //may cause issues
-        txhr.open('GET', poke1, true);
-        txhr.send();
-        txhr.onload = function() {
-            var jsonBody = txhr.responseText;
+        var xhr1a = new XMLHttpRequest();
+        var url1a = "https://pokeapi.co/api/v2/pokemon/" + mon1;
+        xhr1a.open('GET', url1a, true);
+        xhr1a.send();
+        xhr1a.onload = function() {
+            jsonBody = xhr1a.responseText;
             if(jsonBody) {
                 if(jsonBody != "Not Found"){
                     jp = JSON.parse(jsonBody);
@@ -61,11 +65,12 @@ function fusePoke() {
                 else{
 
                     //First request - version B
-                    var poke1 = "https://pokeapi.co/api/v2/pokemon/" + mon1 + "/"; //may cause issues
-                    txhr.open('GET', poke1, true);
-                    txhr.send();
-                    txhr.onload = function() {
-                        var jsonBody = txhr.responseText;
+                    var xhr1b = new XMLHttpRequest();
+                    var url1b = "https://pokeapi.co/api/v2/pokemon/" + mon1 + "/";
+                    xhr1b.open('GET', url1b, true);
+                    xhr1b.send();
+                    xhr1b.onload = function() {
+                        jsonBody = xhr1b.responseText;
                         if(jsonBody) {
                             if(jsonBody != "Not Found"){
                                 jp = JSON.parse(jsonBody);
@@ -76,13 +81,13 @@ function fusePoke() {
                             }
                         }
                         else{
-                            alert("PokeAPI can't identity the first pokemon");
+                            alert("PokeAPI is unreachable (1b)");
                         }
                     }
                 }
             }
             else{
-                alert("PokeAPI can't identity the first pokemon");
+                alert("PokeAPI is unreachable (1a)");
             }
         }
     }
@@ -103,7 +108,8 @@ function fuseFirstPoke(jsonString){
     }
     if (idCheck1 == false && id1 >= 252) {
         alert("The first pokemon isn't in the fangame!")
-    } else {
+    }
+    else {
         //Type selector for fusion type knowledge of the 1st mon
         var type1 = jsonString.types;
         mon1types = [];
@@ -164,19 +170,44 @@ function fuseFirstPoke(jsonString){
             mon1abilities.push([ab1[i].ability, ab1[i].is_hidden]);
         }  
 
-        //2nd request
-        var pxhr = new XMLHttpRequest();
-        var poke2 = "https://pokeapi.co/api/v2/pokemon/" + mon2; //may cause issues
-        pxhr.open('GET', poke2, true);
-        pxhr.send();
-        pxhr.onload = function() {
-            var jsonBody = pxhr.responseText;
+        // Second request - version A
+        var xhr2a = new XMLHttpRequest();
+        var url2a = "https://pokeapi.co/api/v2/pokemon/" + mon2;
+        xhr2a.open('GET', url2a, true);
+        xhr2a.send();
+        xhr2a.onload = function() {
+            jsonBody = xhr2a.responseText;
             if(jsonBody){
-                jp = JSON.parse(jsonBody);
-                fuseSecondPoke(jp);
+                if(jsonBody != "Not Found"){
+                    jp = JSON.parse(jsonBody);
+                    fuseSecondPoke(jp);
+                }
+                else{
+
+                    // Second request - version B
+                    var xhr2b = new XMLHttpRequest();
+                    var url2b = "https://pokeapi.co/api/v2/pokemon/" + mon2 + "/";
+                    xhr2b.open('GET', url2b, true);
+                    xhr2b.send();
+                    xhr2b.onload = function() {
+                        jsonBody = xhr2b.responseText;
+                        if(jsonBody) {
+                            if(jsonBody != "Not Found"){
+                                jp = JSON.parse(jsonBody);
+                                fuseSecondPoke(jp);
+                            }
+                            else{
+                                alert("Second pokemon was misspelled ?");
+                            }
+                        }
+                        else{
+                            alert("PokeAPI is unreachable (2b)");
+                        }
+                    }
+                }
             }
             else{
-                alert("error second poke")
+                alert("PokeAPI is unreachable (2a)");
             }
             
         }
