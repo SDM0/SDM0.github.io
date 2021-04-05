@@ -2,26 +2,72 @@ var result1 = new Array();
 var result2 = new Array();
 var typeComp = 0;
 
-var mon1;
-var mon2;
-
-var num1;
-var num2;
-
-var mon1stats;
-var mon2stats;
-
-var mon1types;
-var mon2types;
-
-var mon1abilities;
-var mon2abilities;
-
+var mon1, mon2;
+var num1, num2;
+var mon1stats, mon2stats;
+var mon1types, mon2types;
+var mon1abilities, mon2abilities;
 var jsonBody;
 
+//Press ENTER on text area 1
+var pkmn1 = document.getElementById('fname1');
+pkmn1.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("button").click();
+    }
+});
 
-function isMissingNames(mon1, mon2){
-    return (mon1 == "" || mon1.length == 0 || mon1 == null) || (mon2 == "" || mon2.length == 0 || mon2 == null)
+
+//Press ENTER on text area 2
+var pkmn2 = document.getElementById('fname2');
+pkmn2.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("button").click();
+    }
+});
+
+
+//Empty pokemon text area
+function resetPoke() {
+    document.getElementById("fname1").value = null;
+    document.getElementById("fname2").value = null;
+}
+
+
+function getRandomPokeID(){
+    minPoke = 1
+    maxPoke = 420
+    return Math.floor(minPoke + Math.random() * Math.floor(maxPoke - minPoke + 1));
+}
+
+
+function randomPoke() {
+    document.getElementById("random").disabled = true;
+    rand1 = getRandomPokeID()
+    rand2 = getRandomPokeID()
+
+    var name = ids[rand1][0].toLowerCase();
+    if (nameFix.includes(name)) {
+        name = nameException[nameFix.indexOf(name)];
+    }
+    document.getElementById("fname1").value = name
+
+    var name2 = ids[rand2][0].toLowerCase();
+    if (nameFix.includes(name2)) {
+        name2 = nameException[nameFix.indexOf(name2)];
+    }
+    document.getElementById("fname2").value = name2
+
+    fusePoke()
+}
+
+
+function getPokemonName(htmlId){
+    var pokemonName = (document.getElementById(htmlId)).value.toLowerCase();
+    pokemonName = pokemonName.replace(/\W/g, '');
+    return pokemonName;
 }
 
 
@@ -29,8 +75,8 @@ function isMissingNames(mon1, mon2){
 function fusePoke() {
 
     //Pokemon from both text area
-    mon1 = "hypno"  // getPokemonName("fname1");
-    mon2 = "heracross"  // getPokemonName("fname2");
+    mon1 = getPokemonName("fname1");
+    mon2 = getPokemonName("fname2");
 
     if (isMissingNames(mon1, mon2)) {
 	    document.getElementById("random").disabled = false
@@ -219,11 +265,6 @@ function fuseFirstPoke(jsonString){
 }
 
 
-
-
-
-
-
 function fuseSecondPoke(jsonString){
     
     //ID selector for sprite showcase of the 2st mon
@@ -310,9 +351,6 @@ function fuseSecondPoke(jsonString){
     }
     
 }
-
-
-
 
 
 function fuseBothPoke(){
@@ -528,7 +566,6 @@ function fuseBothPoke(){
     showFusion("pic1", pic1);
     showFusion("pic2", pic2);
 
-    //NEW
     //Abilities 1
     var abilities1 = fusionAbilities(mon1abilities, mon2abilities);
     var hiddenAbilities1 = fusionHiddenAbilities(mon1abilities, mon2abilities, abilities1);
@@ -538,7 +575,6 @@ function fuseBothPoke(){
     document.getElementById("ab1").innerHTML = abilitiesText1;
     document.getElementById("hab1").innerHTML = hiddenAbilitiesText1;
 
-    //NEW
     //Abilities 2
     var abilties2 = fusionAbilities(mon2abilities, mon1abilities);
     var hiddenAbilities2 = fusionHiddenAbilities(mon2abilities, mon1abilities, abilties2);
@@ -554,16 +590,367 @@ function fuseBothPoke(){
 }
 
 
+function typeId(ftype) {
+    var ty1 = typeName.indexOf(ftype[0]);
+    if (ftype.length == 2) {
+        var ty2 = typeName.indexOf(ftype[1]);
+    } else {
+        var ty2 = 18;
+    }
+    return [ty1, ty2];
+}
 
 
+//Custom sprite fusion function
+function showFusion(elementId, fusionId){
+    
+    fusionUrl = "https://aegide.github.io/CustomBattlers/" + fusionId;
+
+    if(doesImageExists(fusionUrl)){
+        document.getElementById(elementId).src = fusionUrl;
+    }
+    else{//Screenshot of autogen pokemon
+        fallbackFusionRepository = "https://raw.githubusercontent.com/Aegide/FusionSprites/master/Japeal/"
+        headId = fusionId.split(".")[0];
+        fallbackFusionUrl = fallbackFusionRepository + headId + "/" + fusionId;
+        
+        document.getElementById(elementId).src = fallbackFusionUrl;
+    }
+}
 
 
+//Error detection
+function doesImageExists(imageUrl){
+    var http = new XMLHttpRequest();
+    http.open('HEAD', imageUrl, false);
+    
+    // Can't handle error in an easy way
+    http.send();
+    return http.status != 404;
+}
 
 
+function fusionAbilities(headAbilities, bodyAbilities) {
+    var B0 = bodyAbilities[0][0].name;
+    var H1;
+    
+    //If there is only ability, pick that one
+    if(headAbilities.length == 1){
+        H1 = headAbilities[0][0].name;
+    }
+
+    //If the second ability is a hidden ability, pick the first ability
+    else if(headAbilities[1][1] == true){
+        H1 = headAbilities[0][0].name;
+    }
+    //Otherwise, actually take the second ability
+    else{
+        H1 = headAbilities[1][0].name;
+    }
+
+    return [B0, H1];
+}
 
 
+function fusionHiddenAbilities(headAbilities, bodyAbilities, fusionAbilities){
+
+    var headAbility, bodyAbility;
+    var allAbilities = [];
+
+    var maxAbilities = 3;//Pokémons can't have more than 3 abilities
+    for(var a = 0; a < maxAbilities; a++){
+        if( a < headAbilities.length){
+            headAbility = ability = headAbilities[a][0].name;
+            allAbilities.push(headAbility);
+        }
+        if( a < bodyAbilities.length){
+            bodyAbility = bodyAbilities[a][0].name;
+            allAbilities.push(bodyAbility);
+        }
+    }
+
+    hiddenAbilities = allAbilities.filter(n => !fusionAbilities.includes(n));
+
+    return hiddenAbilities;
+}
 
 
+function removeDuplicates(list){
+    return Array.from(new Set(list));
+}
+
+
+function sanitizeAbilityList(abilityList){
+
+    if(abilityList.length == 0){
+        return abilityList;
+    }
+
+    abilityList = removeDuplicates(abilityList);
+
+    var listAb1 = "";
+    for (var i = 0; i < abilityList.length; i++) {
+        listAb1 = listAb1 + abilityList[i].charAt(0).toUpperCase() + abilityList[i].slice(1) + " / ";
+    }
+    listAb1 = listAb1.slice(0, listAb1.length - 1);
+    listAb1 = listAb1.split("-").join(" ")
+    listAb1 = listAb1.split(" ")
+    for (var i = 0, x = listAb1.length; i < x; i++) {
+        listAb1[i] = listAb1[i][0].toUpperCase() + listAb1[i].substr(1);
+    }
+    listAb1 = listAb1.join(" ").slice(0, -2);
+
+    return listAb1;
+}
+
+
+//Ability fusion function
+function fusAb(mon1, mon2) {
+    var fabs = [];
+    var H0 = mon1[0][0].name;
+    if (mon1.length == 3 && mon1[2][1] == true) {
+        var H1 = mon1[1][0].name;
+        var HH = mon1[2][0].name;
+    }else if (mon1.length == 2 && mon1[1][1] == true) {
+        var HH = mon1[1][0].name;
+    } else if (mon1.length == 2 && mon1[1][1] == false){
+        var H1 = mon1[1][0].name;
+    }
+    var B0 = mon2[0][0].name;
+    if (mon2.length == 3 && mon2[2][1] == true) {
+        var B1 = mon2[1][0].name;
+        var BH = mon2[2][0].name;  
+    }else if (mon2.length == 2 && mon2[1][1] == true) {
+        var BH = mon2[1][0].name;
+    } else if (mon1.length == 2 && mon1[1][1] == false){
+        var B1 = mon2[1][0].name;
+    }
+    //cas H0/null/null + B0/null/null [H0=B0] -> H0/null/null
+    if (mon1.length == 1 && mon2.length == 1 && mon1[0][1] == false && mon2[0][1] == false) {
+        if (H0 == B0) {
+            fabs.push(H0);
+    //cas H0/null/null + B0/null/null [H0#B0] -> H0/B0/null
+        } else if (H0 != B0) {
+            fabs.push(H0);
+            fabs.push(B0);
+        }
+    //cas H0/H1/null + B0/null/null [H0=B0] -> H0/H1/null
+    } else if (mon1.length == 2 && mon2.length == 1 && mon1[0][1] == false && mon1[1][1] == false && mon2[0][1] == false) {
+        if (H0 == B0) {
+            fabs.push(H0);
+            fabs.push(H1);
+    //cas H0/H1/null + B0/null/null [H0#B0] -> H0/B0/H1
+        } else if (H0 != B0) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(H1);
+        }
+    //cas H0/null/HH + B0/null/null [H0=B0 | HH=B0] -> H0/null/HH
+    } else if (mon1.length == 2 && mon2.length == 1 && mon1[0][1] == false && mon1[1][1] == true && mon2[0][1] == false) {
+        if (H0 == B0 || HH == B0) {
+            fabs.push(H0);
+            fabs.push(HH);
+    //cas H0/null/HH + B0/null/null [H0#B0 & HH#B0] -> H0/B0/HH
+        } else if (H0 != B0 && HH != B0) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+        }
+    //cas H0/H1/HH + B0/null/null [H0=B0 | B0=HH] -> H0/H1/HH
+    } else if (mon1.length == 3 && mon2.length == 1 && mon1[0][1] == false && mon1[1][1] == false && mon1[2][1] == true && mon2[0][1] == false) {
+        if (H0 == B0 || B0 == HH) {
+            fabs.push(H0);
+            fabs.push(H1);
+            fabs.push(HH);
+    //cas H0/H1/HH + B0/null/null [H0#B0 & HH#B0] -> H0/B0/HH
+        } else if (H0 != B0 && HH != B0) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+        }
+    //cas H0/null/null + B0/B1/null [H0=B1] -> H0/B0/null
+    } else if (mon1.length == 1 && mon2.length == 2 && mon1[0][1] == false && mon2[0][1] == false && mon2[1][1] == false) {
+        if (H0 == B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+    //cas H0/null/null + B0/B1/null [H0=B0] -> H0/B1/null
+        } else if (H0 == B0) {
+            fabs.push(H0);
+            fabs.punch(B1);
+    //cas H0/null/null + B0/B1/null [H0#B0 & H0#B1] -> H0/B1/B0
+        } else if (H0 != B0 && H0 != B1) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(B0);
+        }
+    //cas H0/H1/null + B0/B1/null [H0=B1] -> H0/B0/H1
+    } else if (mon1.length == 2 && mon2.length == 2 && mon1[0][1] == false && mon1[1][1] == false && mon2[0][1] == false && mon2[1][1] == false) {
+        if (H0 == B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(H1);
+    //cas H0/H1/null + B0/B1/null [H0=B0] -> H0/B1/H1
+        } else if (H0 == B0) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(H1);
+    //cas H0/H1/null + B0/B1/null [H1#B0 & H1#B1] -> H0/B1/H1
+        } else if (H1 != B0 && H1 != B1) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(H1);
+        }
+    //cas H0/null/HH + B0/B01/null [H0=B1 | HH=B1] -> H0/B0/HH
+    } else if (mon1.length == 2 && mon2.length == 2 && mon1[0][1] == false && mon1[1][1] == true && mon2[0][1] == false && mon2[1][1] == false) {
+        if (H0 == B1 || HH == B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+    //cas H0/null/HH + B0/B1/null [H0#B1 & HH#B1] -> H0/B1/HH
+        } else if (H0 != B1 && HH != B1) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(H1);
+        }
+    //cas H0/H1/HH + B0/B1/null [H0=B1 | HH=B1] -> H0/B0/HH
+    } else if (mon1.length == 3 && mon2.length == 2 && mon1[0][1] == false && mon1[1][1] == false && mon1[2][1] == true && mon2[0][1]==false && mon2[1][1] == false) {
+        if (H0 == B1 || HH == B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+    //cas H0/H1/HH + B0/B1/null [H0#B1 & HH#B1] -> H0/B1/HH
+        } else if (H0 != B1 && HH != B1) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(HH);
+        }
+    //cas H0/null/null + B0/null/BH [H0=BH] -> H0/null/B0
+    } else if (mon1.length == 1 && mon2.length == 2 && mon1[0][1] == false && mon2[0][1] == false && mon2[1][1] == true) {
+        if (H0 == BH) {
+            fabs.push(H0);
+            fabs.push(B0);
+    //cas H0/null/null + B0/null/BH [H0=B0] -> H0/null/BH
+        } else if (H0 == B0) {
+            fabs.push(H0);
+            fabs.push(BH);
+    //cas H0/null/null + B0/null/BH [H0#B0 & H0#BH] -> H0/B0/BH
+        } else if (H0 != B0 && H0 != BH) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(BH);
+        }
+    //cas H0/H1/null + B0/null/BH [H0=BH] -> H0/B0/H1
+    } else if (mon1.length == 2 && mon2.length == 2 && mon1[0][1] == false && mon1[1][1] == false && mon2[0][1] == false && mon2[1][1] == true) {
+        if (H0 == BH) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(H1);
+    //cas H0/H1/null + B0/null/BH [H0=B0] -> H0/BH/H1
+        } else if (H0 == B0) {
+            fabs.push(H0);
+            fabs.push(BH);
+            fabs.push(H1);
+    //cas H0/H1/null + B0/null/BH [H0#BH & H1#BH] -> H0/H1/BH
+        } else if (H0 != BH && H1 != BH) {
+            fabs.push(H0);
+            fabs.push(H1);
+            fabs.push(BH);
+        }
+    //cas H0/null/HH + B0/null/BH [H0=BH | HH=BH] -> H0/B0/HH
+    } else if (mon1.length == 2 && mon2.length == 2 && mon1[0][1] == false && mon1[1][1] == true && mon2[0][1] == false && mon2[1][1]==true) {
+        if (H0 == BH || HH == BH) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+    //cas H0/null/HH + B0/null/BH [H0#BH & HH#BH] -> H0/BH/HH
+        } else if (H0 != BH && HH != BH) {
+            fabs.push(H0);
+            fabs.push(BH);
+            fabs.push(HH);
+        }
+    //cas H0/H1/HH + B0/null/BH [H0=BH | HH=BH] -> H0/B0/HH
+    } else if (mon1.length == 3 && mon2.length == 2 && mon1[0][1] == false && mon1[1][1] == false && mon1[2][1] == true && mon2[0][1] == false && mon2[1][1] == true) {
+        if (H0 == BH || HH == BH) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+    //cas H0/H1/HH + B0/null/BH [H0#BH & HH#BH] -> H0/BH/HH
+        } else if (H0 != BH && HH != BH) {
+            fabs.push(H0);
+            fabs.push(BH);
+            fabs.push(HH);
+        }
+    //cas H0/null/null + B0/B1/BH [H0#B1 & H0#BH] -> H0/B1/BH
+    } else if (mon1.length == 1 && mon2.length == 3 && mon1[0][1] == false  && mon2[0][1] == false && mon2[1][1] == false && mon2[2][1] == true) {
+        if (H0 != B1 && H0 != BH) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(BH);
+    //cas H0/null/null + B0/B1/BH [H0=B1] -> H0/B0/BH
+        } else if (H0 == B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(BH);
+    //cas H0/null/null + B0/B1/BH [H0=BH] -> H0/B1/B0
+        } else if (H0 == BH) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(B0);
+        }
+    //cas H0/H1/null + B0/B1/BH [H0#B1 & H0#BH] -> H0/B1/BH
+    } else if (mon1.length == 2 && mon2.length == 3 && mon1[0][1] == false && mon1[1][1] == false && mon2[0][1] == false && mon2[1][1] == false && mon2[2][1] == true) {
+        if (H0 == B1 || H0 == BH) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(BH);
+    //cas H0/H1/null + B0/B1/BH [H0=B1] -> H0/B0/BH
+        } else if (H0 == B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(BH);
+    //cas H0/H1/null + B0/B1/BH [H0=BH] -> H0/B1/B0
+        } else if (H0 == BH) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(B0);
+        }
+    //cas H0/null/HH + B0/B1/BH [H0#B1 & HH#B1] -> H0/B1/HH
+    } else if (mon1.length == 2 && mon2.length == 3 && mon1[0][1]==false && mon1[1][1] == true && mon2[0][1] == false && mon2[1][1] == false && mon2[2][1] == true) {
+        if (H0!=B1 && HH!=B1) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(HH);
+    //cas H0/null/HH + B0/B1/BH [H0=B1 | HH=B1] -> H0/B0/HH
+        } else if (H0 == B1 || HH == B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+    //cas H0/null/HH + B0/B1/BH [H0=B0 | HH=B0] -> H0/B1/HH
+        } else if (H0 == B0 || HH == B0) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(HH);
+        }
+    //cas H0/H1/HH + B0/B1/BH [H0#B1 & HH#B1] -> H0/B1/HH
+    } else if (mon1.length == 3 && mon2.length == 3 && mon1[0][1] == false && mon1[1][1] == false && mon1[2][1] == true && mon2[0][1] == false && mon2[1][1] == false && mon2[2][1] == true) {
+        if (H0 != B1 && HH != B1) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(HH);
+    //cas H0/H1/HH + B0/B1/BH [H0=B1 | HH=B1] -> H0/B0/HH
+        } else if (H0 == B1 || HH == B1) {
+            fabs.push(H0);
+            fabs.push(B0);
+            fabs.push(HH);
+    //cas H0/H1/HH + B0/B1/BH [H0=B0 | HH=B0] -> H0/B1/HH
+        } else if (H0 == B0 || HH == B0) {
+            fabs.push(H0);
+            fabs.push(B1);
+            fabs.push(HH);
+        }
+    }
+	return fabs
+}
 
 
 //Type fusion function
@@ -624,109 +1011,7 @@ function fusType(mon1, mon2) {
     return fmon
 }
 
-function typeId(ftype) {
-    var ty1 = typeName.indexOf(ftype[0]);
-    if (ftype.length == 2) {
-        var ty2 = typeName.indexOf(ftype[1]);
-    } else {
-        var ty2 = 18;
-    }
-    return [ty1, ty2];
+
+function isMissingNames(mon1, mon2){
+    return (mon1 == "" || mon1.length == 0 || mon1 == null) || (mon2 == "" || mon2.length == 0 || mon2 == null)
 }
-
-//Custom sprite fusion function
-function showFusion(elementId, fusionId){
-    
-    fusionUrl = "https://aegide.github.io/CustomBattlers/" + fusionId;
-
-    if(doesImageExists(fusionUrl)){
-        document.getElementById(elementId).src = fusionUrl;
-    }
-    else{//Screenshot of autogen pokemon
-        fallbackFusionRepository = "https://raw.githubusercontent.com/Aegide/FusionSprites/master/Japeal/"
-        headId = fusionId.split(".")[0];
-        fallbackFusionUrl = fallbackFusionRepository + headId + "/" + fusionId;
-        
-        document.getElementById(elementId).src = fallbackFusionUrl;
-    }
-}
-
-//Error detection
-function doesImageExists(imageUrl){
-    var http = new XMLHttpRequest();
-    http.open('HEAD', imageUrl, false);
-    http.send();
-    return http.status != 404;
-}
-
-function fusionAbilities(headAbilities, bodyAbilities) {
-    var B0 = bodyAbilities[0][0].name;
-    var H1;
-    
-    //If there is only ability, pick that one
-    if(headAbilities.length == 1){
-        H1 = headAbilities[0][0].name;
-    }
-
-    //If the second ability is a hidden ability, pick the first ability
-    else if(headAbilities[1][1] == true){
-        H1 = headAbilities[0][0].name;
-    }
-    //Otherwise, actually take the second ability
-    else{
-        H1 = headAbilities[1][0].name;
-    }
-
-    return [B0, H1];
-}
-
-function fusionHiddenAbilities(headAbilities, bodyAbilities, fusionAbilities){
-
-    var headAbility, bodyAbility;
-    var allAbilities = [];
-
-    var maxAbilities = 3;//Pokémons can't have more than 3 abilities
-    for(var a = 0; a < maxAbilities; a++){
-        if( a < headAbilities.length){
-            headAbility = ability = headAbilities[a][0].name;
-            allAbilities.push(headAbility);
-        }
-        if( a < bodyAbilities.length){
-            bodyAbility = bodyAbilities[a][0].name;
-            allAbilities.push(bodyAbility);
-        }
-    }
-
-    hiddenAbilities = allAbilities.filter(n => !fusionAbilities.includes(n));
-
-    return hiddenAbilities;
-}
-
-function sanitizeAbilityList(abilityList){
-
-    if(abilityList.length == 0){
-        return abilityList;
-    }
-
-    abilityList = removeDuplicates(abilityList);
-
-    var listAb1 = "";
-    for (var i = 0; i < abilityList.length; i++) {
-        listAb1 = listAb1 + abilityList[i].charAt(0).toUpperCase() + abilityList[i].slice(1) + " / ";
-    }
-    listAb1 = listAb1.slice(0, listAb1.length - 1);
-    listAb1 = listAb1.split("-").join(" ")
-    listAb1 = listAb1.split(" ")
-    for (var i = 0, x = listAb1.length; i < x; i++) {
-        listAb1[i] = listAb1[i][0].toUpperCase() + listAb1[i].substr(1);
-    }
-    listAb1 = listAb1.join(" ").slice(0, -2);
-
-    return listAb1;
-}
-
-function removeDuplicates(list){
-    return Array.from(new Set(list));
-}
-
-fusePoke()
