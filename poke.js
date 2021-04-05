@@ -37,9 +37,8 @@ function resetPoke() {
 
 
 function getRandomPokeID(){
-    minPoke = 1
     maxPoke = 420
-    return Math.floor(minPoke + Math.random() * Math.floor(maxPoke - minPoke + 1));
+    return Math.floor(Math.random() * Math.floor(maxPoke));
 }
 
 
