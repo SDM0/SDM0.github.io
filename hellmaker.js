@@ -97,6 +97,22 @@ function change2() {
             document.getElementById("h2").innerHTML= "• Zdrada, the Bitch Demon •";
             document.getElementById("img2").src="images/z_idle.png"
             break;
+        case "loremaster":
+            document.getElementById("h2").innerHTML= "• Loremaster, the Science Demon •";
+            document.getElementById("img2").src="images/hm_intro.png"
+            break;
+        case "lucifermaid":
+            document.getElementById("h2").innerHTML= "• Lucifer, the Maid Demon •";
+            document.getElementById("img2").src="images/lucy_stand1.png"
+            break;
+        case "justicepie":
+            document.getElementById("h2").innerHTML= "• Justice, the Apple Pie Demon •";
+            document.getElementById("img2").src="images/ju_pie.png"
+            break;
+        case "su67":
+            document.getElementById("h2").innerHTML= "• Subject 67 •";
+            document.getElementById("img2").src="images/su67_suit.png"
+            break;
         default:
             null;
         }
@@ -153,6 +169,16 @@ function change3() {
                 document.getElementById("divimage").style.background = "url(images/bg5_1.png)"
             } else {
                 document.getElementById("divimage").style.background = "url(images/bg5_2.png)"
+            }
+            document.getElementById("divimage").style.backgroundSize = "cover"
+            break;
+        case "bg6":
+            if (bd==0) {
+                document.getElementById("divimage").style.background = "url(images/bg6_0.png)"
+            } else if (bd==1) {
+                document.getElementById("divimage").style.background = "url(images/bg6_1.png)"
+            } else {
+                document.getElementById("divimage").style.background = "url(images/bg6_2.png)"
             }
             document.getElementById("divimage").style.backgroundSize = "cover"
             break;
