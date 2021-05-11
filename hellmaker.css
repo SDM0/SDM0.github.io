@@ -36,6 +36,12 @@ h3 {
     font-size: xx-large;
 }
 
+h4 {
+    color: white;
+    font-family: 'Crimson Pro', serif;
+    font-size: x-large;
+}
+
 textarea {
     font-size: 50px;
     font-family: 'Crimson Pro', serif;
