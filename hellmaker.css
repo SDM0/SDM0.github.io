@@ -40,6 +40,7 @@ h4 {
     color: white;
     font-family: 'Crimson Pro', serif;
     font-size: x-large;
+    margin: 1.5%;
 }
 
 textarea {
@@ -67,6 +68,7 @@ textarea {
 
 .screen {
     margin-top: -5%;
+    background-color:rgb(2,2,26);
 }
 
 .img2 {
@@ -118,17 +120,6 @@ textarea {
     color: white;
     background-color:rgb(2,2,26);
     text-indent: 1px;
-}
-
-#btn {
-    font-size: x-large;
-    text-align: center;
-    padding-bottom: 3px;
-    margin-bottom: 15px;
-    font-family: 'Crimson Pro', serif;
-    color: white;
-    background-color:rgb(2,2,26);
-    width: 45%;
 }
 
 .act option {

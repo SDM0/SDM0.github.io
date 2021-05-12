@@ -186,7 +186,3 @@ function change3() {
             null;
     }
 }
-
-function save() {
-    alert("Saved! ;)  (haha jk doesnt work)");
-}
