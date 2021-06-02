@@ -1,0 +1,256 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Isaac Challenge Generator</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SDM_0">
+  <link rel="stylesheet" href="chall.css">
+</head>
+
+<body>
+  <h1>TBOI Custom Challenge Maker</h1>
+  <h4>List of collectible IDs: <a href="https://platinumgod.co.uk/" target="_blank">https://platinumgod.co.uk/</a></h4>
+  <h4>Wiki of custom challenge infos: <a href="https://bindingofisaacrebirth.fandom.com/wiki/Custom_Challenges" target="_blank">https://bindingofisaacrebirth.fandom.com/wiki/Custom_Challenges</a></h4>
+  <h4><u>Important notes:</u></h4>
+  <h4 id="notes">-You can leave "insert" and "select" options empty/unselected</h4>
+  <h4 id="notes">-Press Ctrl (Windows) or Command (Mac) key while selecting multiple options in "select" (no dragging needed)</h4>
+  <h4 id="notes">-Trinkets: You need to add an increasing trinket slot item if you want 2 trinkets (Mom's Purse(139) or Belly Button(458))</h4>
+  <h4 id="notes">-Hearts: Even number = full heart / Odd number = half heart</h4>
+  <br><br><br>
+  <section class="indent">
+    <section class="s1">
+      <label for="name">Challenge name:</label>
+      <input autocomplete="off" id="name" rows="1" wrap="soft" size="50" placeholder="Ex: My Challenge" ></input>
+      <br><br>
+      <label for="id">Insert challenge ID:</label>
+      <input autocomplete="off" id="id" rows="1" wrap="soft" size="30" placeholder="Ex: 90"></input>
+      <br><br>
+      <label for="item">Insert item/s ID:</label>
+      <input autocomplete="off" id="item" rows="1" wrap="soft" size="50" placeholder="Ex: 125,85,268,351"></input>
+      <br><br>
+      <label for="trinket">Insert trinket/s ID:</label>
+      <input autocomplete="off" id="trinket" rows="1" wrap="soft" size="30" placeholder="Ex: 129,149"></input>
+      <br><br>
+      <label for="pill">Insert pill ID:</label>
+      <input autocomplete="off" id="pill" rows="1" wrap="soft" size="30" placeholder="Ex: 17"></input>
+      <br><br>
+      <label for="card">Insert card/rune ID:</label>
+      <input autocomplete="off" id="card" rows="1" wrap="soft" size="30" placeholder="Ex: 31"></input>
+      <br><br>
+      <label for="player">Pick character:</label>
+        <select autocomplete="off" name="charcs" id="chars-select">
+          <option value="0">Isaac</option>
+          <option value="1">Magdalene</option>
+          <option value="2">Cain</option>
+          <option value="3">Judas</option>
+          <option value="4">???</option>
+          <option value="5">Eve</option>
+          <option value="6">Samson</option>
+          <option value="7">Azazel</option>
+          <option value="8">Lazarus</option>
+          <option value="9">Eden</option>
+          <option value="10">The Lost</option>
+          <option value="11">Lazarus (2nd life)</option>
+          <option value="12">Black Judas</option>
+          <option value="13">Lilith</option>
+          <option value="14">Keeper</option>
+          <option value="15">Apollyon</option>
+          <option value="16">The Forgotten</option>
+          <option value="17">The Soul</option>
+          <option value="18">Bethany</option>
+          <option value="19">Jacob</option>
+          <option value="20">Esau</option>
+          <option value="21">T. Isaac</option>
+          <option value="22">T. Magdalene</option>
+          <option value="23">T. Cain</option>
+          <option value="24">T. Judas</option>
+          <option value="25">T. ???</option>
+          <option value="26">T. Eve</option>
+          <option value="27">T. Samson</option>
+          <option value="28">T. Azazel</option>
+          <option value="29">T. Lazarus (1st side)</option>
+          <option value="30">T. Eden</option>
+          <option value="31">T. The Lost</option>
+          <option value="32">T. Lilith</option>
+          <option value="33">T. Keeper</option>
+          <option value="34">T. Apollyon</option>
+          <option value="35">T. The Forgotten</option>
+          <option value="36">T. Bethany</option>
+          <option value="37">T. Jacob</option>
+          <option value="38">T. Lazarus (2nd side)</option>
+          <option value="39">T. Jacob (The Lost)</option>
+          <option value="40">T. The Soul</option>
+        </select>
+      <br><br>
+      <label for="endstage">Pick ending stage:</label>
+        <select autocomplete="off" name="endstage" id="end-select">
+          <option value="1">1st floor</option>
+          <option value="2">2nd floor</option>
+          <option value="3">3rd floor</option>
+          <option value="4">4th floor</option>
+          <option value="5">5th floor</option>
+          <option value="6">Mom</option>
+          <option value="7">7th floor</option>
+          <option selected="selected" value="8">It Lives/Mother</option>
+          <option value="9">Hush</option>
+          <option value="10">Sheol/Cathedral</option>
+          <option value="11">Dark Room/Chest</option>
+          <option value="12">The Void</option>
+          <option value="13">Home</option>
+        </select>
+      </label>
+      <br><br>
+      <label for="roomfilter">Select rooms to disable:</label>
+      <select autocomplete="off" name="roomfilter" id="roomfilter-select" multiple>
+        <option href="#" value="1">Normal</option>
+        <option href="#" value="2">Shop</option>
+        <option href="#" value="3">Error</option>
+        <option href="#" value="4">Treasure</option>
+        <option href="#" value="5">Boss</option>
+        <option href="#" value="6">Miniboss</option>
+        <option href="#" value="7">Secret</option>
+        <option href="#" value="8">Super Secret</option>
+        <option href="#" value="9">Arcade</option>
+        <option href="#" value="10">Curse</option>
+        <option href="#" value="11">Challenge</option>
+        <option href="#" value="12">Library</option>
+        <option href="#" value="13">Sacrifice</option>
+        <option href="#" value="14">Devil</option>
+        <option href="#" value="15">Angel</option>
+        <option href="#" value="16">Dungeon</option>
+        <option href="#" value="17">Boss Rush</option>
+        <option href="#" value="18">Bedroom</option>
+        <option href="#" value="19">Barren</option>
+        <option href="#" value="20">Vault</option>
+        <option href="#" value="21">Dice</option>
+        <option href="#" value="22">Black Market</option>
+        <option href="#" value="23">Greed Exit</option>
+        <option href="#" value="24">Planetarium</option>
+        <option href="#" value="25">Teleporter</option>
+        <option href="#" value="26">Teleporter Exit</option>
+        <option href="#" value="27">Secret Exit</option>
+        <option href="#" value="28">Blue</option>
+        <option href="#" value="29">Ultra Secret</option>
+      </select>
+      <br><br>
+      <label for="cursefilter">Select curses to disable:</label>
+      <select autocomplete="off" name="cursefilter" id="cursefilter-select" multiple>
+        <option value="1">Darkness</option>
+        <option value="2">Labyrinth</option>
+        <option value="4">Lost</option>
+        <option value="8">Unknow</option>
+        <option value="16">Cursed!</option>
+        <option value="32">Maze</option>
+        <option value="64">Blind</option>
+        <option value="128">Giant</option>
+      </select>
+      <br><br>
+      <label for="curse">Select curses to enable:</label>
+      <select autocomplete="off" name="curse" id="curse-select" multiple>
+        <option value="1">Darkness</option>
+        <option value="2">Labyrinth</option>
+        <option value="4">Lost</option>
+        <option value="8">Unknow</option>
+        <option value="16">Cursed!</option>
+        <option value="32">Maze</option>
+        <option value="64">Blind</option>
+        <option value="128">Giant</option>
+      </select>
+      <br><br>
+    </section>
+    <section class="s2">
+      <label for="achievement">Insert achievement IDs needed to play your challenge:</label>
+      <input autocomplete="off" id="achievement" rows="1" wrap="soft" size="30" placeholder="Ex: 33,333"></input>
+      <br><br>
+      <label for="altpath">Pick path:</label>
+        <select autocomplete="off" name="altpath" id="altpath-select">
+          <option value="true">Isaac</option>
+          <option selected="selected" value="false">Satan</option>
+        </select>
+      </label>
+      <br><br>
+      <label for="shoot">Can shoot tears?:</label>
+        <select autocomplete="off" name="shoot" id="shoot-select">
+          <option selected="selected" value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      <br><br>
+      </label>
+      <label for="maxhp">Insert number of max hp:</label>
+      <input autocomplete="off" id="maxhp" rows="1" wrap="soft" size="30" placeholder="Ex: 6"></input>
+      <br><br>
+      <label for="red">Insert number of red heart:</label>
+      <input autocomplete="off" id="red" rows="1" wrap="soft" size="30" placeholder="Ex: 4"></input>
+      <br><br>
+      <label for="soul">Insert number of soul heart:</label>
+      <input autocomplete="off" id="soul" rows="1" wrap="soft" size="30" placeholder="Ex: 4"></input>
+      <br><br>
+      <label for="black">Insert number of black heart:</label>
+      <input autocomplete="off" id="black" rows="1" wrap="soft" size="30" placeholder="Ex: 4"></input>
+      <br><br>
+      <label for="coins">Insert number of coins:</label>
+      <input autocomplete="off" id="coins" rows="1" wrap="soft" size="30" placeholder="Ex: 10"></input>
+      <br><br>
+      <label for="maxdmg">Max damage stat?:</label>
+        <select autocomplete="off" name="maxdmg" id="maxdmg-select">
+          <option value="true">Yes</option>
+          <option selected="selected" value="false">No</option>
+        </select>
+      </label>
+      <br><br>
+      <label for="adddmg">Insert damage stat:</label>
+      <input autocomplete="off" id="adddmg" rows="1" wrap="soft" size="30" placeholder="Ex: 5.0"></input>
+      <br><br>
+      <label for="minfr">Insert fixed tear delay:</label>
+      <input autocomplete="off" id="minfr" rows="1" wrap="soft" size="30" placeholder="Ex: 2"></input>
+      <br><br>
+      <label for="minss">Fixed shot speed of 1?:</label>
+        <select autocomplete="off" name="minss" id="minss-select">
+          <option value="true">Yes</option>
+          <option selected="selected" value="false">No</option>
+        </select>
+      </label>
+      <br><br>
+      <label for="br">Big range of +10?:</label>
+        <select autocomplete="off" name="br" id="br-select">
+          <option value="true">Yes</option>
+          <option selected="selected" value="false">No</option>
+        </select>
+      </label>
+      <br><br>
+      <label for="diff">Pick difficulty:</label>
+        <select autocomplete="off" name="diff" id="diff-select">
+          <option value="0">Easy</option>
+          <option value="1">Hard</option>
+        </select>
+      </label>
+      <br><br>
+      <label for="ms">Go to Mega Satan?:</label>
+        <select autocomplete="off" name="ms" id="ms-select">
+          <option value="true">Yes</option>
+          <option selected="selected" value="false">No</option>
+        </select>
+      </label>
+      <br><br>
+      <label for="rep">Go through Repentance path?:</label>
+        <select autocomplete="off" name="rep" id="rep-select">
+          <option value="true">Yes</option>
+          <option selected="selected" value="false">No</option>
+        </select>
+      </label>
+    </section>
+  </section>
+  <button id="save">Save result</button>
+  <h4 id="error">⠀</h4>
+  <textarea id="ta" autocomplete="off" readonly rows="10" cols="100" style="background-color:black;"></textarea>
+</body>
+<script src="chall.js"></script>
+</html>
+
+<!--
+<label for="">Insert :</label>
+  <input autocomplete="off" id="" rows="1" wrap="soft" size="30" placeholder="Ex: "></input>
+  <br><br>
+-->

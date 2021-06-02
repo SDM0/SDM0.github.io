@@ -1,0 +1,76 @@
+body {
+    text-align: center;
+    color: white;
+    background-image: url("bg.png");
+    background-position: center;
+    font-family: Arial, Helvetica, sans-serif;
+    transform: scale(0.9);
+    margin-top:-4%;
+}
+
+h1 {
+    font-size: xx-large;
+    font-family:'Courier New', Courier, monospace;
+}
+
+h4 {
+    font-weight: lighter;
+}
+
+#notes {
+    margin-left: 25%;
+    text-align: left;
+    margin-bottom: -10px;
+}
+
+#error {
+    color:rgb(189, 8, 8);
+    font-size: 20px;
+}
+
+#save {
+    margin-top: 2%;
+    margin-bottom: -2%;
+}
+
+button {
+    padding:8px;
+    font-size: 16px;
+    background-color:black;
+    color:white;
+}
+
+input {
+    background-color: black;
+    color:white
+}
+
+select {
+    background-color: black;
+    color:white
+}
+
+textarea {
+    font-size: 18px;
+    background-color: black;
+    color:white;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;  
+}
+
+.indent {
+    width: 100%;
+    margin-right:auto;
+    margin-left: -2%;
+    margin-bottom: 15px;
+    float: left;
+}
+
+.indent section {
+    width: 50%;
+    float: left;
+}
+
+#cursefilter {
+    display: inline-block;
+}
