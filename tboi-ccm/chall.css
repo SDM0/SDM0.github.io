@@ -13,6 +13,11 @@ h1 {
     font-family:'Courier New', Courier, monospace;
 }
 
+h2 {
+    font-size: x-large;
+    font-family:'Courier New', Courier, monospace;
+}
+
 h4 {
     font-weight: lighter;
 }
