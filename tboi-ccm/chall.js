@@ -276,8 +276,11 @@ btn.onclick = function() {
   var rep = document.getElementById("rep-select").value
   text.value += 'secretpath="'+rep+'" '
 
-  err.style.color="green"
-  err.textContent="Done!"
+  err.style.color = "green";
+  err.style.whiteSpace= "pre";
+  err.textContent="Done!\r\n"
+  err.textContent+="Copy and paste the content into your:\r\n"
+  err.textContent+="SteamLibrary/steamapps/common/The Binding of Isaac Rebirth/mods/Your custom challenge folder/content/challenges.xml\r\n"
   text.value = (text.value).substring(0,text.value.length-1)+"/>"
 }
 
