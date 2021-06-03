@@ -10,17 +10,12 @@ seed.addEventListener("keyup", function(event) {
   text.value=""
   key = event.key || event.keyCode
   if (key== 'Enter' || key == 13) {
-    var memo = seed.value.split(".")
-    for (var i=0; i<memo.length;i++) {
-      if (!isNum(memo[i])) {
-        seed.value=""
-        err.textContent = "Seed: Invalid syntax"
-        return false;
-      }
-      seed.value=""
-      seed.style.display="none"
-      text.style.display="inline-block"
-      text.value += String.fromCharCode(memo[i])
+    err.textContent="⠀"
+    text.style.display="none"
+    text.value=""
+    seed.style.display = "inline-block"
+    if (seed.value.length>0) {
+      loadSeed()
     }
   }
 })
@@ -345,127 +340,135 @@ btn3.onclick = function() {
   text.value=""
   seed.style.display = "inline-block"
   if (seed.value.length>0) {
-    var memo = seed.value.split(".")
-    for (var i=0; i<memo.length;i++) {
-      if (!isNum(memo[i])) {
-        seed.value=""
-        err.textContent = "Seed: Invalid syntax"
-        return false;
-      }
-      text.value += String.fromCharCode(memo[i])
-    }
-    var word = text.value.split('" ')
-    for (var i=0; i<word.length;i++) {
-      word[i]= word[i].replace(/[^a-zA-Z0-9=,. ]/g, "")
-      word[i]=word[i].split("=")
-    }
-    for (var i=0; i<word.length;i++) {
-      switch (word[i][0]) {
-        case "challenge name":
-          document.getElementById("name").value=word[i][1]
-          break;
-        case "id":
-          document.getElementById("id").value=word[i][1]
-          break;
-        case "startingitems":
-          document.getElementById("item").value=word[i][1]
-          break;
-        case "startingtrinkets":
-          document.getElementById("trinket").value=word[i][1]
-          break;
-        case "startingpill":
-          document.getElementById("pill").value=word[i][1]
-          break;
-        case "startingcard":
-          document.getElementById("card").value=word[i][1]
-          break;
-        case "playertype":
-          document.getElementById("chars-select").value=word[i][1]
-          break;
-        case "endstage":
-          document.getElementById("end-select").value=word[i][1]
-          break;
-        case "roomfilter":
-          if (word[i][1].includes(",")) {
-            nums = word[i][1].split(",")
-            for (var j=0 ;j<nums.length;j++) {
-              nums[j]=parseInt(nums[j])
-            }
-          } else {
-              nums = [parseInt(word[i][1])]
-            }
-          for (const option of document.querySelectorAll('#roomfilter-select option')) {
-            const value = Number.parseInt(option.value);
-            if (nums.indexOf(value) !== -1) {
-              option.setAttribute('selected', 'selected');
-            }
-            else {
-              option.removeAttribute('selected');
-            }
-          }
-          break;
-        case "achievements":
-          document.getElementById("achievement").value=word[i][1]
-          break;
-        case "altpath":
-          document.getElementById("altpath-select").value=word[i][1]
-          break;
-        case "canshoot":
-          document.getElementById("shoot-select").value=word[i][1]
-          break;
-        case "maxhp":
-          document.getElementById("maxhp").value=word[i][1]
-          break;
-        case "redhp":
-          document.getElementById("red").value=word[i][1]
-          break;
-        case "soulhp":
-          document.getElementById("soul").value=word[i][1]
-          break;
-        case "blackhp":
-          document.getElementById("black").value=word[i][1]
-          break;
-        case "coins":
-          document.getElementById("coins").value=word[i][1]
-          break;
-        case "maxdamage":
-          document.getElementById("maxdmg-select").value=word[i][1]
-          break;
-        case "adddamage":
-          document.getElementById("adddmg").value=word[i][1]
-          break;
-        case "minfirerate":
-          document.getElementById("minfr").value=word[i][1]
-          break;
-        case "minshotspeed":
-          document.getElementById("minss-select").value=word[i][1]
-          break;
-        case "bigrange":
-          document.getElementById("br-select").value=word[i][1]
-          break;
-        case "difficulty":
-          document.getElementById("diff-select").value=word[i][1]
-          break;
-        case "megasatan":
-          document.getElementById("ms-select").value=word[i][1]
-          break;
-        case "secretpath":
-          document.getElementById("rep-select").value=word[i][1]
-          break;
-        default:
-          console.log("Error, no attribute with that name or curse was selected")
-      }
-    }
-    seed.value=""
-    seed.style.display="none"
-
-    text.style.display="inline-block"
-
-    err.style.color = "green";
-    err.style.whiteSpace= "pre";
-    err.textContent="Done!\r\n"
-    err.textContent+="Your seed was pasted successfully:\r\n"
+    loadSeed()
   }
+}
+
+
+function loadSeed() {
+  var text = document.getElementById("ta")
+  var seed = document.getElementById("seed")
+  var err = document.getElementById("error")
+  var memo = seed.value.split(".")
+  for (var i=0; i<memo.length;i++) {
+    if (!isNum(memo[i])) {
+      seed.value=""
+      err.textContent = "Seed: Invalid syntax"
+      return false;
+    }
+    text.value += String.fromCharCode(memo[i])
+  }
+  var word = text.value.split('" ')
+  for (var i=0; i<word.length;i++) {
+    word[i]= word[i].replace(/[^a-zA-Z0-9=,. ]/g, "")
+    word[i]=word[i].split("=")
+  }
+  for (var i=0; i<word.length;i++) {
+    switch (word[i][0]) {
+      case "challenge name":
+        document.getElementById("name").value=word[i][1]
+        break;
+      case "id":
+        document.getElementById("id").value=word[i][1]
+        break;
+      case "startingitems":
+        document.getElementById("item").value=word[i][1]
+        break;
+      case "startingtrinkets":
+        document.getElementById("trinket").value=word[i][1]
+        break;
+      case "startingpill":
+        document.getElementById("pill").value=word[i][1]
+        break;
+      case "startingcard":
+        document.getElementById("card").value=word[i][1]
+        break;
+      case "playertype":
+        document.getElementById("chars-select").value=word[i][1]
+        break;
+      case "endstage":
+        document.getElementById("end-select").value=word[i][1]
+        break;
+      case "roomfilter":
+        if (word[i][1].includes(",")) {
+          nums = word[i][1].split(",")
+          for (var j=0 ;j<nums.length;j++) {
+            nums[j]=parseInt(nums[j])
+          }
+        } else {
+            nums = [parseInt(word[i][1])]
+          }
+        for (const option of document.querySelectorAll('#roomfilter-select option')) {
+          const value = Number.parseInt(option.value);
+          if (nums.indexOf(value) !== -1) {
+            option.setAttribute('selected', 'selected');
+          }
+          else {
+            option.removeAttribute('selected');
+          }
+        }
+        break;
+      case "achievements":
+        document.getElementById("achievement").value=word[i][1]
+        break;
+      case "altpath":
+        document.getElementById("altpath-select").value=word[i][1]
+        break;
+      case "canshoot":
+        document.getElementById("shoot-select").value=word[i][1]
+        break;
+      case "maxhp":
+        document.getElementById("maxhp").value=word[i][1]
+        break;
+      case "redhp":
+        document.getElementById("red").value=word[i][1]
+        break;
+      case "soulhp":
+        document.getElementById("soul").value=word[i][1]
+        break;
+      case "blackhp":
+        document.getElementById("black").value=word[i][1]
+        break;
+      case "coins":
+        document.getElementById("coins").value=word[i][1]
+        break;
+      case "maxdamage":
+        document.getElementById("maxdmg-select").value=word[i][1]
+        break;
+      case "adddamage":
+        document.getElementById("adddmg").value=word[i][1]
+        break;
+      case "minfirerate":
+        document.getElementById("minfr").value=word[i][1]
+        break;
+      case "minshotspeed":
+        document.getElementById("minss-select").value=word[i][1]
+        break;
+      case "bigrange":
+        document.getElementById("br-select").value=word[i][1]
+        break;
+      case "difficulty":
+        document.getElementById("diff-select").value=word[i][1]
+        break;
+      case "megasatan":
+        document.getElementById("ms-select").value=word[i][1]
+        break;
+      case "secretpath":
+        document.getElementById("rep-select").value=word[i][1]
+        break;
+      default:
+        console.log("Error, no attribute with that name or curse was selected")
+    }
+  }
+  seed.value=""
+  seed.style.display="none"
+
+  text.style.display="inline-block"
+
+  err.style.color = "green";
+  err.style.whiteSpace= "pre";
+  err.textContent="Done!\r\n"
+  err.textContent+="Your seed was pasted successfully\r\n"
 }
 
 
