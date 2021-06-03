@@ -408,6 +408,32 @@ function loadSeed() {
           }
         }
         break;
+      case "cursefilter":
+        var ids = [1,2,4,8,16,32,64,128]
+        var numsum = getSubsets(ids,parseInt(word[i][1]))[0]
+        for (const option of document.querySelectorAll('#cursefilter-select option')) {
+          const value = Number.parseInt(option.value);
+          if (numsum.indexOf(value) !== -1) {
+            option.setAttribute('selected', 'selected');
+          }
+          else {
+            option.removeAttribute('selected');
+          }
+        }
+        break;
+      case "getcurse":
+        var ids = [1,2,4,8,16,32,64,128]
+        var numsum = getSubsets(ids,parseInt(word[i][1]))[0]
+        for (const option of document.querySelectorAll('#curse-select option')) {
+          const value = Number.parseInt(option.value);
+          if (numsum.indexOf(value) !== -1) {
+            option.setAttribute('selected', 'selected');
+          }
+          else {
+            option.removeAttribute('selected');
+          }
+        }
+        break;
       case "achievements":
         document.getElementById("achievement").value=word[i][1]
         break;
@@ -475,6 +501,27 @@ function loadSeed() {
 
 function isNum(input){
   return (input - 0) == input && (''+input).trim().length > 0;
+}
+
+
+function getSubsets(array, sum) {
+  function fork(i = 0, s = 0, t = []) {
+      if (s === sum) {
+          result.push(t);
+          return;
+      }
+      if (i === array.length) {
+          return;
+      }
+      if (s + array[i] <= sum) { // shout circuit for positive numbers only
+          fork(i + 1, s + array[i], t.concat(array[i]));
+      }
+      fork(i + 1, s, t);
+  }
+
+  var result = [];
+  fork();
+  return result;
 }
 
 
