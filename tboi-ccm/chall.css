@@ -22,6 +22,22 @@ h4 {
     font-weight: lighter;
 }
 
+#buttons {
+    display:inline-block;
+}
+
+#link {
+    margin-bottom: -10px;
+}
+
+
+#imp {
+    margin-top: 3%;
+    font-family:'Courier New', Courier, monospace;
+    font-weight:bold;
+    font-size: large;
+}
+
 #notes {
     margin-left: 25%;
     text-align: left;
@@ -57,10 +73,9 @@ select {
 
 textarea {
     font-size: 18px;
-    background-color: black;
     color:white;
     white-space: pre-wrap;
-    overflow-wrap: break-word;  
+    overflow-wrap: break-word;
 }
 
 .indent {

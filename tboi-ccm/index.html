@@ -11,13 +11,14 @@
 <body>
   <h1>TBOI Custom Challenge Maker</h1>
   <h2>By SDM_0</h2>
-  <h4>List of collectible IDs: <a href="https://platinumgod.co.uk/" target="_blank">https://platinumgod.co.uk/</a></h4>
-  <h4>Wiki of custom challenge infos: <a href="https://bindingofisaacrebirth.fandom.com/wiki/Custom_Challenges" target="_blank">https://bindingofisaacrebirth.fandom.com/wiki/Custom_Challenges</a></h4>
-  <h4>IsaacGuru's video on custom challenges (very useful to find the directory and setup files): <a href="https://www.youtube.com/watch?v=8BVOEu6kYWQ" target="_blank">https://www.youtube.com/watch?v=8BVOEu6kYWQ</a></h4>
-  <h4><u>Important notes:</u></h4>
+  <h4 id="link">List of collectible IDs: <a href="https://platinumgod.co.uk/" target="_blank">https://platinumgod.co.uk/</a></h4>
+  <h4 id="link">Wiki of custom challenge infos: <a href="https://bindingofisaacrebirth.fandom.com/wiki/Custom_Challenges" target="_blank">https://bindingofisaacrebirth.fandom.com/wiki/Custom_Challenges</a></h4>
+  <h4 id="link">IsaacGuru's video on custom challenges (very useful to find the directory and setup files): <a href="https://www.youtube.com/watch?v=8BVOEu6kYWQ" target="_blank">https://www.youtube.com/watch?v=8BVOEu6kYWQ</a></h4>
+  <h4 id="imp"><u>Important notes:</u></h4>
   <h4 id="notes">-You can leave "insert" and "select" options empty/unselected</h4>
   <h4 id="notes">-Press Ctrl (Windows) or Command (Mac) key while selecting multiple options in "select" (no dragging needed)</h4>
   <h4 id="notes">-Trinkets: You need to add an increasing trinket slot item if you want 2 trinkets (Mom's Purse(139) or Belly Button(458))</h4>
+  <h4 id="notes">-Curses: Force enable/disable curses won't be saved in the seed because they use a bitmask</h4>
   <h4 id="notes">-Hearts: Even number = full heart / Odd number = half heart</h4>
   <br><br><br>
   <section class="indent">
@@ -99,7 +100,6 @@
           <option value="10">Sheol/Cathedral</option>
           <option value="11">Dark Room/Chest</option>
           <option value="12">The Void</option>
-          <option value="13">Home</option>
         </select>
       </label>
       <br><br>
@@ -148,7 +148,7 @@
         <option value="128">Giant</option>
       </select>
       <br><br>
-      <label for="curse">Select curses to enable:</label>
+      <label for="curse">Select curses to force enable:</label>
       <select autocomplete="off" name="curse" id="curse-select" multiple>
         <option value="1">Darkness</option>
         <option value="2">Labyrinth</option>
@@ -223,7 +223,7 @@
       <br><br>
       <label for="diff">Pick difficulty:</label>
         <select autocomplete="off" name="diff" id="diff-select">
-          <option value="0">Easy</option>
+          <option value="0">Normal</option>
           <option value="1">Hard</option>
         </select>
       </label>
@@ -243,9 +243,15 @@
       </label>
     </section>
   </section>
-  <button id="save">Save result</button>
+  <div id="buttons">
+    <button id="save">Print result</button>
+    <button id="sseed">Save seed</button>
+    <button id="lseed">Load seed</button>
+  </div>
+  <br><br>
+  <textarea id="seed" autocomplete="off" placeholder="Paste your seed here and press Enter or 'Load Seed' again" rows="10" cols="100" style="background-color:black; display: none;"></textarea>
+  <textarea id="ta" autocomplete="off" placeholder="Press 'Print result' to show your challenge" readonly rows="10" cols="100" style="background-color:black;"></textarea>
   <h4 id="error">⠀</h4>
-  <textarea id="ta" autocomplete="off" readonly rows="10" cols="100" style="background-color:black;"></textarea>
 </body>
 <script src="chall.js"></script>
 </html>
