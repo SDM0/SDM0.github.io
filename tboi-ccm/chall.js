@@ -1,6 +1,7 @@
 var btn1 = document.getElementById("save");
 var btn2 = document.getElementById("sseed");
 var btn3 = document.getElementById("lseed");
+var btn4 = document.getElementById("reset");
 
 var seed = document.getElementById("seed")
 
@@ -19,6 +20,10 @@ seed.addEventListener("keyup", function(event) {
     }
   }
 })
+
+btn4.onclick = function() {
+  window.location.reload();
+}
 
 btn1.onclick = function() {
   var text = document.getElementById("ta")
