@@ -121,7 +121,9 @@ btn1.onclick = function() {
   } 
 
   var charc = document.getElementById("chars-select").value
-  text.value += 'playertype="'+charc+'" '
+  if (charc!="0") {
+    text.value += 'playertype="'+charc+'" '
+  }
 
   var end = document.getElementById("end-select").value
   text.value += 'endstage="'+end+'" '
@@ -201,10 +203,14 @@ btn1.onclick = function() {
     }
   }
   var alt = document.getElementById("altpath-select").value
-  text.value += 'altpath="'+alt+'" '
+  if (alt!="false") {
+    text.value += 'altpath="'+alt+'" '
+  }
 
   var shoot = document.getElementById("shoot-select").value
-  text.value += 'canshoot="'+shoot+'" '
+  if (shoot!="true") {
+    text.value += 'canshoot="'+shoot+'" '
+  }
 
   var maxhp= document.getElementById("maxhp").value
   if (maxhp.length!=0) {
@@ -257,7 +263,9 @@ btn1.onclick = function() {
   }
 
   var maxdmg = document.getElementById("maxdmg-select").value
-  text.value += 'maxdamage="'+maxdmg+'" '
+  if (maxdmg!="false") {
+    text.value += 'maxdamage="'+maxdmg+'" '
+  }
 
   var adddmg= document.getElementById("adddmg").value
   if (adddmg.length!=0) {
@@ -287,19 +295,29 @@ btn1.onclick = function() {
   }
 
   var minss = document.getElementById("minss-select").value
-  text.value += 'minshotspeed="'+minss+'" '
+  if (minss!="false") {
+    text.value += 'minshotspeed="'+minss+'" '
+  }
 
   var br = document.getElementById("br-select").value
-  text.value += 'bigrange="'+br+'" '
+  if (br!="false") {
+    text.value += 'bigrange="'+br+'" '
+  }
 
   var diff = document.getElementById("diff-select").value
-  text.value += 'difficulty="'+diff+'" '
+  if (diff!="0") {
+    text.value += 'difficulty="'+diff+'" '
+  }
 
   var ms = document.getElementById("ms-select").value
-  text.value += 'megasatan="'+ms+'" '
+  if (ms!="false") {
+    text.value += 'megasatan="'+ms+'" '
+  }
 
   var rep = document.getElementById("rep-select").value
-  text.value += 'secretpath="'+rep+'" '
+  if (rep!="false") {
+    text.value += 'secretpath="'+rep+'" '
+  }
 
   err.style.color = "green";
   err.style.whiteSpace= "pre";
