@@ -610,6 +610,7 @@ function typeId(ftype) {
 function showFusion(elementId, fusionId){
     
     fusionUrl = "https://aegide.github.io/CustomBattlers/" + fusionId;
+    document.getElementById(elementId).title = fusionId;
 
     if(doesImageExists(fusionUrl)){
         document.getElementById(elementId).src = fusionUrl;
