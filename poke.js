@@ -369,6 +369,12 @@ function fuseBothPoke(){
         var fmon2 = nameException[nameFix.indexOf(mon2)].charAt(0).toUpperCase() + nameException[nameFix.indexOf(mon2)].slice(1);
     }
 
+    //Dex Numbers
+    var dexnum1 = Math.floor(num1 + (420 * num2));
+    var dexnum2 = Math.floor(num2 + (420 * num1));
+    document.getElementById("dexnumber1").innerHTML = "#: " + dexnum1;
+    document.getElementById("dexnumber2").innerHTML = "#: " + dexnum2;
+    
     //Name of fusions
     document.getElementById("FP1").innerHTML = fmon1+ "/" + fmon2;
     document.getElementById("FP2").innerHTML = fmon2 + "/" + fmon1;
@@ -604,6 +610,7 @@ function typeId(ftype) {
 function showFusion(elementId, fusionId){
     
     fusionUrl = "https://aegide.github.io/CustomBattlers/" + fusionId;
+    document.getElementById(elementId).title = fusionId;
 
     if(doesImageExists(fusionUrl)){
         document.getElementById(elementId).src = fusionUrl;
