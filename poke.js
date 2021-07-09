@@ -157,7 +157,6 @@ function fuseFirstPoke(jsonString){
     else {
 
         //#region Type of 1st mon
-
         //Type selector for fusion type knowledge of the 1st mon
         var type1 = jsonString.types;
         mon1types = [];
@@ -219,6 +218,7 @@ function fuseFirstPoke(jsonString){
         }  
         //#endregion
 
+        //#region Request
         // Second request - version A
         var xhr2a = new XMLHttpRequest();
         var url2a = "https://pokeapi.co/api/v2/pokemon/" + mon2;
@@ -260,6 +260,7 @@ function fuseFirstPoke(jsonString){
             }
             
         }
+        //#endregion
     }
 }
 
@@ -282,7 +283,6 @@ function fuseSecondPoke(jsonString){
     else {
 
         //#region Type of 2nd mon
-
         //Type selector for fusion type knowledge of the 2nd mon
         var type2 = jsonString.types;
         mon2types = [];
@@ -354,6 +354,7 @@ function fuseSecondPoke(jsonString){
 
 function fuseBothPoke(){
 
+    //TODO : factor this
     //Name of fusion
     if (!nameFix.includes(mon1) && !nameFix.includes(mon2)) {
         var fmon1 = mon1.charAt(0).toUpperCase() + mon1.slice(1);
@@ -409,6 +410,7 @@ function fuseBothPoke(){
     for (var i = 0; i < L0.length; i++) {
         L4.push(Math.max(L2[i], L3[i])-Math.min(L2[i], L3[i]));
     }
+
     //Color of stats
     for (var i = 0; i < L1.length; i++) {
         if (L2[i] < L3[i]) {
@@ -471,8 +473,16 @@ function fuseBothPoke(){
     }
 
     //Type of fused mons
-    var fmonres1 = fusType(mon1types, mon2types);
-    var fmonres2 = fusType(mon2types, mon1types);
+    var fmonres1 = null;
+    var fmonres2 = null;
+    if(mon1 == mon2 && selfFusionTypeException.includes(mon1)){
+        fmonres1 = selfFusionTypeFix[selfFusionTypeException.indexOf(mon1)];
+        fmonres2 = fmonres1
+    }
+    else{
+        fmonres1 = fusType(mon1types, mon2types);
+        fmonres2 = fusType(mon2types, mon1types);
+    }
 
     //Types effectiveness
     if (typeComp>0) {
