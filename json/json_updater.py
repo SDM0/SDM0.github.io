@@ -11,7 +11,7 @@ for element in listdir(path_custom):
         fusions.append(element[:-4])
         print(element[:-4])
 
-jsonStr = json.dumps(fusions)
+jsonStr = json.dumps(fusions, separators=(',\n', ': '))
 jsonFile = open(path_json + "/" +"sprites.json", "w")
 jsonFile.write(jsonStr)
 jsonFile.close()
