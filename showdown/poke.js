@@ -122,8 +122,8 @@ for (var i=0 ; i < ids.length; i += 1) {
     //Special name case
     if (nameFix.includes(ids[i][0].toLowerCase())) {
         console.log(ids[i][0])
-        option.value = nameException[nameFix.indexOf(ids[i][0].toLowerCase())]
-        option.value = option.value[0].toUpperCase() + option.value.substring(1)
+        var val = nameException[nameFix.indexOf(ids[i][0].toLowerCase())]
+        option.value = val[0].toUpperCase() + val.substring(1)
     
     } else {
 
