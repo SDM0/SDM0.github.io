@@ -275,7 +275,7 @@ const listfusion =
 "ampharos/lugia",
 "arbok/groudon",
 "arcanine/dragonite",
-"arcanine/lefeaon",
+"arcanine/leafeaon",
 "arceus/raichu",
 "arceus/rotom",
 "articuno/zekrom",
