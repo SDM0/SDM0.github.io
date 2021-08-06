@@ -108,6 +108,34 @@ var result2 = new Array();
 
 var typeComp = 0;
 
+//Adding options to datalist
+var box1 = document.getElementById('fname1');
+console.log(box1)
+var box2 = document.getElementById('fname2');
+var dl = document.createElement('datalist');
+dl.id = 'dlPkmn';
+
+for (var i=0 ; i < ids.length; i += 1) {
+
+    var option = document.createElement('option');
+
+    //Special name case
+    if (nameFix.includes(ids[i][0].toLowerCase())) {
+        console.log(ids[i][0])
+        option.value = nameException[nameFix.indexOf(ids[i][0].toLowerCase())]
+        option.value = option.value[0].toUpperCase() + option.value.substring(1)
+    
+    } else {
+
+        option.value = ids[i][0];
+
+    }
+    dl.appendChild(option);
+    }
+    console.log(dl)
+    box1.appendChild(dl);
+    box2.appendChild(dl);
+
 //Press ENTER on text area 1
 var pkmn1 = document.getElementById('fname1');
 pkmn1.addEventListener("keydown",function(event) {
