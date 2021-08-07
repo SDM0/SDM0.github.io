@@ -50,6 +50,16 @@ h3 {
     font-weight: 0;
 }
 
+a { 
+    color:white;
+    transition: transform .2s;
+}
+
+a:visited { 
+    text-decoration: none; 
+    color: white;
+}
+
 .stats {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
