@@ -608,6 +608,8 @@ const listfusion =
 "genesect/salamence",
 "genesect/blaziken",
 "genesect/nidoking",
+"gengar/blaziken",
+"gengar/nidoking",
 "giratina/entei",
 "giratina/forretress",
 "giratina/glaceon",
