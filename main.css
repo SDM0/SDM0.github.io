@@ -1,0 +1,25 @@
+body {
+    background-color: tomato;
+    text-align: center;
+    background-image: url("bg.jpg");
+    background-size: cover;
+    max-width: 50%;
+    margin: 4% auto;
+}
+
+@font-face {
+    font-family: SM;
+    src: url(SuperMario256.ttf);
+}
+
+h1 {
+    color:white;
+    font-family: SM;
+    font-size: 85px;
+    margin-top: 0px;
+}
+
+#imgs {
+    margin: 0 auto;
+    text-align: center;
+}
