@@ -543,6 +543,7 @@ const listfusion =
 "blaziken/salamence",
 "blaziken/weavile",
 "blissey/dusclops",
+"blissey/ditto",
 "blissey/gliscor",
 "blissey/porygon2",
 "blissey/weezing",
