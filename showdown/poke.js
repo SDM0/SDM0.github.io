@@ -780,9 +780,16 @@ function verifInputs() {
     var i = 0
     var bx1 = box1.value[0].toUpperCase() + box1.value.substring(1)
     var bx2 = box2.value[0].toUpperCase() + box2.value.substring(1)
+    if (nameException.includes(bx1.toLowerCase())) {
+        bx1 = nameFix[[nameException.indexOf(bx1.toLowerCase())]]
+        bx1 = bx1[0].toUpperCase() + bx1.substring(1)
+    }
+    if (nameException.includes(bx2.toLowerCase())) {
+        bx2 = nameFix[[nameException.indexOf(bx2.toLowerCase())]]
+        bx2 = bx2[0].toUpperCase() + bx2.substring(1)
+    }
     var boxbool1 = false
     var boxbool2 = false
-    console.log(bx1, bx2)
     while (i < ids.length) {
         if (ids[i].includes(bx1)) {
             var boxbool1 = true
