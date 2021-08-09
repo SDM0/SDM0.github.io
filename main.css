@@ -1,8 +1,7 @@
 body {
-    background-color: tomato;
-    text-align: center;
-    background-image: url("bg.jpg");
+    background-image: url("bg.png");
     background-size: cover;
+    text-align: center;
     max-width: 50%;
     margin: 4% auto;
 }
