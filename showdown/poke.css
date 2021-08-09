@@ -50,6 +50,11 @@ h3 {
     font-weight: 0;
 }
 
+input {
+    background-color: rgb(20,20,20);
+    color:white;
+}
+
 a { 
     color:white;
     transition: transform .2s;
