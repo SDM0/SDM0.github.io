@@ -115,16 +115,9 @@ var dl = document.createElement('datalist');
 dl.id = 'dlPkmn';
 
 for (var i = 0; i < ids.length; i += 1) {
-
     var option = document.createElement('option');
-
     //Special name case
-    if (nameFix.includes(ids[i][0].toLowerCase())) {
-        var val = nameException[nameFix.indexOf(ids[i][0].toLowerCase())]
-        option.value = val[0].toUpperCase() + val.substring(1)
-    } else {
-        option.value = ids[i][0];
-    }
+    option.value = nameCheck(ids[i][0])
     dl.appendChild(option);
 }
 box1.appendChild(dl);
@@ -135,9 +128,9 @@ document.addEventListener("keydown", function (event) {
     key = event.key || event.keyCode
     if (key == 'Enter' || key == 13) {
         if (box1 === document.activeElement && box1.value.length != 0) {
-            box1.value = outputClosest(box1.value)
+            box1.value = nameCheck(outputClosest(box1.value))
         } else if (box2 === document.activeElement && box2.value.length != 0) {
-            box2.value = outputClosest(box2.value)
+            box2.value = nameCheck(outputClosest(box2.value))
         }
         verifInputs()
     }
@@ -813,6 +806,17 @@ function verifInputs() {
         box2.value = ""
         alert("The second pokemon misspelled or isn't in the fangame!")
     }
+}
+
+//Change the pokemon's name if exception (Giratina-origin, Aegislash-shield...)
+function nameCheck(mon) {
+    if (nameFix.includes(mon.toLowerCase())) {
+        var val = nameException[nameFix.indexOf(mon.toLowerCase())]
+        val = val[0].toUpperCase() + val.substring(1)
+    } else {
+        var val = mon;
+    }
+    return val
 }
 
 //Ability fusion function
