@@ -43,6 +43,14 @@ h4 {
     margin: 1.5%;
 }
 
+a {
+    color: white
+}
+
+a:checked {
+    color: white
+}
+
 textarea {
     font-size: 50px;
     font-family: 'Crimson Pro', serif;
