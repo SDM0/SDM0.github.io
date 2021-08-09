@@ -158,6 +158,57 @@ pkmn2.addEventListener("keydown",function(event) {
 function resetPoke() {
     document.getElementById("fname1").value = null;
     document.getElementById("fname2").value = null;
+    document.getElementById("p1").src = "Types/null.png";
+    document.getElementById("p2").style = "display:none";
+    document.getElementById("p3").src = "Types/null.png";
+    document.getElementById("p4").style = "display:none";
+    document.getElementById("pic1").src = "question.png";
+    document.getElementById("pic2").src = "question.png";
+
+    document.getElementById("IG1").innerHTML = "";
+    document.getElementById("IG2").innerHTML = "";
+
+    document.getElementById("FP1").innerHTML = "mon1/mon2";
+    document.getElementById("FP2").innerHTML = "mon2/mon1";
+
+    document.getElementById("hp1").innerHTML = "HP: ";
+    document.getElementById("atk1").innerHTML = "ATK: ";
+    document.getElementById("def1").innerHTML = "DEF: ";
+    document.getElementById("spatk1").innerHTML = "SPE.ATK: ";
+    document.getElementById("spdef1").innerHTML = "SPE.DEF: ";
+    document.getElementById("spe1").innerHTML = "SPEED: ";
+    document.getElementById("bs1").innerHTML = "TOTAL: ";
+    document.getElementById("ab1").innerHTML = "ABILITY:";
+
+    document.getElementById("hp2").innerHTML = "HP: ";
+    document.getElementById("atk2").innerHTML = "ATK: ";
+    document.getElementById("def2").innerHTML = "DEF: ";
+    document.getElementById("spatk2").innerHTML = "SPE.ATK: ";
+    document.getElementById("spdef2").innerHTML = "SPE.DEF: ";
+    document.getElementById("spe2").innerHTML = "SPEED: ";
+    document.getElementById("bs2").innerHTML = "TOTAL: ";
+    document.getElementById("ab2").innerHTML = "ABILITY:";
+
+    document.getElementById("weak14").innerHTML = "x4: ";
+    document.getElementById("weak12").innerHTML = "x2: ";
+    document.getElementById("weak11").innerHTML = "x1: "; 
+    document.getElementById("weak105").innerHTML = "x0.5: ";
+    document.getElementById("weak1025").innerHTML = "x0.25: ";
+    document.getElementById("weak100").innerHTML = "x0: ";
+
+    document.getElementById("weak24").innerHTML = "x4: ";
+    document.getElementById("weak22").innerHTML = "x2: ";
+    document.getElementById("weak21").innerHTML = "x1: "; 
+    document.getElementById("weak205").innerHTML = "x0.5: ";
+    document.getElementById("weak2025").innerHTML = "x0.25: ";
+    document.getElementById("weak200").innerHTML = "x0: ";
+
+    var L0 = ["hp1","atk1","def1","spatk1","spdef1","spe1","bs1"];
+    var L1 = ["hp2","atk2","def2","spatk2","spdef2","spe2","bs2"];
+    for (var i = 0; i < L0.length; i++) {
+        document.getElementById(L0[i]).style.color = "";
+        document.getElementById(L1[i]).style.color = "";
+    }
 }
 
 //Random pokemon
