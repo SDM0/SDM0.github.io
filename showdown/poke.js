@@ -136,21 +136,14 @@ for (var i=0 ; i < ids.length; i += 1) {
     box1.appendChild(dl);
     box2.appendChild(dl);
 
-//Press ENTER on text area 1
-var pkmn1 = document.getElementById('fname1');
-pkmn1.addEventListener("keydown",function(event) {
-    if (event.keyCode===13) {
-        event.preventDefault();
-        document.getElementById("button").click();
-    }
-});
 
-//Press ENTER on text area 2
-var pkmn2 = document.getElementById('fname2');
-pkmn2.addEventListener("keydown",function(event) {
-    if (event.keyCode===13) {
+//Press 'Enter' event
+document.addEventListener("keydown",function(event) {
+    key = event.key || event.keyCode
+    if (key== 'Enter' || key == 13) { {
         event.preventDefault();
         document.getElementById("button").click();
+        }
     }
 });
 
