@@ -132,7 +132,9 @@ document.addEventListener("keydown", function (event) {
         } else if (box2 === document.activeElement && box2.value.length != 0) {
             box2.value = nameCheck(outputClosest(box2.value))
         }
+    if (box1.value.length != 0 && box2.value.length != 0) {
         verifInputs()
+        }
     }
 });
 
