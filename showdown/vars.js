@@ -1145,6 +1145,7 @@ const listfusion =
 "venusaur/ninetales",
 "volcarona/togekiss",
 "volcarona/typhlosion",
+"volcarona/hydreigon",
 "weavile/krookodile",
 "weavile/rampardos",
 "weavile/scizor",
