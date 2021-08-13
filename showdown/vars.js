@@ -248,7 +248,7 @@ const ids=
 ["Pupitar",247],
 ["Tyranitar",248],
 ["Lugia",249],
-["Ho-Oh",250],
+["Ho-oh",250],
 ["Celebi",251]
 ,["Azurill",252]
 ,["Wynaut",253]

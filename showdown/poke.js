@@ -198,79 +198,11 @@ function resetPoke() {
 //Random pokemon
 function randomPoke() {
     document.getElementById("random").disabled = true;
-    var randList = [];
-    for (var i = 0; i < 2; i++) {
-        randList.push(Math.floor(Math.random() * Math.floor(2)));
-    }
-    if (randList[0] == 0) {
-        var rand1 = Math.floor(Math.random() * Math.floor(251));
-        if (rand1 == 0) {
-            rand1 += 1
-        }
-        var mode1 = 0;
-    } else {
-        var rand1 = Math.floor(Math.random() * Math.floor(170));
-        var mode1 = 1;
-    }
-    if (randList[1] == 0) {
-        var rand2 = Math.floor(Math.random() * Math.floor(251));
-        if (rand2 == 0) {
-            rand2 += 1
-        }
-        var mode2 = 0;
-    } else {
-        var rand2 = Math.floor(Math.random() * Math.floor(170));
-        var mode2 = 1;
-    }
-
-    if (mode1 == 0) {
-        var zxhr = new XMLHttpRequest();
-        var poke1 = 'https://pokeapi.co/api/v2/pokemon/' + rand1;
-        zxhr.open('GET', poke1, true);
-        zxhr.send();
-        zxhr.onload = function () {
-            var jsonBody = zxhr.responseText;
-            var jsonString = JSON.parse(jsonBody);
-            var name = jsonString.name;
-            if (nameFix.includes(name)) {
-                name = nameException[nameFix.indexOf(name)];
-            }
-            setTimeout(() => { document.getElementById("fname1").value = name }, 450);
-        }
-    } else {
-        var name = ids[rand1][0].toLowerCase();
-        if (nameFix.includes(name)) {
-            name = nameException[nameFix.indexOf(name)];
-        }
-        setTimeout(() => { document.getElementById("fname1").value = name }, 450);
-    }
-
-    if (mode2 == 0) {
-        var vxhr = new XMLHttpRequest();
-        var poke2 = 'https://pokeapi.co/api/v2/pokemon/' + rand2;
-        vxhr.open('GET', poke2, true);
-        vxhr.send();
-        vxhr.onload = function () {
-            var jsonBody = vxhr.responseText;
-            var jsonString = JSON.parse(jsonBody);
-            var name1 = jsonString.name;
-            if (nameFix.includes(name1)) {
-                name1 = nameException[nameFix.indexOf(name1)];
-            }
-            setTimeout(() => { document.getElementById("fname2").value = name1 }, 500);
-        }
-    } else {
-        var name2 = ids[rand2][0].toLowerCase();
-        if (name2 == document.getElementById("fname1").value) {
-            var rand2 = Math.floor(Math.random() * Math.floor(251));
-            name2 = ids[rand2][0].toLowerCase();
-        }
-        if (nameFix.includes(name2)) {
-            name2 = nameException[nameFix.indexOf(name2)];
-        }
-        setTimeout(() => { document.getElementById("fname2").value = name2 }, 500);
-    }
-    setTimeout(() => { fusePoke() }, 600);
+    var rand1 = Math.floor(Math.random() * (ids.length + 1))
+    var rand2 = Math.floor(Math.random() * (ids.length + 1))
+    document.getElementById("fname1").value = nameCheck(ids[rand1][0])
+    document.getElementById("fname2").value = nameCheck(ids[rand2][0])
+    document.getElementById("button").click();
 }
 
 //Fusion calculation function
@@ -780,16 +712,8 @@ function outputClosest(mon) {
 //Verify inputs on 'Enter' press (and soon too 'Fuse' button)
 function verifInputs() {
     var i = 0
-    var bx1 = box1.value[0].toUpperCase() + box1.value.substring(1)
-    var bx2 = box2.value[0].toUpperCase() + box2.value.substring(1)
-    if (nameException.includes(bx1.toLowerCase())) {
-        bx1 = nameFix[[nameException.indexOf(bx1.toLowerCase())]]
-        bx1 = bx1[0].toUpperCase() + bx1.substring(1)
-    }
-    if (nameException.includes(bx2.toLowerCase())) {
-        bx2 = nameFix[[nameException.indexOf(bx2.toLowerCase())]]
-        bx2 = bx2[0].toUpperCase() + bx2.substring(1)
-    }
+    var bx1 = nameCheck(box1.value[0].toUpperCase() + box1.value.substring(1))
+    var bx2 = nameCheck(box2.value[0].toUpperCase() + box2.value.substring(1))
     var boxbool1 = false
     var boxbool2 = false
     while (i < ids.length) {
@@ -821,6 +745,9 @@ function verifInputs() {
 function nameCheck(mon) {
     if (nameFix.includes(mon.toLowerCase())) {
         var val = nameException[nameFix.indexOf(mon.toLowerCase())]
+        val = val[0].toUpperCase() + val.substring(1)
+    } else if (nameException.includes(mon.toLowerCase())) {
+        var val = nameFix[nameException.indexOf(mon.toLowerCase())]
         val = val[0].toUpperCase() + val.substring(1)
     } else {
         var val = mon;
