@@ -209,15 +209,15 @@ function randomPoke() {
 function randomHalf(inputField) {
     var rand = Math.floor(Math.random() * (ids.length + 1))
     if (inputField == 1) {
-        document.getElementById("r1").disabled = true;
         box1.value = nameCheck(ids[rand][0])
         if (box2.value.length > 0) {
+            document.getElementById("r1").disabled = true;
             document.getElementById("button").click();
         }
     } else {
-        document.getElementById("r2").disabled = true;
         box2.value = nameCheck(ids[rand][0])
         if (box1.value.length > 0) {
+            document.getElementById("r2").disabled = true;
             document.getElementById("button").click();
         }
     }
