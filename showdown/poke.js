@@ -205,6 +205,24 @@ function randomPoke() {
     document.getElementById("button").click();
 }
 
+//Random pokemon for a specific input
+function randomHalf(inputField) {
+    var rand = Math.floor(Math.random() * (ids.length + 1))
+    if (inputField == 1) {
+        document.getElementById("r1").disabled = true;
+        box1.value = nameCheck(ids[rand][0])
+        if (box2.value.length > 0) {
+            document.getElementById("button").click();
+        }
+    } else {
+        document.getElementById("r2").disabled = true;
+        box2.value = nameCheck(ids[rand][0])
+        if (box1.value.length > 0) {
+            document.getElementById("button").click();
+        }
+    }
+}
+
 //Fusion calculation function
 function fusePoke() {
 
@@ -652,7 +670,8 @@ function fusePoke() {
                             document.getElementById("IG2").innerHTML = "Not in Showdown";
                         }
 
-
+                        document.getElementById("r1").disabled = false
+                        document.getElementById("r2").disabled = false
                         document.getElementById("random").disabled = false
                     }
                 }
