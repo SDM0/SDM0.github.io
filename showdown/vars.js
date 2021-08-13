@@ -1261,7 +1261,7 @@ const listfusion =
 "kyogre/raichu",
 "palkia/rapidash",
 "slowbro/groudon",
-"zoroak/gengar",
+"zoroark/gengar",
 "aerodactyl/electrode",
 "arbok/krookodile",
 "ariados/machamp",
