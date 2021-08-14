@@ -106,6 +106,9 @@ const typeName = ["normal", "fire", "water", "electric", "grass", "ice", "fighti
 var result1 = new Array();
 var result2 = new Array();
 
+var chk = []
+var ids2 = []
+
 var typeComp = 0;
 
 //Adding options to datalist
@@ -198,24 +201,26 @@ function resetPoke() {
 //Random pokemon
 function randomPoke() {
     document.getElementById("random").disabled = true;
-    var rand1 = Math.floor(Math.random() * (ids.length + 1))
-    var rand2 = Math.floor(Math.random() * (ids.length + 1))
-    document.getElementById("fname1").value = nameCheck(ids[rand1][0])
-    document.getElementById("fname2").value = nameCheck(ids[rand2][0])
+    var idsRand = orderByEvo()
+    var rand1 = Math.floor(Math.random() * (idsRand.length + 1))
+    var rand2 = Math.floor(Math.random() * (idsRand.length + 1))
+    document.getElementById("fname1").value = nameCheck(idsRand[rand1][0])
+    document.getElementById("fname2").value = nameCheck(idsRand[rand2][0])
     document.getElementById("button").click();
 }
 
 //Random pokemon for a specific input
 function randomHalf(inputField) {
-    var rand = Math.floor(Math.random() * (ids.length + 1))
+    var idsRand = orderByEvo()
+    var rand = Math.floor(Math.random() * (idsRand.length + 1))
     if (inputField == 1) {
-        box1.value = nameCheck(ids[rand][0])
+        box1.value = nameCheck(idsRand[rand][0])
         if (box2.value.length > 0) {
             document.getElementById("r1").disabled = true;
             document.getElementById("button").click();
         }
     } else {
-        box2.value = nameCheck(ids[rand][0])
+        box2.value = nameCheck(idsRand[rand][0])
         if (box1.value.length > 0) {
             document.getElementById("r2").disabled = true;
             document.getElementById("button").click();
@@ -772,6 +777,51 @@ function nameCheck(mon) {
         var val = mon;
     }
     return val
+}
+
+//Turns on/off the setting menu
+function menuBtn() {
+    var menu = document.getElementById("menu")
+    if (menu.hidden == true) {
+        menu.hidden = false;
+    } else {
+        menu.hidden = true;
+    }
+}
+
+//Sort ids list by evolution line
+function orderByEvo() {
+    var chk2 = []
+    var matches = document.querySelectorAll('input[type="checkbox"]:not(:checked)');
+    for (var i=0; i<matches.length; i++) {
+        chk2.push(matches[i].value)
+    }
+    if (chk2.length > 0 && JSON.stringify(chk) !== JSON.stringify(chk2)) {
+        ids2 = []
+        if (!chk2.includes("1")) {
+            for (var i = 0; i<ids.length; i++) {
+                if (ids[i][2]==1) {
+                    ids2.push(ids[i])
+                }
+            }
+        }
+        if (!chk2.includes("2")) {
+            for (var i = 0; i<ids.length; i++) {
+                if (ids[i][2]==2) {
+                    ids2.push(ids[i])
+                }
+            }
+        }
+        if (!chk2.includes("3")) {
+            for (var i = 0; i<ids.length; i++) {
+                if (ids[i][2]==3) {
+                    ids2.push(ids[i])
+                }
+            }
+        }
+        chk = chk2
+    }
+    return ids2
 }
 
 //Ability fusion function
