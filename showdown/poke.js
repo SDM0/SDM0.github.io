@@ -820,6 +820,8 @@ function orderByEvo() {
             }
         }
         chk = chk2
+    } else {
+        ids2 = ids
     }
     return ids2
 }
