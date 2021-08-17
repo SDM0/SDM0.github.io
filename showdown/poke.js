@@ -202,8 +202,9 @@ function resetPoke() {
 function randomPoke() {
     document.getElementById("random").disabled = true;
     var idsRand = orderByEvo()
-    var rand1 = Math.floor(Math.random() * (idsRand.length + 1))
-    var rand2 = Math.floor(Math.random() * (idsRand.length + 1))
+    var rand1 = Math.floor(Math.random() * (idsRand.length))
+    var rand2 = Math.floor(Math.random() * (idsRand.length))
+    console.log(rand1,rand2)
     document.getElementById("fname1").value = nameCheck(idsRand[rand1][0])
     document.getElementById("fname2").value = nameCheck(idsRand[rand2][0])
     document.getElementById("button").click();
@@ -212,7 +213,7 @@ function randomPoke() {
 //Random pokemon for a specific input
 function randomHalf(inputField) {
     var idsRand = orderByEvo()
-    var rand = Math.floor(Math.random() * (idsRand.length + 1))
+    var rand = Math.floor(Math.random() * (idsRand.length))
     if (inputField == 1) {
         box1.value = nameCheck(idsRand[rand][0])
         if (box2.value.length > 0) {
