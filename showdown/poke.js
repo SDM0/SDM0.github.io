@@ -796,6 +796,7 @@ function orderByEvo() {
     for (var i=0; i<matches.length; i++) {
         chk2.push(matches[i].value)
     }
+    console.log(chk2)
     if (chk2.length > 0 && JSON.stringify(chk) !== JSON.stringify(chk2)) {
         ids2 = []
         if (!chk2.includes("1")) {
@@ -820,7 +821,8 @@ function orderByEvo() {
             }
         }
         chk = chk2
-    } else {
+    } else if (chk2.length == 0) {
+        console.log("No list so print all")
         ids2 = ids
     }
     return ids2
