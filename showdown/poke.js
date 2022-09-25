@@ -152,8 +152,8 @@ function resetPoke() {
     document.getElementById("pic1").src = "question.png";
     document.getElementById("pic2").src = "question.png";
 
-    document.getElementById("IG1").innerHTML = "";
-    document.getElementById("IG2").innerHTML = "";
+    /*document.getElementById("IG1").innerHTML = "";
+    document.getElementById("IG2").innerHTML = "";*/
 
     document.getElementById("FP1").innerHTML = "mon1/mon2";
     document.getElementById("FP2").innerHTML = "mon2/mon1";
@@ -658,7 +658,7 @@ function fusePoke() {
                         document.getElementById("ab2").innerHTML = " ";
                         document.getElementById("ab2").innerHTML = listAb2;
 
-
+                        /*
                         //Fusion is already in Showdown or not
                         if (listfusion.includes(fmon1.toLowerCase() + "/" + fmon2.toLowerCase())) {
                             document.getElementById("IG1").style.color = "green";
@@ -675,6 +675,7 @@ function fusePoke() {
                             document.getElementById("IG2").style.color = "red";
                             document.getElementById("IG2").innerHTML = "Not in Showdown";
                         }
+                        */
 
                         document.getElementById("r1").disabled = false
                         document.getElementById("r2").disabled = false
