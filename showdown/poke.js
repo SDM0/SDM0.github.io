@@ -700,13 +700,13 @@ function typeId(ftype) {
 //Custom sprite fusion function
 function showFusion(elementId, fusionId) {
 
-    fusionUrl = "https://aegide.github.io/CustomBattlers/" + fusionId;
+    fusionUrl = "https://raw.githubusercontent.com/Aegide/custom-fusion-sprites/main/CustomBattlers/" + fusionId;
 
     if (doesImageExists(fusionUrl)) {
         document.getElementById(elementId).src = fusionUrl;
     }
     else {//Screenshot of autogen pokemon
-        fallbackFusionRepository = "https://raw.githubusercontent.com/Aegide/FusionSprites/master/Japeal/"
+        fallbackFusionRepository = "https://raw.githubusercontent.com/Aegide/autogen-fusion-sprites/master/Battlers/"
         headId = fusionId.split(".")[0];
         fallbackFusionUrl = fallbackFusionRepository + headId + "/" + fusionId;
 
