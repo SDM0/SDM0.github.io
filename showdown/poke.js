@@ -109,6 +109,12 @@ var result2 = new Array();
 var chk = []
 var ids2 = []
 
+var saveInit = -1
+var savePrev = false
+var saveNext = false
+var saveIndex = 0
+var saves = [] //List of fusions made
+
 var typeComp = 0;
 
 //Adding options to datalist
@@ -680,6 +686,43 @@ function fusePoke() {
                         document.getElementById("r1").disabled = false
                         document.getElementById("r2").disabled = false
                         document.getElementById("random").disabled = false
+
+                        //Post first fusion
+                        if (saveInit >= 0) {
+
+                            //Fusion w/o using "Next" or "Previous", otherwise it doesn't add said fusion in saves
+                            if (!savePrev && !saveNext) {
+
+                                if (!(saveIndex == (saves.length)-1)) {
+                                    saves.splice(saveIndex + 1)
+                                }
+                                saves.push([(document.getElementById("fname1")).value,(document.getElementById("fname2")).value]);
+                                saveIndex += 1
+                            }
+
+                            //Disable "Previous" if first fusion
+                            if (saveIndex > 0) {
+                                document.getElementById("previous").disabled = false
+                            } else {
+                                document.getElementById("previous").disabled = true
+                            }
+
+                            //Disable "Next" if last fusion
+                            if (saveIndex < (saves.length)-1) {
+                                document.getElementById("next").disabled = false
+                            } else {
+                                document.getElementById("next").disabled = true
+                            }
+
+                            //Reset
+                            savePrev = false
+                            saveNext = false
+
+                        //First fusion
+                        } else {
+                            saves.push([(document.getElementById("fname1")).value,(document.getElementById("fname2")).value]);
+                            saveInit += 1
+                        }
                     }
                 }
             }
@@ -789,6 +832,26 @@ function menuBtn() {
     } else {
         menu.hidden = true;
     }
+}
+
+//Previous fusion inputed
+function prevFuse() {
+    saveIndex -= 1
+    savePrev = true
+    document.getElementById("fname1").value = nameCheck(saves[saveIndex][0])
+    document.getElementById("fname2").value = nameCheck(saves[saveIndex][1])
+
+    document.getElementById("button").click();
+}
+
+//Next fusion inputed
+function nextFuse() {
+    saveIndex += 1
+    saveNext = true
+    document.getElementById("fname1").value = nameCheck(saves[saveIndex][0])
+    document.getElementById("fname2").value = nameCheck(saves[saveIndex][1])
+
+    document.getElementById("button").click();
 }
 
 //Sort ids list by evolution line
