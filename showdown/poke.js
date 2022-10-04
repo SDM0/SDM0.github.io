@@ -110,8 +110,7 @@ var chk = []
 var ids2 = []
 
 var saveInit = -1
-var savePrev = false
-var saveNext = false
+var saveBtn = true
 var saveIndex = 0
 var saves = [] //List of fusions made
 
@@ -210,7 +209,6 @@ function randomPoke() {
     var idsRand = orderByEvo()
     var rand1 = Math.floor(Math.random() * (idsRand.length))
     var rand2 = Math.floor(Math.random() * (idsRand.length))
-    console.log(rand1,rand2)
     document.getElementById("fname1").value = nameCheck(idsRand[rand1][0])
     document.getElementById("fname2").value = nameCheck(idsRand[rand2][0])
     document.getElementById("button").click();
@@ -691,7 +689,7 @@ function fusePoke() {
                         if (saveInit >= 0) {
 
                             //Fusion w/o using "Next" or "Previous", otherwise it doesn't add said fusion in saves
-                            if (!savePrev && !saveNext) {
+                            if (!saveBtn) {
 
                                 if (!(saveIndex == (saves.length)-1)) {
                                     saves.splice(saveIndex + 1)
@@ -715,8 +713,7 @@ function fusePoke() {
                             }
 
                             //Reset
-                            savePrev = false
-                            saveNext = false
+                            saveBtn = false
 
                         //First fusion
                         } else {
@@ -837,7 +834,7 @@ function menuBtn() {
 //Previous fusion inputed
 function prevFuse() {
     saveIndex -= 1
-    savePrev = true
+    saveBtn = true
     document.getElementById("fname1").value = nameCheck(saves[saveIndex][0])
     document.getElementById("fname2").value = nameCheck(saves[saveIndex][1])
 
@@ -847,7 +844,7 @@ function prevFuse() {
 //Next fusion inputed
 function nextFuse() {
     saveIndex += 1
-    saveNext = true
+    saveBtn = true
     document.getElementById("fname1").value = nameCheck(saves[saveIndex][0])
     document.getElementById("fname2").value = nameCheck(saves[saveIndex][1])
 
@@ -1156,42 +1153,54 @@ function fusAb(mon1, mon2) {
 
 //Type fusion function
 function fusType(mon1, mon2) {
-    //cas H0/null + B0/null [H0#B0] -> H0/B0
     var fmon = []
+
+    //cas H0/null + B0/null [H0#B0] -> H0/B0
     if (mon1.length == 1 && mon2.length == 1) {
         if (mon1[0] != mon2[0]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[0])
-            //cas H0/null + B0/null [H0=B0] -> H0/null
+
+    //cas H0/null + B0/null [H0=B0] -> H0/null
         } else {
             fmon.push(mon1[0]);
         }
     } else if (mon1.length == 2 && mon2.length == 1) {
-        //cas H0/H1 + B0/null [H0#B0] -> H0/B0
+
+    //cas H0/H1 + B0/null [H0#B0] -> H0/B0
         if (mon1[0] != mon2[0]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[0]);
-            //cas H0/H1 + B0/null [H0=B0] -> H0/H1
+
+    // Exception:
+    // The body will provide its primary type
+    // instead of the secondary
+    // if the head is already providing that element.
+
+    //cas H0/H1 + B0/null [H0=B0] -> H0
         } else {
             fmon.push(mon1[0]);
-            fmon.push(mon1[1]);
         }
     } else if (mon1.length == 1 && mon2.length == 2) {
-        //cas H0/null + B0/B1 [H0#B1] -> H0/B1
+
+    //cas H0/null + B0/B1 [H0#B1] -> H0/B1
         if (mon1[0] != mon2[1]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[1]);
-            //cas H0/null + B0/B1 [H0=B1] -> H0/B0
+
+    //cas H0/null + B0/B1 [H0=B1] -> H0/B0
         } else {
             fmon.push(mon1[0])
             fmon.push(mon2[0]);
         }
-        //cas H0/H1 + B0/B1 [H0=B1] -> H0/B0
+
+    //cas H0/H1 + B0/B1 [H0=B1] -> H0/B0
     } else if (mon1.length == 2 && mon2.length == 2) {
         if (mon1[0] == mon2[1]) {
             fmon.push(mon1[0]);
             fmon.push(mon2[0]);
-            //cas H0/H1 + B0/B1 [H0#B1] -> H0/B1
+
+    //cas H0/H1 + B0/B1 [H0#B1] -> H0/B1
         } else {
             fmon.push(mon1[0]);
             fmon.push(mon2[1]);
