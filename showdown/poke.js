@@ -449,6 +449,9 @@ function fusePoke() {
 
                         //Stats calculation
                         var hp1 = (mon2stats[0] / 3) + 2 * (mon1stats[0] / 3);
+                        if (mon1 == "shedinja") {
+                            hp1 = 1
+                        }
                         var atk1 = 2 * (mon2stats[1] / 3) + (mon1stats[1] / 3);
                         var def1 = 2 * (mon2stats[2] / 3) + (mon1stats[2] / 3);
                         var spatk1 = (mon2stats[3] / 3) + 2 * (mon1stats[3] / 3);
@@ -457,6 +460,9 @@ function fusePoke() {
                         var bs1 = Math.floor(hp1) + Math.floor(atk1) + Math.floor(def1) + Math.floor(spatk1) + Math.floor(spdef1) + Math.floor(spe1);
 
                         var hp2 = (mon1stats[0] / 3) + 2 * (mon2stats[0] / 3);
+                        if (mon2 == "shedinja") {
+                            hp2 = 1
+                        }
                         var atk2 = 2 * (mon1stats[1] / 3) + (mon2stats[1] / 3);
                         var def2 = 2 * (mon1stats[2] / 3) + (mon2stats[2] / 3);
                         var spatk2 = (mon1stats[3] / 3) + 2 * (mon2stats[3] / 3);
@@ -529,8 +535,8 @@ function fusePoke() {
                         if (abilitySwap.includes(mon2)) {
                             [mon2abilities[0], mon2abilities[1]] = [mon2abilities[1], mon2abilities[0]];
                         }
-                        var abres1 = fusAb(mon1abilities, mon2abilities);
-                        var abres2 = fusAb(mon2abilities, mon1abilities);
+                        var abres1 = [...new Set(fusAb(mon1abilities, mon2abilities))];
+                        var abres2 = [...new Set(fusAb(mon2abilities, mon1abilities))];
 
 
                         //Type of fused mons
