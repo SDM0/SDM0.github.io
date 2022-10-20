@@ -445,7 +445,10 @@ const typeSwap=
 ,["water","rock","Omanyte"]
 ,["water","rock","Omastar"]
 ,["steel","bug","Scizor"]
-,["steel","electric","Magnezone"]]
+,["steel","electric","Magnezone"]
+,["steel","water","Empoleon"]
+,["steel","grass","Ferrothorn"]
+,["dark","ghost","Spiritomb"]]
 
 const typeUni =
 [["grass","Bulbasaur"]
