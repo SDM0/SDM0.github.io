@@ -538,7 +538,6 @@ function fusePoke() {
                         var abres1 = [...new Set(fusAb(mon1abilities, mon2abilities))];
                         var abres2 = [...new Set(fusAb(mon2abilities, mon1abilities))];
 
-
                         //Type of fused mons
                         var fmonres1 = fusType(mon1types, mon2types);
                         var fmonres2 = fusType(mon2types, mon1types);
@@ -920,6 +919,7 @@ function fusAb(mon1, mon2) {
     } else if (mon1.length == 2 && mon1[1][1] == false) {
         var H1 = mon1[1][0].name;
     }
+    
     var B0 = mon2[0][0].name;
     if (mon2.length == 3 && mon2[2][1] == true) {
         var B1 = mon2[1][0].name;
@@ -929,225 +929,142 @@ function fusAb(mon1, mon2) {
     } else if (mon1.length == 2 && mon1[1][1] == false) {
         var B1 = mon2[1][0].name;
     }
-    //cas H0/null/null + B0/null/null [H0=B0] -> H0/null/null
-    if (mon1.length == 1 && mon2.length == 1 && mon1[0][1] == false && mon2[0][1] == false) {
+    
+    //case H0/null/null + B0/null/null
+    //case H0/H1/null + B0/null/null
+    
+    if ((mon1.length == 1 && mon2.length == 1) || (mon1.length == 2 && mon2.length == 1 && mon1[1][1] == false)) {
+        console.log("1")
+        //[H0=B0] -> H0/null/null
         if (H0 == B0) {
             fabs.push(H0);
-            //cas H0/null/null + B0/null/null [H0#B0] -> H0/B0/null
-        } else if (H0 != B0) {
+        //[H0#B0] -> H0/B0/null
+        } else {
             fabs.push(H0);
             fabs.push(B0);
         }
-        //cas H0/H1/null + B0/null/null [H0=B0] -> H0/H1/null
-    } else if (mon1.length == 2 && mon2.length == 1 && mon1[0][1] == false && mon1[1][1] == false && mon2[0][1] == false) {
+    
+    //case H0/null/HH + B0/null/null
+    //case H0/H1/HH + B0/null/null
+
+    } else if ((mon1.length == 2 && mon2.length == 1 && mon1[1][1] == true) || (mon1.length == 3 && mon2.length == 1)) {
+        console.log("2")
+        //[H0=B0] -> H0/null/HH
         if (H0 == B0) {
             fabs.push(H0);
-            fabs.push(H1);
-            //cas H0/H1/null + B0/null/null [H0#B0] -> H0/B0/H1
-        } else if (H0 != B0) {
+            fabs.push(HH);
+        //[HH=B0] -> H0/B0/null
+        } else if (HH == B0) {
             fabs.push(H0);
             fabs.push(B0);
-            fabs.push(H1);
-        }
-        //cas H0/null/HH + B0/null/null [H0=B0 | HH=B0] -> H0/null/HH
-    } else if (mon1.length == 2 && mon2.length == 1 && mon1[0][1] == false && mon1[1][1] == true && mon2[0][1] == false) {
-        if (H0 == B0 || HH == B0) {
-            fabs.push(H0);
-            fabs.push(HH);
-            //cas H0/null/HH + B0/null/null [H0#B0 & HH#B0] -> H0/B0/HH
-        } else if (H0 != B0 && HH != B0) {
+        //[H0#B0 && HH#B0] -> H0/B0/HH
+        } else {
             fabs.push(H0);
             fabs.push(B0);
             fabs.push(HH);
         }
-        //cas H0/H1/HH + B0/null/null [H0=B0 | B0=HH] -> H0/H1/HH
-    } else if (mon1.length == 3 && mon2.length == 1 && mon1[0][1] == false && mon1[1][1] == false && mon1[2][1] == true && mon2[0][1] == false) {
-        if (H0 == B0 || B0 == HH) {
+    
+    //case H0/null/null + B0/null/BH
+    //case H0/H1/null + B0/null/BH
+    } else if ((mon1.length == 1 && mon2.length == 2 && mon2[1][1] == true) || (mon1.length == 2 && mon2.length == 2 && mon1[1][1] == false && mon2[1][1] == true)) {
+        console.log("3")
+        //[H0=B0] -> H0/null/null
+        if (H0 == B0) {
             fabs.push(H0);
-            fabs.push(H1);
+        //[H0#B0] -> H0/B0/null
+        } else {
+            fabs.push(H0);
+            fabs.push(B0);
+        }
+
+    //case H0/null/HH + B0/null/BH
+    //case H0/H1/HH + B0/null/BH
+    } else if ((mon2.length == 2 && mon2.length == 2 && mon1[1][1] == true && mon2[1][1] == true) || (mon1.length == 3 && mon2.length == 2 && mon2[1][1] == true)) {
+        console.log("4")
+        //[H0=B0] -> H0/null/HH
+        if (H0 == B0) {
+            fabs.push(H0);
             fabs.push(HH);
-            //cas H0/H1/HH + B0/null/null [H0#B0 & HH#B0] -> H0/B0/HH
-        } else if (H0 != B0 && HH != B0) {
+        }
+        //[HH=B0] -> H0/B0/null
+        else if (HH == B0) {
+            fabs.push(H0);
+            fabs.push(B0);
+        }
+        //[H0#B0 && HH#B0] -> H0/B0/HH
+        else {
             fabs.push(H0);
             fabs.push(B0);
             fabs.push(HH);
         }
-        //cas H0/null/null + B0/B1/null [H0=B1] -> H0/B0/null
-    } else if (mon1.length == 1 && mon2.length == 2 && mon1[0][1] == false && mon2[0][1] == false && mon2[1][1] == false) {
+
+    //case H0/null/null + B0/B1/null
+    //case H0/H1/null + B0/B1/null
+
+    } else if ((mon1.length == 1 && mon2.length == 2 && mon2[1][1] == false) || (mon1.length == 2 && mon2.length == 2 && mon1[1][1] == false && mon2[1][1] == false)) {
+        console.log("5")
+        //[H0=B1] -> H0/B0/null
         if (H0 == B1) {
             fabs.push(H0);
             fabs.push(B0);
-            //cas H0/null/null + B0/B1/null [H0=B0] -> H0/B1/null
-        } else if (H0 == B0) {
-            fabs.push(H0);
-            fabs.punch(B1);
-            //cas H0/null/null + B0/B1/null [H0#B0 & H0#B1] -> H0/B1/B0
-        } else if (H0 != B0 && H0 != B1) {
+        //[H0#B1] -> H0/B1/null
+        } else {
             fabs.push(H0);
             fabs.push(B1);
-            fabs.push(B0);
         }
-        //cas H0/H1/null + B0/B1/null [H0=B1] -> H0/B0/H1
-    } else if (mon1.length == 2 && mon2.length == 2 && mon1[0][1] == false && mon1[1][1] == false && mon2[0][1] == false && mon2[1][1] == false) {
+
+    //case H0/null/HH + B0/B1/null
+    //case H0/H1/HH + B0/B1/null
+
+    } else if ((mon1.length == 2 && mon2.length == 2 && mon1[1][1] == true && mon2[1][1] == false) || (mon1.length == 3 && mon2.length == 2 && mon2[1][1] == false)) {
+        console.log("6")
+        //[H0=B1] -> H0/B0/HH
         if (H0 == B1) {
             fabs.push(H0);
             fabs.push(B0);
-            fabs.push(H1);
-            //cas H0/H1/null + B0/B1/null [H0=B0] -> H0/B1/H1
-        } else if (H0 == B0) {
-            fabs.push(H0);
-            fabs.push(B1);
-            fabs.push(H1);
-            //cas H0/H1/null + B0/B1/null [H1#B0 & H1#B1] -> H0/B1/H1
-        } else if (H1 != B0 && H1 != B1) {
-            fabs.push(H0);
-            fabs.push(B1);
-            fabs.push(H1);
-        }
-        //cas H0/null/HH + B0/B01/null [H0=B1 | HH=B1] -> H0/B0/HH
-    } else if (mon1.length == 2 && mon2.length == 2 && mon1[0][1] == false && mon1[1][1] == true && mon2[0][1] == false && mon2[1][1] == false) {
-        if (H0 == B1 || HH == B1) {
-            fabs.push(H0);
-            fabs.push(B0);
             fabs.push(HH);
-            //cas H0/null/HH + B0/B1/null [H0#B1 & HH#B1] -> H0/B1/HH
-        } else if (H0 != B1 && HH != B1) {
+        //[HH=B1] -> H0/B1/null
+        } else if (HH == B1) {
             fabs.push(H0);
             fabs.push(B1);
-            fabs.push(H1);
-        }
-        //cas H0/H1/HH + B0/B1/null [H0=B1 | HH=B1] -> H0/B0/HH
-    } else if (mon1.length == 3 && mon2.length == 2 && mon1[0][1] == false && mon1[1][1] == false && mon1[2][1] == true && mon2[0][1] == false && mon2[1][1] == false) {
-        if (H0 == B1 || HH == B1) {
-            fabs.push(H0);
-            fabs.push(B0);
-            fabs.push(HH);
-            //cas H0/H1/HH + B0/B1/null [H0#B1 & HH#B1] -> H0/B1/HH
-        } else if (H0 != B1 && HH != B1) {
+        //[H0#B1 && HH#B1] -> H0/B0/HH
+        } else {
             fabs.push(H0);
             fabs.push(B1);
             fabs.push(HH);
         }
-        //cas H0/null/null + B0/null/BH [H0=BH] -> H0/null/B0
-    } else if (mon1.length == 1 && mon2.length == 2 && mon1[0][1] == false && mon2[0][1] == false && mon2[1][1] == true) {
-        if (H0 == BH) {
+    
+    //case H0/null/null + B0/B1/BH
+    //case H0/H1/null + B0/B1/BH
+
+    } else if ((mon1.length == 1 && mon2.length == 3) || (mon1.length == 2 && mon2.length == 3 && mon1[1][1] == false)) {
+        console.log("7")
+        //[H0=B1]
+        if (H0 == B1) {
             fabs.push(H0);
             fabs.push(B0);
-            //cas H0/null/null + B0/null/BH [H0=B0] -> H0/null/BH
-        } else if (H0 == B0) {
-            fabs.push(H0);
-            fabs.push(BH);
-            //cas H0/null/null + B0/null/BH [H0#B0 & H0#BH] -> H0/B0/BH
-        } else if (H0 != B0 && H0 != BH) {
-            fabs.push(H0);
-            fabs.push(B0);
-            fabs.push(BH);
-        }
-        //cas H0/H1/null + B0/null/BH [H0=BH] -> H0/B0/H1
-    } else if (mon1.length == 2 && mon2.length == 2 && mon1[0][1] == false && mon1[1][1] == false && mon2[0][1] == false && mon2[1][1] == true) {
-        if (H0 == BH) {
-            fabs.push(H0);
-            fabs.push(B0);
-            fabs.push(H1);
-            //cas H0/H1/null + B0/null/BH [H0=B0] -> H0/BH/H1
-        } else if (H0 == B0) {
-            fabs.push(H0);
-            fabs.push(BH);
-            fabs.push(H1);
-            //cas H0/H1/null + B0/null/BH [H0#BH & H1#BH] -> H0/H1/BH
-        } else if (H0 != BH && H1 != BH) {
-            fabs.push(H0);
-            fabs.push(H1);
-            fabs.push(BH);
-        }
-        //cas H0/null/HH + B0/null/BH [H0=BH | HH=BH] -> H0/B0/HH
-    } else if (mon1.length == 2 && mon2.length == 2 && mon1[0][1] == false && mon1[1][1] == true && mon2[0][1] == false && mon2[1][1] == true) {
-        if (H0 == BH || HH == BH) {
-            fabs.push(H0);
-            fabs.push(B0);
-            fabs.push(HH);
-            //cas H0/null/HH + B0/null/BH [H0#BH & HH#BH] -> H0/BH/HH
-        } else if (H0 != BH && HH != BH) {
-            fabs.push(H0);
-            fabs.push(BH);
-            fabs.push(HH);
-        }
-        //cas H0/H1/HH + B0/null/BH [H0=BH | HH=BH] -> H0/B0/HH
-    } else if (mon1.length == 3 && mon2.length == 2 && mon1[0][1] == false && mon1[1][1] == false && mon1[2][1] == true && mon2[0][1] == false && mon2[1][1] == true) {
-        if (H0 == BH || HH == BH) {
-            fabs.push(H0);
-            fabs.push(B0);
-            fabs.push(HH);
-            //cas H0/H1/HH + B0/null/BH [H0#BH & HH#BH] -> H0/BH/HH
-        } else if (H0 != BH && HH != BH) {
-            fabs.push(H0);
-            fabs.push(BH);
-            fabs.push(HH);
-        }
-        //cas H0/null/null + B0/B1/BH [H0#B1 & H0#BH] -> H0/B1/BH
-    } else if (mon1.length == 1 && mon2.length == 3 && mon1[0][1] == false && mon2[0][1] == false && mon2[1][1] == false && mon2[2][1] == true) {
-        if (H0 != B1 && H0 != BH) {
+        //[H0#B1]
+        } else {
             fabs.push(H0);
             fabs.push(B1);
-            fabs.push(BH);
-            //cas H0/null/null + B0/B1/BH [H0=B1] -> H0/B0/BH
-        } else if (H0 == B1) {
-            fabs.push(H0);
-            fabs.push(B0);
-            fabs.push(BH);
-            //cas H0/null/null + B0/B1/BH [H0=BH] -> H0/B1/B0
-        } else if (H0 == BH) {
-            fabs.push(H0);
-            fabs.push(B1);
-            fabs.push(B0);
         }
-        //cas H0/H1/null + B0/B1/BH [H0#B1 & H0#BH] -> H0/B1/BH
-    } else if (mon1.length == 2 && mon2.length == 3 && mon1[0][1] == false && mon1[1][1] == false && mon2[0][1] == false && mon2[1][1] == false && mon2[2][1] == true) {
-        if (H0 == B1 || H0 == BH) {
-            fabs.push(H0);
-            fabs.push(B1);
-            fabs.push(BH);
-            //cas H0/H1/null + B0/B1/BH [H0=B1] -> H0/B0/BH
-        } else if (H0 == B1) {
-            fabs.push(H0);
-            fabs.push(B0);
-            fabs.push(BH);
-            //cas H0/H1/null + B0/B1/BH [H0=BH] -> H0/B1/B0
-        } else if (H0 == BH) {
-            fabs.push(H0);
-            fabs.push(B1);
-            fabs.push(B0);
-        }
-        //cas H0/null/HH + B0/B1/BH [H0#B1 & HH#B1] -> H0/B1/HH
-    } else if (mon1.length == 2 && mon2.length == 3 && mon1[0][1] == false && mon1[1][1] == true && mon2[0][1] == false && mon2[1][1] == false && mon2[2][1] == true) {
-        if (H0 != B1 && HH != B1) {
-            fabs.push(H0);
-            fabs.push(B1);
-            fabs.push(HH);
-            //cas H0/null/HH + B0/B1/BH [H0=B1 | HH=B1] -> H0/B0/HH
-        } else if (H0 == B1 || HH == B1) {
+
+    //case H0/null/HH + B0/B1/BH
+    //case H0/H1/HH + B0/B1/BH
+
+    } else if ((mon1.length == 2 && mon2.length == 3 && mon1[1][1] == true) || (mon1.length == 3 && mon2.length == 3)) {
+        console.log("8")
+        //[H0=B1] -> H0/B0/HH
+        if (H0 == B1) {
             fabs.push(H0);
             fabs.push(B0);
             fabs.push(HH);
-            //cas H0/null/HH + B0/B1/BH [H0=B0 | HH=B0] -> H0/B1/HH
-        } else if (H0 == B0 || HH == B0) {
+        //[HH=B1] -> H0/B1/null
+        } else if (HH == B1) {
             fabs.push(H0);
             fabs.push(B1);
-            fabs.push(HH);
-        }
-        //cas H0/H1/HH + B0/B1/BH [H0#B1 & HH#B1] -> H0/B1/HH
-    } else if (mon1.length == 3 && mon2.length == 3 && mon1[0][1] == false && mon1[1][1] == false && mon1[2][1] == true && mon2[0][1] == false && mon2[1][1] == false && mon2[2][1] == true) {
-        if (H0 != B1 && HH != B1) {
-            fabs.push(H0);
-            fabs.push(B1);
-            fabs.push(HH);
-            //cas H0/H1/HH + B0/B1/BH [H0=B1 | HH=B1] -> H0/B0/HH
-        } else if (H0 == B1 || HH == B1) {
-            fabs.push(H0);
-            fabs.push(B0);
-            fabs.push(HH);
-            //cas H0/H1/HH + B0/B1/BH [H0=B0 | HH=B0] -> H0/B1/HH
-        } else if (H0 == B0 || HH == B0) {
+        //[H0#B1 && HH#B1] -> H0/B0/HH
+        } else {
             fabs.push(H0);
             fabs.push(B1);
             fabs.push(HH);
