@@ -479,6 +479,7 @@ function fusePoke() {
                         for (i = 0; i < L0.length; i++) {
                             L4.push(Math.max(L2[i], L3[i]) - Math.min(L2[i], L3[i]))
                         }
+                        
                         //Color of stats
                         for (i = 0; i < L1.length; i++) {
                             if (L2[i] < L3[i]) {
@@ -505,8 +506,12 @@ function fusePoke() {
                         if (mon1 == "shedinja" || mon2 == "shedinja") {
                             document.getElementById("hp1").innerHTML = "HP: 1 (0)"
                             document.getElementById("hp1").style.color = "orange";
+
+                            document.getElementById("hp2").innerHTML = "HP: 1 (0)";
+                            document.getElementById("hp2").style.color = "orange";
                         } else {
                             document.getElementById("hp1").innerHTML = "HP: " + Math.floor(hp1) + L4[0];
+                            document.getElementById("hp2").innerHTML = "HP: " + Math.floor(hp2) + L5[0];
                         }
                         document.getElementById("atk1").innerHTML = "ATK: " + Math.floor(atk1) + L4[1];
                         document.getElementById("def1").innerHTML = "DEF: " + Math.floor(def1) + L4[2];
@@ -515,12 +520,6 @@ function fusePoke() {
                         document.getElementById("spe1").innerHTML = "SPEED: " + Math.floor(spe1) + L4[5];
                         document.getElementById("bs1").innerHTML = "TOTAL: " + Math.floor(bs1) + L4[6];
 
-                        if (mon1 == "shedinja" || mon2 == "shedinja") {
-                            document.getElementById("hp2").innerHTML = "HP: 1 (0)";
-                            document.getElementById("hp2").style.color = "orange";
-                        } else {
-                            document.getElementById("hp2").innerHTML = "HP: " + Math.floor(hp2) + L5[0];
-                        }
                         document.getElementById("atk2").innerHTML = "ATK: " + Math.floor(atk2) + L5[1];
                         document.getElementById("def2").innerHTML = "DEF: " + Math.floor(def2) + L5[2];
                         document.getElementById("spatk2").innerHTML = "SPE.ATK: " + Math.floor(spatk2) + L5[3];
@@ -934,7 +933,6 @@ function fusAb(mon1, mon2) {
     //case H0/H1/null + B0/null/null
     
     if ((mon1.length == 1 && mon2.length == 1) || (mon1.length == 2 && mon2.length == 1 && mon1[1][1] == false)) {
-        console.log("1")
         //[H0=B0] -> H0/null/null
         if (H0 == B0) {
             fabs.push(H0);
@@ -948,7 +946,6 @@ function fusAb(mon1, mon2) {
     //case H0/H1/HH + B0/null/null
 
     } else if ((mon1.length == 2 && mon2.length == 1 && mon1[1][1] == true) || (mon1.length == 3 && mon2.length == 1)) {
-        console.log("2")
         //[H0=B0] -> H0/null/HH
         if (H0 == B0) {
             fabs.push(H0);
@@ -967,7 +964,6 @@ function fusAb(mon1, mon2) {
     //case H0/null/null + B0/null/BH
     //case H0/H1/null + B0/null/BH
     } else if ((mon1.length == 1 && mon2.length == 2 && mon2[1][1] == true) || (mon1.length == 2 && mon2.length == 2 && mon1[1][1] == false && mon2[1][1] == true)) {
-        console.log("3")
         //[H0=B0] -> H0/null/null
         if (H0 == B0) {
             fabs.push(H0);
@@ -980,7 +976,6 @@ function fusAb(mon1, mon2) {
     //case H0/null/HH + B0/null/BH
     //case H0/H1/HH + B0/null/BH
     } else if ((mon2.length == 2 && mon2.length == 2 && mon1[1][1] == true && mon2[1][1] == true) || (mon1.length == 3 && mon2.length == 2 && mon2[1][1] == true)) {
-        console.log("4")
         //[H0=B0] -> H0/null/HH
         if (H0 == B0) {
             fabs.push(H0);
@@ -1002,7 +997,6 @@ function fusAb(mon1, mon2) {
     //case H0/H1/null + B0/B1/null
 
     } else if ((mon1.length == 1 && mon2.length == 2 && mon2[1][1] == false) || (mon1.length == 2 && mon2.length == 2 && mon1[1][1] == false && mon2[1][1] == false)) {
-        console.log("5")
         //[H0=B1] -> H0/B0/null
         if (H0 == B1) {
             fabs.push(H0);
@@ -1017,7 +1011,6 @@ function fusAb(mon1, mon2) {
     //case H0/H1/HH + B0/B1/null
 
     } else if ((mon1.length == 2 && mon2.length == 2 && mon1[1][1] == true && mon2[1][1] == false) || (mon1.length == 3 && mon2.length == 2 && mon2[1][1] == false)) {
-        console.log("6")
         //[H0=B1] -> H0/B0/HH
         if (H0 == B1) {
             fabs.push(H0);
@@ -1038,7 +1031,6 @@ function fusAb(mon1, mon2) {
     //case H0/H1/null + B0/B1/BH
 
     } else if ((mon1.length == 1 && mon2.length == 3) || (mon1.length == 2 && mon2.length == 3 && mon1[1][1] == false)) {
-        console.log("7")
         //[H0=B1]
         if (H0 == B1) {
             fabs.push(H0);
@@ -1053,7 +1045,6 @@ function fusAb(mon1, mon2) {
     //case H0/H1/HH + B0/B1/BH
 
     } else if ((mon1.length == 2 && mon2.length == 3 && mon1[1][1] == true) || (mon1.length == 3 && mon2.length == 3)) {
-        console.log("8")
         //[H0=B1] -> H0/B0/HH
         if (H0 == B1) {
             fabs.push(H0);
